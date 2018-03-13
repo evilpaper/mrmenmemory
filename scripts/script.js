@@ -1,12 +1,12 @@
 // todo
 // add shake on reset button, like this https://tympanus.net/Development/CreativeButtons/
-// make sure cards are always is a neat 6x4 or 4X6 grid and fit the viewport
 // add a huggledy-piggledy mode
 // add timer for solo play
 // add two player game
 // add "throw out animation" when cards are placed
 // add "magnification animation" on small screens
-// add a "poff" animation when you get a pair
+// add a "poff" animation when you get a pair like this https://dribbble.com/shots/4273331-Delete-animation-poof
+// add "match" card animation and counter like Slamet from https://tympanus.net/Development/CardStackEffects/
 // add highscore table
 
 
@@ -157,6 +157,25 @@ board.addEventListener('click', function(event) {
 placeOutCards();
 
 newGame.addEventListener('click', function(event) {
+  event.preventDefault;
+  console.log("Yes, you clicked");
+
+  /*
+  let cardDivs = document.querySelectorAll('.card');
+  cardDivs.forEach(card => {
+    console.log(card);
+    card.classList.remove('bounce-top');
+    card.offsetWidth = newGame.offsetWidth;
+    card.classList.add("bounce-top");
+  })
+  */
+  board.classList.remove('bounce-top');
+  board.offsetWidth = newGame.offsetWidth;
+  board.classList.add("bounce-top");
+  newGame.classList.remove('bounce-top');
+  newGame.offsetWidth = newGame.offsetWidth;
+  newGame.classList.add("bounce-top");
   removeCards();
   placeOutCards();
-})
+  ;
+}, false)
