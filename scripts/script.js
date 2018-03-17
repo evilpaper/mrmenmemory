@@ -1,9 +1,8 @@
 // todo
-// add shake on reset button, like this https://tympanus.net/Development/CreativeButtons/
+// cascade the reset shake (make each card shake a different period)
 // add a huggledy-piggledy mode
 // add timer for solo play
 // add two player game
-// add "throw out animation" when cards are placed
 // add "magnification animation" on small screens
 // add a "poff" animation when you get a pair like this https://dribbble.com/shots/4273331-Delete-animation-poof
 // add "match" card animation and counter like Slamet from https://tympanus.net/Development/CardStackEffects/
@@ -105,6 +104,7 @@ const removeMatches = () => {
   let selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.add('match');
+    card.classList.add('poof');
   });
 }
 
@@ -159,16 +159,6 @@ placeOutCards();
 newGame.addEventListener('click', function(event) {
   event.preventDefault;
   console.log("Yes, you clicked");
-
-  /*
-  let cardDivs = document.querySelectorAll('.card');
-  cardDivs.forEach(card => {
-    console.log(card);
-    card.classList.remove('bounce-top');
-    card.offsetWidth = newGame.offsetWidth;
-    card.classList.add("bounce-top");
-  })
-  */
   board.classList.remove('bounce-top');
   board.offsetWidth = newGame.offsetWidth;
   board.classList.add("bounce-top");

@@ -41,8 +41,26 @@ body {
 
 .card {
   position: relative;
-  transition: all .4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: all .36s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   transform-style: preserve-3d;
+  background-image:url("../images/poof_spritesheet.svg");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 600%;
+}
+
+.poof {
+  -webkit-animation: poof-animation 0.6s steps(5) 1;
+  animation: poof-animation 0.6s steps(5) 1;
+}
+@-webkit-keyframes poof-animation {
+  from {background-position: left;}
+  to {background-position: right;}
+}
+
+@keyframes poof-animation {
+  from {background-position: left;}
+  to {background-position: right;}
 }
 
 .back,
