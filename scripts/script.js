@@ -1,14 +1,10 @@
 // todo
 // cascade the reset shake (make each card shake a different period)
 // add a huggledy-piggledy mode
-// add timer for solo play
-// add two player game
-// add "magnification animation" on small screens
-// add a "poff" animation when you get a pair like this https://dribbble.com/shots/4273331-Delete-animation-poof
-// add "match" card animation and counter like Slamet from https://tympanus.net/Development/CardStackEffects/
-// add highscore table
-
-
+// steal timer behaviour, incl. animations, from Santa Tracker
+// add sounds like Santa Tracker
+// add animations like the pro's from awwwards
+// remove animation class on tranistion end like this https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 
 const cards = [{
     'name': 'mrwrong',
@@ -60,19 +56,67 @@ const cards = [{
   },
 ];
 const board = document.querySelector('.board');
-const newGame = document.querySelector('.button-new-game');
+const newGameButton = document.querySelector('.button-new-game');
+const timeDisplay = document.querySelector('.time');
+const pop = document.querySelector('.pop');
+
 let firstGuess = '';
 let secondGuess = '';
 let previousGuess = null; // Used to not allow same item to be clicked twice
 let cardCount = 0;
-let delay = 700;
+let delay = 500;
 let deck = cards.concat(cards);
+let minutes = 0;
+let seconds = 0;
+let timerOn = false;
+let gameOn = false;
 
+/*
+Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass
+into clearInterval to stop it from firing:
+*/
+let timer;
 
+function updateTimer() {
+  if (timerOn) {
+    seconds++;
+    if (seconds >= 60) {
+      seconds = 0;
+      minutes++;
+    }
+    timeDisplay.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
+      + ":" + (seconds > 9 ? seconds : "0" + seconds);
+  }
+}
 
-function placeOutCards() {
+function startTimer() {
+  timerOn = true;
+  timer = setInterval(updateTimer, 1000);
+  timeDisplay.classList.remove('bounce-top');
+  timeDisplay.offsetWidth = timeDisplay.offsetWidth;
+  timeDisplay.classList.add('bounce-top');
+}
+
+function stopTimer() {
+  timerOn = false;
+}
+
+function resetTimer() {
+  timerOn = false;
+  seconds = 0; minutes = 0;
+  clearInterval(timer);
+  timeDisplay.textContent = "00:00";
+}
+
+function resetGame() {
+  return gameOn = false;
+}
+
+function shuffleCards() {
   deck.sort(() => 0.5 - Math.random());
+}
 
+function dealCards() {
   deck.forEach(card => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
@@ -91,13 +135,11 @@ function placeOutCards() {
   })
 }
 
-
-
 const removeCards = () => {
   deck.forEach(card => {
     let elToRemove = document.querySelector('.card')
     elToRemove.parentNode.removeChild(elToRemove);
-  })
+  });
 }
 
 const removeMatches = () => {
@@ -105,6 +147,7 @@ const removeMatches = () => {
   selected.forEach(card => {
     card.classList.add('match');
     card.classList.add('poof');
+    pop.play();
   });
 }
 
@@ -118,10 +161,14 @@ const resetGuesses = () => {
   });
 }
 
-// Add event listener to the grid
 board.addEventListener('click', function(event) {
   // Grab the event target
   let clicked = event.target;
+
+  if (gameOn === false) {
+    gameOn = true;
+    startTimer();
+  }
 
   // Do not allow the grid section itself to be selected or the same card twice, only div inside the grid
   if (
@@ -154,18 +201,35 @@ board.addEventListener('click', function(event) {
   }
 })
 
-placeOutCards();
+shuffleCards()
+dealCards();
 
-newGame.addEventListener('click', function(event) {
+newGameButton.addEventListener('click', function(event) {
   event.preventDefault;
-  console.log("Yes, you clicked");
+  console.log("New Game clicked!");
+  /*
   board.classList.remove('bounce-top');
-  board.offsetWidth = newGame.offsetWidth;
+  board.offsetWidth = newGameButton.offsetWidth;
   board.classList.add("bounce-top");
-  newGame.classList.remove('bounce-top');
-  newGame.offsetWidth = newGame.offsetWidth;
-  newGame.classList.add("bounce-top");
+  */
+  let cards = document.querySelectorAll(".card");
+  console.log(cards)
+  cards.forEach(card => {
+    console.log(card);
+  });
+  /*
+  deck.forEach(card => {
+    console.log(card);
+    card.style.animation = "bounce-top 0.4s both";
+  });
+  */
+  board.classList.remove('bounce-top');
+  board.offsetWidth = newGameButton.offsetWidth;
+  board.classList.add('bounce-top');
+  resetGame();
+  resetTimer();
   removeCards();
-  placeOutCards();
+  shuffleCards()
+  dealCards();
   ;
 }, false)
