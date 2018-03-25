@@ -1,5 +1,4 @@
 // todo
-// cascade the reset shake (make each card shake a different period)
 // add a huggledy-piggledy mode
 // steal timer behaviour, incl. animations, from Santa Tracker
 // add sounds like Santa Tracker
@@ -212,24 +211,26 @@ newGameButton.addEventListener('click', function(event) {
   board.offsetWidth = newGameButton.offsetWidth;
   board.classList.add("bounce-top");
   */
-  let cards = document.querySelectorAll(".card");
-  console.log(cards)
-  cards.forEach(card => {
-    console.log(card);
-  });
-  /*
-  deck.forEach(card => {
-    console.log(card);
-    card.style.animation = "bounce-top 0.4s both";
-  });
-  */
+
+/*
   board.classList.remove('bounce-top');
-  board.offsetWidth = newGameButton.offsetWidth;
+  board.offsetWidth = board.offsetWidth;
   board.classList.add('bounce-top');
+*/
   resetGame();
   resetTimer();
   removeCards();
   shuffleCards()
   dealCards();
+  let cardsNodelist = document.querySelectorAll(".card");
+  let cardsElements = Array.apply(null, cardsNodelist);
+
+  cardsElements.forEach(card => {
+    console.log(card);
+    card.classList.remove('bounce-top');
+    card.offsetWidth = card.offsetWidth;
+    card.classList.add('bounce-top');
+    card.style.animationDuration = Math.floor(Math.random() * 8 + 4)/10 + "s";
+  });
   ;
 }, false)
