@@ -57,7 +57,11 @@ const cards = [{
 const board = document.querySelector('.board');
 const newGameButton = document.querySelector('.button-new-game');
 const timeDisplay = document.querySelector('.time');
-const pop = document.querySelector('.pop');
+const punch = document.querySelector('.punch');
+const zap = document.querySelector('.zap');
+const bell = document.querySelector('.bell');
+const whoosh = document.querySelector('.whoosh');
+const vanish = document.querySelector('.vanish');
 
 let firstGuess = '';
 let secondGuess = '';
@@ -65,6 +69,7 @@ let previousGuess = null; // Used to not allow same item to be clicked twice
 let cardCount = 0;
 let delay = 500;
 let deck = cards.concat(cards);
+let cardDisplay = [];
 let minutes = 0;
 let seconds = 0;
 let timerOn = false;
@@ -90,10 +95,11 @@ function updateTimer() {
 
 function startTimer() {
   timerOn = true;
+  bell.play();
   timer = setInterval(updateTimer, 1000);
-  timeDisplay.classList.remove('bounce-top');
+  timeDisplay.classList.remove('apply-bounce');
   timeDisplay.offsetWidth = timeDisplay.offsetWidth;
-  timeDisplay.classList.add('bounce-top');
+  timeDisplay.classList.add('apply-bounce');
 }
 
 function stopTimer() {
@@ -146,7 +152,8 @@ const removeMatches = () => {
   selected.forEach(card => {
     card.classList.add('match');
     card.classList.add('poof');
-    pop.play();
+    punch.play();
+    vanish.play();
   });
 }
 
@@ -163,7 +170,7 @@ const resetGuesses = () => {
 board.addEventListener('click', function(event) {
   // Grab the event target
   let clicked = event.target;
-
+  whoosh.play();
   if (gameOn === false) {
     gameOn = true;
     startTimer();
@@ -205,18 +212,7 @@ dealCards();
 
 newGameButton.addEventListener('click', function(event) {
   event.preventDefault;
-  console.log("New Game clicked!");
-  /*
-  board.classList.remove('bounce-top');
-  board.offsetWidth = newGameButton.offsetWidth;
-  board.classList.add("bounce-top");
-  */
-
-/*
-  board.classList.remove('bounce-top');
-  board.offsetWidth = board.offsetWidth;
-  board.classList.add('bounce-top');
-*/
+  zap.play();
   resetGame();
   resetTimer();
   removeCards();
@@ -226,11 +222,11 @@ newGameButton.addEventListener('click', function(event) {
   let cardsElements = Array.apply(null, cardsNodelist);
 
   cardsElements.forEach(card => {
-    console.log(card);
-    card.classList.remove('bounce-top');
-    card.offsetWidth = card.offsetWidth;
-    card.classList.add('bounce-top');
+    card.classList.add('apply-bounce');
     card.style.animationDuration = Math.floor(Math.random() * 8 + 4)/10 + "s";
+    card.addEventListener("animationend", (e) => {
+      card.classList.remove("apply-bounce");
+    });
   });
   ;
 }, false)

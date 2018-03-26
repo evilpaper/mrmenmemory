@@ -159,7 +159,7 @@ ANIMATIONS
   to {background-position: right;}
 }
 
-.bounce-top {
+.apply-bounce {
   /*
 	-webkit-animation: bounce-top 0.4s both;
       animation: bounce-top 0.4s both;
