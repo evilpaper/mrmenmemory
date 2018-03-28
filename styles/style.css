@@ -126,7 +126,9 @@ body {
 }
 
 .selected {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+      -ms-transform: rotateY(180deg); /* IE 9 */
+          transform: rotateY(180deg); /* IE 10, Fx 16+, Op 12.1+ */
 }
 
 .match .front {

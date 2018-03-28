@@ -62,6 +62,7 @@ const zap = document.querySelector('.zap');
 const bell = document.querySelector('.bell');
 const whoosh = document.querySelector('.whoosh');
 const vanish = document.querySelector('.vanish');
+const hero = document.querySelector('.hero');
 
 let firstGuess = '';
 let secondGuess = '';
@@ -96,6 +97,7 @@ function updateTimer() {
 function startTimer() {
   timerOn = true;
   bell.play();
+  hero.play();
   timer = setInterval(updateTimer, 1000);
   timeDisplay.classList.remove('apply-bounce');
   timeDisplay.offsetWidth = timeDisplay.offsetWidth;
@@ -170,7 +172,6 @@ const resetGuesses = () => {
 board.addEventListener('click', function(event) {
   // Grab the event target
   let clicked = event.target;
-  whoosh.play();
   if (gameOn === false) {
     gameOn = true;
     startTimer();
@@ -185,6 +186,7 @@ board.addEventListener('click', function(event) {
     return;
   }
   if (cardCount < 2) {
+    whoosh.play();
     cardCount++;
     if (cardCount === 1) {
       firstGuess = clicked.parentNode.dataset.name;
@@ -213,6 +215,8 @@ dealCards();
 newGameButton.addEventListener('click', function(event) {
   event.preventDefault;
   zap.play();
+  hero.pause();
+  hero.currentTime = 0;
   resetGame();
   resetTimer();
   removeCards();
