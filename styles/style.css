@@ -44,7 +44,7 @@ body {
 
 .card {
   position: relative;
-  transition: all .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
   transform-style: preserve-3d;
   background-image:url("../images/poof_spritesheet.svg");
   background-position: left;
