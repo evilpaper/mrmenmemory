@@ -44,9 +44,15 @@ body {
 
 .card {
   position: relative;
-  transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
-  transform-style: preserve-3d;
-  background-image:url("../images/poof_spritesheet.svg");
+  -webkit-transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
+   -moz-transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
+     -o-transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
+        transition: all .3s cubic-bezier(0.3, 1.06, 1, 1.26);
+  -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+  background:url("../images/poof_spritesheet.svg");
   background-position: left;
   background-repeat: no-repeat;
   background-size: 600%;
@@ -57,28 +63,42 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+        backface-visibility: hidden;
   border: 0.5vw solid #fff;
   border-radius: 10px;
   box-shadow: 1px 3px 3px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
 }
 
 .front:hover {
-  transition: all .1s linear;
-  transform: scale(1.02);
+  -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+      -o-transition: all .1s linear;
+        transition: all .1s linear;
+  -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+      -o-transform: scale(1.02);
+        transform: scale(1.02);
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .front {
+  z-index: 2;
   background: #fff url('../images/card_bg_2.jpg') no-repeat center center / contain;
 }
 
 .back {
-  transform: rotateY(180deg);
   background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+  -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+      -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+
 }
 
 .button-new-game {
@@ -95,10 +115,7 @@ body {
   text-align: center;
   vertical-align: middle;
   border-radius: 0.4em;
-
-  /* 3D block effect */
   box-shadow: 0 0.6em 0 0 black;
-
   cursor: pointer;
 }
 
@@ -126,9 +143,10 @@ body {
 }
 
 .selected {
-  -webkit-transform: rotateY(180deg); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
-      -ms-transform: rotateY(180deg); /* IE 9 */
-          transform: rotateY(180deg); /* IE 10, Fx 16+, Op 12.1+ */
+  -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+      -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
 }
 
 .match .front {
@@ -148,7 +166,7 @@ ANIMATIONS
 
 .poof {
   -webkit-animation: poof-animation 0.5s steps(5) 1;
-  animation: poof-animation 0.5s steps(5) 1;
+    animation: poof-animation 0.5s steps(5) 1;
 }
 
 @-webkit-keyframes poof-animation {

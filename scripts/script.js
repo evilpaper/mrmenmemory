@@ -66,7 +66,7 @@ const hero = document.querySelector('.hero');
 
 let firstGuess = '';
 let secondGuess = '';
-let previousGuess = null; // Used to not allow same item to be clicked twice
+let previousGuess = null;
 let cardCount = 0;
 let delay = 500;
 let deck = cards.concat(cards);
@@ -170,13 +170,13 @@ const resetGuesses = () => {
 }
 
 board.addEventListener('click', function(event) {
+  event.preventDefault;
   // Grab the event target
   let clicked = event.target;
   if (gameOn === false) {
     gameOn = true;
     startTimer();
   }
-
   // Do not allow the grid section itself to be selected or the same card twice, only div inside the grid
   if (
       clicked.nodeName === 'SECTION' ||
