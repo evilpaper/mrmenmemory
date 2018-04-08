@@ -1,7 +1,5 @@
 // todo
 // add a huggledy-piggledy mode
-// steal timer behaviour, incl. animations, from Santa Tracker
-// add sounds like Santa Tracker
 // add animations like the pro's from awwwards
 // remove animation class on tranistion end like this https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 
@@ -73,6 +71,7 @@ let deck = cards.concat(cards);
 let cardDisplay = [];
 let minutes = 0;
 let seconds = 0;
+let hundredths = 0;
 let timerOn = false;
 let gameOn = false;
 
@@ -84,13 +83,18 @@ let timer;
 
 function updateTimer() {
   if (timerOn) {
-    seconds++;
+  //  seconds++;
+    hundredths++;
+    if (hundredths >= 99 ) {
+      hundredths = 0;
+      seconds++
+    }
     if (seconds >= 60) {
       seconds = 0;
       minutes++;
     }
     timeDisplay.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
-      + ":" + (seconds > 9 ? seconds : "0" + seconds);
+      + ":" + (seconds > 9 ? seconds : "0" + seconds) + ":" + (hundredths > 9 ? hundredths : "0" + hundredths) ;
   }
 }
 
@@ -98,7 +102,7 @@ function startTimer() {
   timerOn = true;
   bell.play();
   hero.play();
-  timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 10);
   timeDisplay.classList.remove('apply-bounce');
   timeDisplay.offsetWidth = timeDisplay.offsetWidth;
   timeDisplay.classList.add('apply-bounce');
@@ -112,7 +116,7 @@ function resetTimer() {
   timerOn = false;
   seconds = 0; minutes = 0;
   clearInterval(timer);
-  timeDisplay.textContent = "00:00";
+  timeDisplay.textContent = "00:00:00";
 }
 
 function resetGame() {
