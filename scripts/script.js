@@ -66,6 +66,7 @@ let firstGuess = '';
 let secondGuess = '';
 let previousGuess = null;
 let cardCount = 0;
+let matchesCount = 0;
 let delay = 500;
 let deck = cards.concat(cards);
 let cardDisplay = [];
@@ -205,6 +206,10 @@ board.addEventListener('click', function(event) {
       if (firstGuess === secondGuess) {
         setTimeout(removeMatches, delay);
         setTimeout(resetGuesses, delay);
+        matchesCount++;
+        if (matchesCount === 12) {
+          stopTimer();
+        }
       } else {
         setTimeout(resetGuesses, delay);
       }
