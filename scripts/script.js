@@ -196,9 +196,11 @@ board.addEventListener('click', function(event) {
     if (cardCount === 1) {
       firstGuess = clicked.parentNode.dataset.name;
       clicked.parentNode.classList.add('selected');
+      previousGuess = clicked;
     } else {
       secondGuess = clicked.parentNode.dataset.name;
       clicked.parentNode.classList.add('selected');
+      previousGuess = undefined;
     }
     // if both guesses are not empty...
     if (firstGuess !== '' && secondGuess !== '') {
@@ -214,7 +216,7 @@ board.addEventListener('click', function(event) {
         setTimeout(resetGuesses, delay);
       }
     }
-    previousGuess = clicked;
+
   }
 })
 
