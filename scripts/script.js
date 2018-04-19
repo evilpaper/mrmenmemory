@@ -1,8 +1,12 @@
-// todo
-// add a huggledy-piggledy mode
-// add animations like the pro's from awwwards
-// remove animation class on tranistion end like this https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
-
+const board = document.querySelector('.board');
+const newGame = document.querySelector('.button-new-game');
+const timerDisplay = document.querySelector('.time');
+const punch = document.querySelector('.punch');
+const zap = document.querySelector('.zap');
+const bell = document.querySelector('.bell');
+const whoosh = document.querySelector('.whoosh');
+const vanish = document.querySelector('.vanish');
+const hero = document.querySelector('.hero');
 const cards = [{
     'name': 'mrwrong',
     'img': 'images/mrwrong.jpg',
@@ -52,15 +56,6 @@ const cards = [{
     'img': 'images/lmfun.jpg',
   },
 ];
-const board = document.querySelector('.board');
-const newGameButton = document.querySelector('.button-new-game');
-const timeDisplay = document.querySelector('.time');
-const punch = document.querySelector('.punch');
-const zap = document.querySelector('.zap');
-const bell = document.querySelector('.bell');
-const whoosh = document.querySelector('.whoosh');
-const vanish = document.querySelector('.vanish');
-const hero = document.querySelector('.hero');
 
 let firstGuess = '';
 let secondGuess = '';
@@ -69,22 +64,14 @@ let cardCount = 0;
 let matchesCount = 0;
 let delay = 500;
 let deck = cards.concat(cards);
-let cardDisplay = [];
 let minutes = 0;
 let seconds = 0;
 let hundredths = 0;
-let timerOn = false;
-let gameOn = false;
-
-/*
-Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass
-into clearInterval to stop it from firing:
-*/
+// Create a handle for setInterval. setInterval sets up a recurring timer.
+// It returns a handle that you can pass into clearInterval to stop it from firing.
 let timer;
 
 function updateTimer() {
-  if (timerOn) {
-  //  seconds++;
     hundredths++;
     if (hundredths >= 99 ) {
       hundredths = 0;
@@ -94,38 +81,33 @@ function updateTimer() {
       seconds = 0;
       minutes++;
     }
-    timeDisplay.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
+    timerDisplay.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00")
       + ":" + (seconds > 9 ? seconds : "0" + seconds) + ":" + (hundredths > 9 ? hundredths : "0" + hundredths) ;
-  }
 }
 
 function startTimer() {
-  timerOn = true;
   bell.play();
   hero.play();
+  timerDisplay.classList.remove('apply-bounce');
+  timerDisplay.offsetWidth = timerDisplay.offsetWidth;
+  timerDisplay.classList.add('apply-bounce');
   timer = setInterval(updateTimer, 10);
-  timeDisplay.classList.remove('apply-bounce');
-  timeDisplay.offsetWidth = timeDisplay.offsetWidth;
-  timeDisplay.classList.add('apply-bounce');
 }
 
 function stopTimer() {
-  timerOn = false;
+  let finalTime = timerDisplay.textContent;
+  clearInterval(timer);
+  timerDisplay.textContent = finalTime;
 }
 
 function resetTimer() {
-  timerOn = false;
   seconds = 0; minutes = 0;
   clearInterval(timer);
-  timeDisplay.textContent = "00:00:00";
+  timerDisplay.textContent = "00:00:00";
 }
 
-function resetGame() {
-  return gameOn = false;
-}
-
-function shuffleCards() {
-  deck.sort(() => 0.5 - Math.random());
+function shuffleCards(deck) {
+  return deck.sort(() => 0.5 - Math.random());
 }
 
 function dealCards() {
@@ -145,6 +127,7 @@ function dealCards() {
     cardDiv.appendChild(cardFront);
     cardDiv.appendChild(cardBack);
   })
+  bounceCards();
 }
 
 const removeCards = () => {
@@ -174,19 +157,30 @@ const resetGuesses = () => {
   });
 }
 
-board.addEventListener('click', function(event) {
-  event.preventDefault;
-  // Grab the event target
-  let clicked = event.target;
-  if (gameOn === false) {
-    gameOn = true;
-    startTimer();
-  }
+const bounceCards = () => {
+  let cards = document.querySelectorAll(".card");
+  let deck = Array.apply(null, cards);
+  deck.forEach(card => {
+    card.classList.add('apply-bounce');
+    card.style.animationDuration = Math.floor(Math.random() * 8 + 4)/10 + "s";
+    card.addEventListener("animationend", (e) => {
+      card.classList.remove("apply-bounce");
+    });
+  });
+}
+
+const initializeGame = () => {
+  timerDisplay.textContent = "00:00:00";
+  shuffleCards(deck)
+  dealCards();
+}
+
+const updateGameState = (activeCard) => {
   // Do not allow the grid section itself to be selected or the same card twice, only div inside the grid
   if (
-      clicked.nodeName === 'SECTION' ||
-      clicked === previousGuess ||
-      clicked.parentNode.classList.contains('selected')
+      activeCard.nodeName === 'SECTION' ||
+      activeCard === previousGuess ||
+      activeCard.parentNode.classList.contains('selected')
     ) {
     return;
   }
@@ -194,12 +188,12 @@ board.addEventListener('click', function(event) {
     whoosh.play();
     cardCount++;
     if (cardCount === 1) {
-      firstGuess = clicked.parentNode.dataset.name;
-      clicked.parentNode.classList.add('selected');
-      previousGuess = clicked;
+      firstGuess = activeCard.parentNode.dataset.name;
+      activeCard.parentNode.classList.add('selected');
+      previousGuess = activeCard;
     } else {
-      secondGuess = clicked.parentNode.dataset.name;
-      clicked.parentNode.classList.add('selected');
+      secondGuess = activeCard.parentNode.dataset.name;
+      activeCard.parentNode.classList.add('selected');
       previousGuess = undefined;
     }
     // if both guesses are not empty...
@@ -216,32 +210,32 @@ board.addEventListener('click', function(event) {
         setTimeout(resetGuesses, delay);
       }
     }
-
   }
-})
+}
 
-shuffleCards()
-dealCards();
-
-newGameButton.addEventListener('click', function(event) {
+board.addEventListener('click', function(event) {
   event.preventDefault;
+  const activeCard = event.target;
+
+  if (timerDisplay.textContent === "00:00:00") {
+    startTimer();
+  }
+  updateGameState(activeCard);
+}, false)
+
+newGame.addEventListener('click', function(event) {
+  event.preventDefault;
+
   zap.play();
   hero.pause();
   hero.currentTime = 0;
-  resetGame();
-  resetTimer();
-  removeCards();
-  shuffleCards()
-  dealCards();
-  let cardsNodelist = document.querySelectorAll(".card");
-  let cardsElements = Array.apply(null, cardsNodelist);
 
-  cardsElements.forEach(card => {
-    card.classList.add('apply-bounce');
-    card.style.animationDuration = Math.floor(Math.random() * 8 + 4)/10 + "s";
-    card.addEventListener("animationend", (e) => {
-      card.classList.remove("apply-bounce");
-    });
-  });
-  ;
+  resetTimer();
+  resetGuesses();
+  removeCards();
+  shuffleCards(deck)
+  dealCards();
+
 }, false)
+
+initializeGame();
