@@ -6,7 +6,7 @@ const zap = document.querySelector('.zap');
 const bell = document.querySelector('.bell');
 const whoosh = document.querySelector('.whoosh');
 const vanish = document.querySelector('.vanish');
-const background-song = document.querySelector('.background-song');
+const backgroundSong = document.querySelector('.background-song');
 const cards = [{
     'name': 'mrwrong',
     'img': 'images/mrwrong.jpg',
@@ -83,12 +83,16 @@ const updateTimer = () => {
       + ":" + (seconds > 9 ? seconds : "0" + seconds) + ":" + (hundredths > 9 ? hundredths : "0" + hundredths) ;
 }
 
+const applyBounce = (element) => {
+  element.classList.remove('apply-bounce');
+  element.offsetWidth = timerDisplay.offsetWidth;
+  element.classList.add('apply-bounce');
+}
+
 const startTimer = () => {
   bell.play();
-  background-song.play();
-  timerDisplay.classList.remove('apply-bounce');
-  timerDisplay.offsetWidth = timerDisplay.offsetWidth;
-  timerDisplay.classList.add('apply-bounce');
+  backgroundSong.play();
+  applyBounce(timerDisplay);
   timer = setInterval(updateTimer, 10);
 }
 
@@ -96,6 +100,8 @@ const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
+  bell.play();
+  applyBounce(timerDisplay);
 }
 
 const resetTimer = () => {
@@ -211,8 +217,6 @@ const updateGameState = (activeCard) => {
   }
 }
 
-
-
 board.addEventListener('click', function(event) {
   event.preventDefault;
   const activeCard = event.target;
@@ -223,14 +227,12 @@ board.addEventListener('click', function(event) {
   updateGameState(activeCard);
 }, false)
 
-
-
 newGame.addEventListener('click', function(event) {
   event.preventDefault;
 
   zap.play();
-  background-song.pause();
-  background-song.currentTime = 0;
+  backgroundSong.pause();
+  backgroundSong.currentTime = 0;
 
   resetTimer();
   resetGuesses();
