@@ -6,7 +6,7 @@ const zap = document.querySelector('.zap');
 const bell = document.querySelector('.bell');
 const whoosh = document.querySelector('.whoosh');
 const vanish = document.querySelector('.vanish');
-const hero = document.querySelector('.hero');
+const background-song = document.querySelector('.background-song');
 const cards = [{
     'name': 'mrwrong',
     'img': 'images/mrwrong.jpg',
@@ -63,15 +63,13 @@ let previousGuess = null;
 let cardCount = 0;
 let matchesCount = 0;
 let delay = 500;
-let deck = cards.concat(cards);
+let deck = cards.concat(cards); // Two of each card
 let minutes = 0;
 let seconds = 0;
 let hundredths = 0;
-// Create a handle for setInterval. setInterval sets up a recurring timer.
-// It returns a handle that you can pass into clearInterval to stop it from firing.
-let timer;
+let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
 
-function updateTimer() {
+const updateTimer = () => {
     hundredths++;
     if (hundredths >= 99 ) {
       hundredths = 0;
@@ -85,32 +83,32 @@ function updateTimer() {
       + ":" + (seconds > 9 ? seconds : "0" + seconds) + ":" + (hundredths > 9 ? hundredths : "0" + hundredths) ;
 }
 
-function startTimer() {
+const startTimer = () => {
   bell.play();
-  hero.play();
+  background-song.play();
   timerDisplay.classList.remove('apply-bounce');
   timerDisplay.offsetWidth = timerDisplay.offsetWidth;
   timerDisplay.classList.add('apply-bounce');
   timer = setInterval(updateTimer, 10);
 }
 
-function stopTimer() {
+const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
 }
 
-function resetTimer() {
+const resetTimer = () => {
   seconds = 0; minutes = 0;
   clearInterval(timer);
   timerDisplay.textContent = "00:00:00";
 }
 
-function shuffleCards(deck) {
+const shuffleCards = (deck) => {
   return deck.sort(() => 0.5 - Math.random());
 }
 
-function dealCards() {
+const dealCards = () => {
   deck.forEach(card => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
@@ -213,6 +211,8 @@ const updateGameState = (activeCard) => {
   }
 }
 
+
+
 board.addEventListener('click', function(event) {
   event.preventDefault;
   const activeCard = event.target;
@@ -223,12 +223,14 @@ board.addEventListener('click', function(event) {
   updateGameState(activeCard);
 }, false)
 
+
+
 newGame.addEventListener('click', function(event) {
   event.preventDefault;
 
   zap.play();
-  hero.pause();
-  hero.currentTime = 0;
+  background-song.pause();
+  background-song.currentTime = 0;
 
   resetTimer();
   resetGuesses();
