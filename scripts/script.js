@@ -131,7 +131,6 @@ const dealCards = () => {
     cardDiv.appendChild(cardFront);
     cardDiv.appendChild(cardBack);
   })
-  bounceCards();
 }
 
 const removeCards = () => {
@@ -239,7 +238,7 @@ newGame.addEventListener('click', function(event) {
   removeCards();
   shuffleCards(deck)
   dealCards();
-
+  bounceCards();
 }, false)
 
 initializeGame();
