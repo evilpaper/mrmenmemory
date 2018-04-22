@@ -45,6 +45,7 @@ body {
   grid-template-columns: 11vw 11vw 11vw 11vw 11vw 11vw;
   grid-template-rows: 11vw 11vw 11vw 11vw;
   grid-gap: 1vw;
+  cursor: pointer;
 }
 
 .card {
@@ -72,7 +73,6 @@ body {
     -moz-backface-visibility: hidden;
       -o-backface-visibility: hidden;
         backface-visibility: hidden;
-  border: 0.5vw solid #fff;
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
 }
@@ -103,7 +103,7 @@ body {
     -moz-transform: rotateY(180deg);
       -o-transform: rotateY(180deg);
         transform: rotateY(180deg);
-
+  border: 0.6vw solid #fff;
 }
 
 .button-new-game {
@@ -522,9 +522,6 @@ TABLET PORTRAIT
     grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
     grid-gap: 3vw;
   }
-  .back,
-  .front {
-    border: 1vw solid #fff;
 }
 
 /*
