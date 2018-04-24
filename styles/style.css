@@ -124,15 +124,12 @@ body {
   cursor: pointer;
 }
 
-.button-new-game:hover {
-  top: 0.1em;
-  box-shadow: 0 0.5em 0 0 black;
-}
-
+/*
 .button-new-game:active {
   top: 0.6em;
   box-shadow: none;
 }
+*/
 
 .time {
   height: 2rem;
@@ -168,6 +165,27 @@ body {
 ANIMATIONS
 ---
 */
+
+.apply-push {
+	-webkit-animation: push 0.24s both;
+	        animation: push 0.24s both;
+}
+
+@keyframes push {
+  50% {
+    -webkit-transform: translateY(0.6em);
+            transform: translateY(0.6em);
+    box-shadow: none;
+  }
+
+  100% {
+    -webkit-transform: translateY(0em);
+            transform: translateY(0em);
+    box-shadow: 0 0.6em 0 0 black;
+  }
+}
+
+
 
 .bounce-in-top {
 	-webkit-animation: bounce-in-top 0.8s 0.4s both;
@@ -518,9 +536,9 @@ TABLET PORTRAIT
 
 @media (max-width: 900px) {
   .board {
-    grid-template-columns: 20vw 20vw 20vw 20vw;
-    grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
-    grid-gap: 3vw;
+    grid-template-columns: 18vw 18vw 18vw 18vw;
+    grid-template-rows: 18vw 18vw 18vw 18vw 18vw 18vw;
+    grid-gap: 4.4vw;
   }
 }
 

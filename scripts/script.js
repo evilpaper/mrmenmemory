@@ -232,6 +232,7 @@ newGame.addEventListener('click', function(event) {
   zap.play();
   backgroundSong.pause();
   backgroundSong.currentTime = 0;
+  this.classList.add("apply-push");
 
   resetTimer();
   resetGuesses();
@@ -240,5 +241,10 @@ newGame.addEventListener('click', function(event) {
   dealCards();
   bounceCards();
 }, false)
+
+newGame.addEventListener("animationend", function(event) {
+  this.classList.remove("bounce-in-top");
+  this.classList.remove("apply-push");
+});
 
 initializeGame();
