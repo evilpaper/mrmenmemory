@@ -58,7 +58,7 @@ body {
     -moz-transform-style: preserve-3d;
       -o-transform-style: preserve-3d;
         transform-style: preserve-3d;
-  background: url("../images/poof_spritesheet.svg");
+  background: url("../images/poof_spritesheet.png");
   background-position: left;
   background-repeat: no-repeat;
   background-size: 700%;

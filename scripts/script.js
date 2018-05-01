@@ -183,7 +183,8 @@ const updateGameState = (activeCard) => {
   if (
       activeCard.nodeName === 'SECTION' ||
       activeCard === previousGuess ||
-      activeCard.parentNode.classList.contains('selected')
+      activeCard.parentNode.classList.contains('selected') ||
+      activeCard.parentNode.classList.contains('match')
     ) {
     return;
   }
