@@ -7,6 +7,7 @@ const bell = document.querySelector('.bell');
 const whoosh = document.querySelector('.whoosh');
 const vanish = document.querySelector('.vanish');
 const backgroundSong = document.querySelector('.background-song');
+const body = document.querySelector('body');
 const cards = [{
     'name': 'mrwrong',
     'img': 'images/mrwrong.jpg',
@@ -68,6 +69,7 @@ let minutes = 0;
 let seconds = 0;
 let hundredths = 0;
 let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
+let bestOfBoard = [];
 
 const updateTimer = () => {
     hundredths++;
@@ -98,9 +100,13 @@ const startTimer = () => {
 
 const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
+  bestOfBoard.push(finalTime);
+  console.log(bestOfBoard.sort());
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
   bell.play();
+  backgroundSong.pause();
+  backgroundSong.currentTime = 0;
   applyBounce(timerDisplay);
 }
 
@@ -178,6 +184,22 @@ const initializeGame = () => {
   dealCards();
 }
 
+const writeBestTime = () => {
+  const leaderboardList = document.createElement('ul');
+  leaderboardList.textContent = "FASTEST RUNS";
+  body.appendChild(leaderboardList);
+  bestOfBoard.forEach(time => {
+    const leaderboardListItem = document.createElement('li');
+    leaderboardListItem.textContent = time;
+    leaderboardList.appendChild(leaderboardListItem);
+  });
+}
+
+const removeBestTimes = () => {
+    let elToRemove = document.querySelector('ul');
+    elToRemove.parentNode.removeChild(elToRemove);
+}
+
 const updateGameState = (activeCard) => {
   // Do not allow the grid section itself to be selected or the same card twice, only div inside the grid
   if (
@@ -209,6 +231,9 @@ const updateGameState = (activeCard) => {
         matchesCount++;
         if (matchesCount === 12) {
           stopTimer();
+          matchesCount = 0;
+          removeCards();
+          writeBestTime();
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -237,7 +262,8 @@ newGame.addEventListener('click', function(event) {
 
   resetTimer();
   resetGuesses();
-  removeCards();
+  // removeCards();
+  removeBestTimes();
   shuffleCards(deck)
   dealCards();
   bounceCards();
