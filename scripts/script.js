@@ -11,52 +11,52 @@ const body = document.querySelector("body");
 const cards = [
   {
     name: "mrwrong",
-    img: "images/mrwrong.jpg"
+    img: "images/mrwrong.jpg",
   },
   {
     name: "mrtickle",
-    img: "images/mrtickle.jpg"
+    img: "images/mrtickle.jpg",
   },
   {
     name: "mrstrong",
-    img: "images/mrstrong.jpg"
+    img: "images/mrstrong.jpg",
   },
   {
     name: "mrimpossible",
-    img: "images/mrimpossible.jpg"
+    img: "images/mrimpossible.jpg",
   },
   {
     name: "mrhappy",
-    img: "images/mrhappy.jpg"
+    img: "images/mrhappy.jpg",
   },
   {
     name: "mrchatterbox",
-    img: "images/mrchatterbox.jpg"
+    img: "images/mrchatterbox.jpg",
   },
   {
     name: "mrbump",
-    img: "images/mrbump.jpg"
+    img: "images/mrbump.jpg",
   },
   {
     name: "mrbounce",
-    img: "images/mrbounce.jpg"
+    img: "images/mrbounce.jpg",
   },
   {
     name: "lmwhoops",
-    img: "images/lmwhoops.jpg"
+    img: "images/lmwhoops.jpg",
   },
   {
     name: "lmnaughty",
-    img: "images/lmnaughty.jpg"
+    img: "images/lmnaughty.jpg",
   },
   {
     name: "lmhug",
-    img: "images/lmhug.jpg"
+    img: "images/lmhug.jpg",
   },
   {
     name: "lmfun",
-    img: "images/lmfun.jpg"
-  }
+    img: "images/lmfun.jpg",
+  },
 ];
 
 let firstGuess = "";
@@ -90,7 +90,7 @@ const updateTimer = () => {
     (hundredths > 9 ? hundredths : "0" + hundredths);
 };
 
-const applyBounce = element => {
+const applyBounce = (element) => {
   element.classList.remove("apply-bounce");
   element.offsetWidth = timerDisplay.offsetWidth;
   element.classList.add("apply-bounce");
@@ -105,6 +105,12 @@ const startTimer = () => {
 
 const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
+  const leaderboardEntry = {
+    player: "anonymous",
+    date: new Date(),
+    time: finalTime,
+  };
+  localStorage.setItem("leaderboardEntry", JSON.stringify(leaderboardEntry));
   bestOfBoard.push(finalTime);
   console.log(bestOfBoard.sort());
   clearInterval(timer);
@@ -122,12 +128,12 @@ const resetTimer = () => {
   timerDisplay.textContent = "00:00:00";
 };
 
-const shuffleCards = deck => {
+const shuffleCards = (deck) => {
   return deck.sort(() => 0.5 - Math.random());
 };
 
 const dealCards = () => {
-  deck.forEach(card => {
+  deck.forEach((card) => {
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.dataset.name = card.name;
@@ -146,7 +152,7 @@ const dealCards = () => {
 };
 
 const removeCards = () => {
-  deck.forEach(card => {
+  deck.forEach((card) => {
     let elToRemove = document.querySelector(".card");
     elToRemove.parentNode.removeChild(elToRemove);
   });
@@ -154,7 +160,7 @@ const removeCards = () => {
 
 const removeMatches = () => {
   const selected = document.querySelectorAll(".selected");
-  selected.forEach(card => {
+  selected.forEach((card) => {
     card.classList.add("match");
     card.classList.add("poof");
     punch.play();
@@ -167,7 +173,7 @@ const resetGuesses = () => {
   secondGuess = "";
   activeCards = 0;
   let selected = document.querySelectorAll(".selected");
-  selected.forEach(card => {
+  selected.forEach((card) => {
     card.classList.remove("selected");
   });
 };
@@ -175,10 +181,10 @@ const resetGuesses = () => {
 const bounceCards = () => {
   let cards = document.querySelectorAll(".card");
   let deck = Array.apply(null, cards);
-  deck.forEach(card => {
+  deck.forEach((card) => {
     card.classList.add("apply-bounce");
     card.style.animationDuration = Math.floor(Math.random() * 8 + 4) / 10 + "s";
-    card.addEventListener("animationend", e => {
+    card.addEventListener("animationend", (e) => {
       card.classList.remove("apply-bounce");
     });
   });
@@ -194,7 +200,7 @@ const writeBestTime = () => {
   const leaderboardList = document.createElement("ul");
   leaderboardList.textContent = "FASTEST RUNS";
   body.appendChild(leaderboardList);
-  bestOfBoard.forEach(time => {
+  bestOfBoard.forEach((time) => {
     const leaderboardListItem = document.createElement("li");
     leaderboardListItem.textContent = time;
     leaderboardList.appendChild(leaderboardListItem);
@@ -206,13 +212,13 @@ const removeBestTimes = () => {
   elToRemove.parentNode.removeChild(elToRemove);
 };
 */
-const flipUp = card => {
+const flipUp = (card) => {
   card.parentNode.classList.add("selected");
 };
 
-const flipBack = card => {};
+const flipBack = (card) => {};
 
-const updateGameState = activeCard => {
+const updateGameState = (activeCard) => {
   if (activeCards < 2) {
     whoosh.play();
     activeCards++;
@@ -246,7 +252,7 @@ const updateGameState = activeCard => {
   }
 };
 
-const isNotACard = thing => {
+const isNotACard = (thing) => {
   return (
     thing.nodeName === "SECTION" ||
     thing === previousGuess ||
@@ -257,7 +263,7 @@ const isNotACard = thing => {
 
 board.addEventListener(
   "click",
-  event => {
+  (event) => {
     event.preventDefault;
     if (isNotACard(event.target)) return;
     const activeCard = event.target;
@@ -271,7 +277,7 @@ board.addEventListener(
 
 newGame.addEventListener(
   "click",
-  event => {
+  (event) => {
     event.preventDefault;
 
     zap.play();
@@ -290,7 +296,7 @@ newGame.addEventListener(
   false
 );
 
-newGame.addEventListener("animationend", function(event) {
+newGame.addEventListener("animationend", function (event) {
   this.classList.remove("bounce-in-top");
   this.classList.remove("apply-push");
 });
