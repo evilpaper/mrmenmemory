@@ -206,17 +206,19 @@ const writeBestTime = () => {
     leaderboardList.appendChild(leaderboardListItem);
   });
 };
-/*
-const removeBestTimes = () => {
-  let elToRemove = document.querySelector("ul");
-  elToRemove.parentNode.removeChild(elToRemove);
-};
-*/
+
 const flipUp = (card) => {
   card.parentNode.classList.add("selected");
 };
 
 const flipBack = (card) => {};
+
+const resetGame = () => {
+  stopTimer();
+  matchesCount = 0;
+  removeCards();
+  writeBestTime();
+};
 
 const updateGameState = (activeCard) => {
   if (activeCards < 2) {
