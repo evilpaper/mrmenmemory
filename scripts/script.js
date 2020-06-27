@@ -198,7 +198,7 @@ const initializeGame = () => {
 
 const writeBestTime = () => {
   const leaderboardList = document.createElement("ul");
-  leaderboardList.textContent = "FASTEST RUNS";
+  leaderboardList.textContent = "Congrats! Your time";
   body.appendChild(leaderboardList);
   bestOfBoard.forEach((time) => {
     const leaderboardListItem = document.createElement("li");
@@ -293,7 +293,14 @@ newGame.addEventListener(
     // removeBestTimes();
     shuffleCards(deck);
     dealCards();
-    bounceCards();
+
+    if (newGame.innerText === "START") {
+      newGame.innerText = "RESET";
+      startTimer();
+    } else {
+      newGame.innerText = "START";
+      bounceCards();
+    }
   },
   false
 );
