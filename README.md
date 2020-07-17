@@ -15,5 +15,6 @@ HTML, CSS and vanilla JS.
 Changes and improvements are more than welcome! Feel free to fork and open a pull request. Please make your changes in a specific branch and request to pull into master! If you can, please make sure the game fully works before sending the PR, as that will help speed up the process.
 
 ## Licensing
-Welcome to do whatever you want with the code. MR. MEN™ LITTLE MISS™ is copyrighted by © 2020 THOIP (a Sanrio company). They have all rights reserved.
+You are welcome to do whatever you want with the code. 
+The graphical assets (images) of MR. MEN™ LITTLE MISS™ is copyright by © 2020 THOIP (a Sanrio company). All rights reserved.
 
