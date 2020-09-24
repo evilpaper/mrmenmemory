@@ -1,5 +1,5 @@
 const board = document.querySelector(".board");
-const newGame = document.querySelector(".button-new-game");
+const timerButton = document.querySelector(".button-new-game");
 const timerDisplay = document.querySelector(".time");
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
@@ -70,7 +70,6 @@ let minutes = 0;
 let seconds = 0;
 let hundredths = 0;
 let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
-let bestOfBoard = [];
 
 const updateTimer = () => {
   hundredths++;
@@ -105,14 +104,28 @@ const startTimer = () => {
 
 const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
+
+  const oldLeaderboard = localStorage.getItem(
+    "Mr Men Memory Match Local Leaderboard"
+  );
+
+  console.log(JSON.parse(oldLeaderboard));
+
   const leaderboardEntry = {
     player: "anonymous",
     date: new Date(),
     time: finalTime,
   };
-  localStorage.setItem("leaderboardEntry", JSON.stringify(leaderboardEntry));
-  bestOfBoard.push(finalTime);
-  console.log(bestOfBoard.sort());
+
+  localStorage.setItem(
+    "Mr Men Memory Match Local Leaderboard",
+    JSON.stringify(leaderboardEntry)
+  );
+
+  // Get leaderboard from local storage
+  // Update leaderboard with new value
+  // Store new leaderboard
+
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
   bell.play();
@@ -152,10 +165,12 @@ const dealCards = () => {
 };
 
 const removeCards = () => {
-  deck.forEach((card) => {
-    let elToRemove = document.querySelector(".card");
-    elToRemove.parentNode.removeChild(elToRemove);
-  });
+  if (document.querySelectorAll(".card").length > 0) {
+    deck.forEach((card) => {
+      let elToRemove = document.querySelector(".card");
+      elToRemove.parentNode.removeChild(elToRemove);
+    });
+  }
 };
 
 const removeMatches = () => {
@@ -196,16 +211,7 @@ const initializeGame = () => {
   dealCards();
 };
 
-const writeBestTime = () => {
-  const leaderboardList = document.createElement("ul");
-  leaderboardList.textContent = "Congrats! Your time";
-  body.appendChild(leaderboardList);
-  bestOfBoard.forEach((time) => {
-    const leaderboardListItem = document.createElement("li");
-    leaderboardListItem.textContent = time;
-    leaderboardList.appendChild(leaderboardListItem);
-  });
-};
+const writeBestTime = () => {};
 
 const flipUp = (card) => {
   card.parentNode.classList.add("selected");
@@ -213,11 +219,11 @@ const flipUp = (card) => {
 
 const flipBack = (card) => {};
 
-const resetGame = () => {
+// For development purposes only
+const completeGame = () => {
   stopTimer();
   matchesCount = 0;
   removeCards();
-  writeBestTime();
 };
 
 const updateGameState = (activeCard) => {
@@ -242,10 +248,7 @@ const updateGameState = (activeCard) => {
         setTimeout(resetGuesses, delay);
         matchesCount++;
         if (matchesCount === 12) {
-          stopTimer();
-          matchesCount = 0;
-          removeCards();
-          writeBestTime();
+          completeGame();
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -271,13 +274,14 @@ board.addEventListener(
     const activeCard = event.target;
     if (timerDisplay.textContent === "00:00:00") {
       startTimer();
+      timerButton.innerText = "RESET";
     }
     updateGameState(activeCard);
   },
   false
 );
 
-newGame.addEventListener(
+timerButton.addEventListener(
   "click",
   (event) => {
     event.preventDefault;
@@ -285,27 +289,27 @@ newGame.addEventListener(
     zap.play();
     backgroundSong.pause();
     backgroundSong.currentTime = 0;
-    newGame.classList.add("apply-push");
+    timerButton.classList.add("apply-push");
 
     resetTimer();
     resetGuesses();
     removeCards();
-    // removeBestTimes();
     shuffleCards(deck);
     dealCards();
 
-    if (newGame.innerText === "START") {
-      newGame.innerText = "RESET";
+    if (timerButton.innerText === "START") {
+      timerButton.innerText = "RESET";
       startTimer();
     } else {
-      newGame.innerText = "START";
+      timerButton.innerText = "START";
+      board.classList.remove("hidden");
       bounceCards();
     }
   },
   false
 );
 
-newGame.addEventListener("animationend", function (event) {
+timerButton.addEventListener("animationend", function (event) {
   this.classList.remove("bounce-in-top");
   this.classList.remove("apply-push");
 });
