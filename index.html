@@ -13,10 +13,6 @@
     <title>Mr Men - Memory Match</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,900&display=swap"
-      rel="stylesheet"
-    />
   </head>
 
   <body>
@@ -26,29 +22,54 @@
         src="images/logo.png"
         alt="Welcome to Mr Men and Little Miss Memory Challange"
       />
-      <time class="time"> 00:00:00 </time>
+      <div class="time__container">
+        <time class="time"> 00:00:00 </time>
+        <button class="button--open-leaderboard" name="hiscore">
+          View leaderboard
+        </button>
+      </div>
       <div>
-        <button class="button button-hiscore" name="hiscore">Hiscore</button>
         <button class="button button-new-game bounce-in-top" name="new-game">
           Start
         </button>
       </div>
     </div>
     <section class="hiscore-page hidden">
-      <div class="hiscore-board">
-        <p>High Scores</p>
-        <ol>
-          <li>1. Chales</li>
-          <li>2. Sara</li>
-          <li>3. Lizzy</li>
-          <li>4. Scarlet</li>
-          <li>5. XXX</li>
-          <li>6. Round8About</li>
-          <li>7. Squarepants</li>
-          <li>8. Thor</li>
-          <li>9. Sara89</li>
-          <li>10. Phantom</li>
+      <div class="hiscore__board">
+        <h1 class="hiscore__header">Leaderboard</h1>
+        <ol class="leaderboard__list">
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
+          <li class="leaderboard__list-item">
+            <span>Charles</span><span>00:23:23</span>
+          </li>
         </ol>
+        <button class="button button--close-leaderboard">Close</button>
       </div>
     </section>
     <section class="board"></section>

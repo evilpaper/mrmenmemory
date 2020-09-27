@@ -1,7 +1,12 @@
 const board = document.querySelector(".board");
 const hiscorePage = document.querySelector(".hiscore-page");
 const timerButton = document.querySelector(".button-new-game");
-const hiscoreButton = document.querySelector(".button-hiscore");
+const leaderboardOpenButton = document.querySelector(
+  ".button--open-leaderboard"
+);
+const leaderboardCloseButton = document.querySelector(
+  ".button--close-leaderboard"
+);
 const timerDisplay = document.querySelector(".time");
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
@@ -124,10 +129,6 @@ const stopTimer = () => {
     JSON.stringify(leaderboardEntry)
   );
 
-  // Get leaderboard from local storage
-  // Update leaderboard with new value
-  // Store new leaderboard
-
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
   bell.play();
@@ -225,7 +226,6 @@ const flipBack = (card) => {};
 const completeGame = () => {
   stopTimer();
   matchesCount = 0;
-  removeCards();
 };
 
 const updateGameState = (activeCard) => {
@@ -304,7 +304,6 @@ timerButton.addEventListener(
       startTimer();
     } else {
       timerButton.innerText = "START";
-      board.classList.remove("hidden");
       bounceCards();
     }
   },
@@ -316,8 +315,12 @@ timerButton.addEventListener("animationend", function (event) {
   this.classList.remove("apply-push");
 });
 
-hiscoreButton.addEventListener("click", function (event) {
-  hiscorePage.classList.toggle("hidden");
+leaderboardOpenButton.addEventListener("click", function (event) {
+  hiscorePage.classList.remove("hidden");
+});
+
+leaderboardCloseButton.addEventListener("click", function () {
+  hiscorePage.classList.add("hidden");
 });
 
 initializeGame();
