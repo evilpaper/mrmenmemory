@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
+
 *,
 *::before,
 *::after {
@@ -10,23 +12,28 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+button {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+}
+
 button:focus {
   outline: 0;
 }
 
 body {
-  background: #f7f7f7;
   background: #ffd100;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
+  position: relative;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 1em;
   background-color: #fff;
   margin-bottom: 1em;
@@ -111,7 +118,6 @@ ul {
   color: #222222;
   font-weight: 600;
   display: inline-block;
-  /*  list-style: none; */
   position: absolute;
   top: 6rem;
   text-align: center;
@@ -125,10 +131,9 @@ ul {
 .button {
   position: relative;
   height: 2rem;
-  width: 6rem;
+  min-width: 7rem;
   color: black;
   background-color: #fff;
-  font-family: "Nunito Sans", sans-serif;
   text-transform: uppercase;
   font-size: 0.6em;
   border: 1px solid black;
@@ -138,24 +143,29 @@ ul {
   border-radius: 0.4em;
   box-shadow: 0 0.6em 0 0 black;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
-.button-hiscore {
-  border-radius: 20px;
-  margin-right: 10px;
+.button--open-leaderboard {
+  border: none;
+  background-color: transparent;
+  font-size: 0.6em;
+  padding: 1em 0.4em 0 0.4em;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 
-.button-hiscore:active {
+.button--close-leaderboard:active {
   -webkit-animation: push 0.24s both;
   animation: push 0.24s both;
 }
 
-/*
-.button-new-game:active {
-  top: 0.6em;
-  box-shadow: none;
+.time__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-*/
 
 .time {
   display: inline-block;
@@ -189,6 +199,72 @@ ul {
   font-weight: 900;
   font-style: italic;
   text-transform: uppercase;
+}
+
+.hiscore-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(222, 10%, 10%, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.hiscore__board {
+  background-color: white;
+  padding: 3em 4em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40%;
+}
+
+.button--close-leaderboard {
+  margin-top: 2em;
+}
+
+.hiscore__header {
+  font-weight: 900;
+  font-size: 3em;
+  font-style: italic;
+  border-bottom: 10px solid black;
+  width: 100%;
+}
+
+.leaderboard__list {
+  padding: 1em 0;
+  counter-reset: myCounter;
+  border-bottom: 10px solid black;
+  width: 100%;
+  font-style: italic;
+}
+
+.leaderboard__list-item {
+  list-style: none;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard__list-item:before {
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  display: inline-block;
+  text-align: right;
+  width: 10%;
+  font-weight: 900;
+  font-size: 1.4em;
+  font-style: italic;
+  /*
+  text-align: center;
+  margin: 5px 10px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  */
 }
 
 .hidden {
@@ -569,6 +645,10 @@ TABLET PORTRAIT
     grid-template-columns: 18vw 18vw 18vw 18vw;
     grid-template-rows: 18vw 18vw 18vw 18vw 18vw 18vw;
     grid-gap: 4.4vw;
+  }
+  .button {
+    width: 4rem;
+    height: 1.8rem;
   }
 }
 

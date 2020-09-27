@@ -1,5 +1,12 @@
 const board = document.querySelector(".board");
+const hiscorePage = document.querySelector(".hiscore-page");
 const timerButton = document.querySelector(".button-new-game");
+const leaderboardOpenButton = document.querySelector(
+  ".button--open-leaderboard"
+);
+const leaderboardCloseButton = document.querySelector(
+  ".button--close-leaderboard"
+);
 const timerDisplay = document.querySelector(".time");
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
@@ -122,10 +129,6 @@ const stopTimer = () => {
     JSON.stringify(leaderboardEntry)
   );
 
-  // Get leaderboard from local storage
-  // Update leaderboard with new value
-  // Store new leaderboard
-
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
   bell.play();
@@ -223,7 +226,6 @@ const flipBack = (card) => {};
 const completeGame = () => {
   stopTimer();
   matchesCount = 0;
-  removeCards();
 };
 
 const updateGameState = (activeCard) => {
@@ -248,7 +250,7 @@ const updateGameState = (activeCard) => {
         setTimeout(resetGuesses, delay);
         matchesCount++;
         if (matchesCount === 12) {
-          completeGame();
+          // completeGame();
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -302,7 +304,6 @@ timerButton.addEventListener(
       startTimer();
     } else {
       timerButton.innerText = "START";
-      board.classList.remove("hidden");
       bounceCards();
     }
   },
@@ -312,6 +313,14 @@ timerButton.addEventListener(
 timerButton.addEventListener("animationend", function (event) {
   this.classList.remove("bounce-in-top");
   this.classList.remove("apply-push");
+});
+
+leaderboardOpenButton.addEventListener("click", function (event) {
+  hiscorePage.classList.remove("hidden");
+});
+
+leaderboardCloseButton.addEventListener("click", function () {
+  hiscorePage.classList.add("hidden");
 });
 
 initializeGame();
