@@ -1,5 +1,7 @@
 const board = document.querySelector(".board");
+const hiscorePage = document.querySelector(".hiscore-page");
 const timerButton = document.querySelector(".button-new-game");
+const hiscoreButton = document.querySelector(".button-hiscore");
 const timerDisplay = document.querySelector(".time");
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
@@ -248,7 +250,7 @@ const updateGameState = (activeCard) => {
         setTimeout(resetGuesses, delay);
         matchesCount++;
         if (matchesCount === 12) {
-          completeGame();
+          // completeGame();
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -312,6 +314,10 @@ timerButton.addEventListener(
 timerButton.addEventListener("animationend", function (event) {
   this.classList.remove("bounce-in-top");
   this.classList.remove("apply-push");
+});
+
+hiscoreButton.addEventListener("click", function (event) {
+  hiscorePage.classList.toggle("hidden");
 });
 
 initializeGame();

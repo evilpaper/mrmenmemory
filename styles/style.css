@@ -21,6 +21,7 @@ body {
   justify-content: center;
   flex-direction: column;
   font-family: "Nunito Sans", sans-serif;
+  position: relative;
 }
 
 .header {
@@ -150,13 +151,6 @@ ul {
   animation: push 0.24s both;
 }
 
-/*
-.button-new-game:active {
-  top: 0.6em;
-  box-shadow: none;
-}
-*/
-
 .time {
   display: inline-block;
   height: 2rem;
@@ -189,6 +183,22 @@ ul {
   font-weight: 900;
   font-style: italic;
   text-transform: uppercase;
+}
+
+.hiscore-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 4em;
+  background-color: hsla(222, 10%, 10%, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.hiscore-board {
+  background-color: white;
 }
 
 .hidden {
@@ -569,6 +579,10 @@ TABLET PORTRAIT
     grid-template-columns: 18vw 18vw 18vw 18vw;
     grid-template-rows: 18vw 18vw 18vw 18vw 18vw 18vw;
     grid-gap: 4.4vw;
+  }
+  .button {
+    width: 4rem;
+    height: 1.8rem;
   }
 }
 
