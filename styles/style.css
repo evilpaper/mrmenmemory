@@ -40,7 +40,7 @@ body {
 }
 
 .logo {
-  width: 6rem;
+  width: 10rem;
   height: 100%;
 }
 
@@ -131,7 +131,7 @@ ul {
 .button {
   position: relative;
   height: 2rem;
-  min-width: 7rem;
+  min-width: 6rem;
   color: black;
   background-color: #fff;
   text-transform: uppercase;
@@ -141,17 +141,8 @@ ul {
   text-align: center;
   vertical-align: middle;
   border-radius: 0.4em;
+  border-radius: 2em;
   box-shadow: 0 0.6em 0 0 black;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-.button--open-leaderboard {
-  border: none;
-  background-color: transparent;
-  font-size: 0.6em;
-  padding: 1em 0.4em 0 0.4em;
-  text-transform: uppercase;
   cursor: pointer;
   letter-spacing: 1px;
 }
@@ -159,6 +150,12 @@ ul {
 .button--close-leaderboard:active {
   -webkit-animation: push 0.24s both;
   animation: push 0.24s both;
+}
+
+.button--open-leaderboard {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0.6em 0 0 white;
 }
 
 .time__container {
@@ -228,16 +225,19 @@ ul {
 
 .hiscore__header {
   font-weight: 900;
-  font-size: 3em;
+  font-size: 2em;
   font-style: italic;
-  border-bottom: 10px solid black;
+  border-bottom: 8px solid black;
   width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 1em;
 }
 
 .leaderboard__list {
   padding: 1em 0;
   counter-reset: myCounter;
-  border-bottom: 10px solid black;
+  border-bottom: 8px solid black;
   width: 100%;
   font-style: italic;
 }
