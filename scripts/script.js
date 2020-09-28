@@ -317,10 +317,12 @@ timerButton.addEventListener("animationend", function (event) {
 
 leaderboardOpenButton.addEventListener("click", function (event) {
   leaderboardPage.classList.remove("hidden");
+  leaderboardPage.classList.add("slide-in-top");
 });
 
 leaderboardCloseButton.addEventListener("click", function () {
   leaderboardPage.classList.add("hidden");
+  leaderboardPage.classList.remove("slide-in-top");
 });
 
 initializeGame();
