@@ -1,5 +1,5 @@
 const board = document.querySelector(".board");
-const hiscorePage = document.querySelector(".hiscore-page");
+const leaderboardPage = document.querySelector(".leaderboard-page");
 const timerButton = document.querySelector(".button-new-game");
 const leaderboardOpenButton = document.querySelector(
   ".button--open-leaderboard"
@@ -316,11 +316,11 @@ timerButton.addEventListener("animationend", function (event) {
 });
 
 leaderboardOpenButton.addEventListener("click", function (event) {
-  hiscorePage.classList.remove("hidden");
+  leaderboardPage.classList.remove("hidden");
 });
 
 leaderboardCloseButton.addEventListener("click", function () {
-  hiscorePage.classList.add("hidden");
+  leaderboardPage.classList.add("hidden");
 });
 
 initializeGame();
