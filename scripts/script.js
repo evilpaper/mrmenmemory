@@ -1,5 +1,6 @@
 const board = document.querySelector(".board");
 const leaderboardPage = document.querySelector(".leaderboard-page");
+const leaderboardList = document.querySelector(".leaderboard__list");
 const timerButton = document.querySelector(".button-new-game");
 const leaderboardOpenButton = document.querySelector(
   ".button--open-leaderboard"
@@ -135,6 +136,22 @@ const stopTimer = () => {
   backgroundSong.pause();
   backgroundSong.currentTime = 0;
   applyBounce(timerDisplay);
+};
+
+const createLeaderboard = () => {
+  for (const entry of leaderboard) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("leaderboard__list-item");
+    listItem.innerHTML = createLeaderboardEntry(entry.name, entry.time);
+    leaderboardList.appendChild(listItem);
+  }
+};
+
+const createLeaderboardEntry = (name, time) => {
+  return `
+      <span class="list-item__name">${name}</span>
+      <span class="list-item__time">${time}</span>
+  `;
 };
 
 const resetTimer = () => {
@@ -322,7 +339,7 @@ leaderboardOpenButton.addEventListener("click", function (event) {
 
 leaderboardCloseButton.addEventListener("click", function () {
   leaderboardPage.classList.add("hidden");
-  leaderboardPage.classList.remove("slide-in-top");
+  leaderboardPage.classList.remove("slide-in-tops");
 });
 
 initializeGame();
