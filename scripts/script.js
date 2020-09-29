@@ -285,6 +285,8 @@ const isNotACard = (thing) => {
   );
 };
 
+createLeaderboard();
+
 board.addEventListener(
   "click",
   (event) => {
