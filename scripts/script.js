@@ -268,6 +268,10 @@ const updateGameState = (activeCard) => {
         matchesCount++;
         if (matchesCount === 12) {
           // completeGame();
+          stopTimer();
+          bell.play();
+          backgroundSong.pause();
+          backgroundSong.currentTime = 0;
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -351,6 +355,13 @@ leaderboardPage.addEventListener("animationend", function (event) {
 
 leaderboardCloseButton.addEventListener("click", function (event) {
   leaderboardPage.classList.add("slide-out-top");
+});
+
+leaderboardPage.addEventListener("click", function (event) {
+  console.log(event.target.classList);
+  if (event.target.classList.contains("leaderboard-page")) {
+    leaderboardPage.classList.add("slide-out-top");
+  }
 });
 
 initializeGame();
