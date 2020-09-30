@@ -339,9 +339,18 @@ leaderboardOpenButton.addEventListener("click", function (event) {
   leaderboardPage.classList.add("slide-in-top");
 });
 
-leaderboardCloseButton.addEventListener("click", function () {
-  leaderboardPage.classList.add("hidden");
-  leaderboardPage.classList.remove("slide-in-tops");
+leaderboardPage.addEventListener("animationend", function (event) {
+  if (leaderboardPage.classList.contains("slide-in-top")) {
+    leaderboardPage.classList.remove("slide-in-top");
+  }
+  if (leaderboardPage.classList.contains("slide-out-top")) {
+    leaderboardPage.classList.remove("slide-out-top");
+    leaderboardPage.classList.add("hidden");
+  }
+});
+
+leaderboardCloseButton.addEventListener("click", function (event) {
+  leaderboardPage.classList.add("slide-out-top");
 });
 
 initializeGame();
