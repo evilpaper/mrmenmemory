@@ -154,6 +154,13 @@ const createLeaderboardEntry = (name, time) => {
   `;
 };
 
+const finsihGameMessage = () => {
+  const finsihGameMessageElement = document.createElement("div");
+  finsihGameMessageElement.classList.add("finished-game-message");
+  finsihGameMessageElement.innerHTML = "Done";
+  board.appendChild(finsihGameMessageElement);
+};
+
 const resetTimer = () => {
   seconds = 0;
   minutes = 0;
@@ -272,6 +279,7 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
+          finsihGameMessage();
         }
       } else {
         setTimeout(resetGuesses, delay);

@@ -273,6 +273,17 @@ ul {
   text-align: right;
 }
 
+.finished-game-message {
+  position: absolute;
+  background-color: gainsboro;
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hidden {
   display: none;
 }
