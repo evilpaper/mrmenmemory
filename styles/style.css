@@ -273,9 +273,19 @@ ul {
   text-align: right;
 }
 
-.finished-game-message {
+.finished-game-message-container {
   position: absolute;
-  background-color: gainsboro;
+  height: 100vh;
+  width: 100vw;
+  background-color: hsla(222, 10%, 10%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.finished-game-message {
+  background-color: white;
   border-radius: 50%;
   height: 300px;
   width: 300px;

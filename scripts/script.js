@@ -155,10 +155,15 @@ const createLeaderboardEntry = (name, time) => {
 };
 
 const finsihGameMessage = () => {
+  const finsihGameMessageElementContainer = document.createElement("section");
+  finsihGameMessageElementContainer.classList.add(
+    "finished-game-message-container"
+  );
   const finsihGameMessageElement = document.createElement("div");
   finsihGameMessageElement.classList.add("finished-game-message");
   finsihGameMessageElement.innerHTML = "Done";
-  board.appendChild(finsihGameMessageElement);
+  finsihGameMessageElementContainer.appendChild(finsihGameMessageElement);
+  body.appendChild(finsihGameMessageElementContainer);
 };
 
 const resetTimer = () => {
