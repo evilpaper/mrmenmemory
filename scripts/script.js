@@ -155,15 +155,13 @@ const createLeaderboardEntry = (name, time) => {
 };
 
 const finsihGameMessage = () => {
-  const finsihGameMessageElementContainer = document.createElement("section");
-  finsihGameMessageElementContainer.classList.add(
-    "finished-game-message-container"
-  );
-  const finsihGameMessageElement = document.createElement("div");
-  finsihGameMessageElement.classList.add("finished-game-message");
-  finsihGameMessageElement.innerHTML = "Done";
-  finsihGameMessageElementContainer.appendChild(finsihGameMessageElement);
-  body.appendChild(finsihGameMessageElementContainer);
+  const finishGameView = document.createElement("section");
+  finishGameView.classList.add("finished-game-view");
+  finishGameView.innerHTML = `
+    <article class="finish-game-message">Done</article>
+    <button class="button">Close</buttton>
+  `;
+  body.appendChild(finishGameView);
 };
 
 const resetTimer = () => {
@@ -254,7 +252,10 @@ const flipBack = (card) => {};
 // For development purposes only
 const completeGame = () => {
   stopTimer();
-  matchesCount = 0;
+  bell.play();
+  backgroundSong.pause();
+  backgroundSong.currentTime = 0;
+  finsihGameMessage();
 };
 
 const updateGameState = (activeCard) => {
