@@ -154,14 +154,21 @@ const createLeaderboardEntry = (name, time) => {
   `;
 };
 
-const finsihGameMessage = () => {
+const createFinishGameView = () => {
   const finishGameView = document.createElement("section");
   finishGameView.classList.add("finished-game-view");
   finishGameView.innerHTML = `
-    <article class="finish-game-message">Done</article>
-    <button class="button">Close</buttton>
+    <article class="finish-game-message"><p>${timerDisplay.textContent}</p></article>
+    <button class="button button--close-finish-game">Close</buttton>
   `;
   body.appendChild(finishGameView);
+  const finishGameViewCloseButton = document.querySelector(
+    ".button--close-finish-game"
+  );
+  finishGameViewCloseButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    finishGameViewCloseButton.classList.add("apply-push");
+  });
 };
 
 const resetTimer = () => {
@@ -255,7 +262,7 @@ const completeGame = () => {
   bell.play();
   backgroundSong.pause();
   backgroundSong.currentTime = 0;
-  finsihGameMessage();
+  createFinishGameView();
 };
 
 const updateGameState = (activeCard) => {
@@ -285,7 +292,7 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
-          finsihGameMessage();
+          createFinishGameView();
         }
       } else {
         setTimeout(resetGuesses, delay);
