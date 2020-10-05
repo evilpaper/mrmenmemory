@@ -117,8 +117,6 @@ const stopTimer = () => {
     "Mr Men Memory Match Local Leaderboard"
   );
 
-  console.log(JSON.parse(oldLeaderboard));
-
   const leaderboardEntry = {
     player: "anonymous",
     date: new Date(),
@@ -168,6 +166,7 @@ const createFinishGameView = () => {
   finishGameViewCloseButton.addEventListener("click", (event) => {
     event.preventDefault();
     finishGameViewCloseButton.classList.add("apply-push");
+    body.removeChild(finishGameView);
   });
 };
 
@@ -379,7 +378,6 @@ leaderboardCloseButton.addEventListener("click", function (event) {
 });
 
 leaderboardPage.addEventListener("click", function (event) {
-  console.log(event.target.classList);
   if (event.target.classList.contains("leaderboard-page")) {
     leaderboardPage.classList.add("slide-out-top");
   }
