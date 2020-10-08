@@ -1,5 +1,6 @@
 const board = document.querySelector(".board");
 const leaderboardPage = document.querySelector(".leaderboard-page");
+const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
 const timerButton = document.querySelector(".button-new-game");
 const leaderboardOpenButton = document.querySelector(
@@ -321,26 +322,26 @@ timerButton.addEventListener("animationend", function (event) {
 
 leaderboardOpenButton.addEventListener("click", function (event) {
   leaderboardPage.classList.remove("hidden");
-  leaderboardPage.classList.add("slide-in-top");
+  leaderboardBoard.classList.add("slide-in-top");
 });
 
-leaderboardPage.addEventListener("animationend", function (event) {
-  if (leaderboardPage.classList.contains("slide-in-top")) {
-    leaderboardPage.classList.remove("slide-in-top");
+leaderboardBoard.addEventListener("animationend", function (event) {
+  if (leaderboardBoard.classList.contains("slide-in-top")) {
+    leaderboardBoard.classList.remove("slide-in-top");
   }
-  if (leaderboardPage.classList.contains("slide-out-top")) {
-    leaderboardPage.classList.remove("slide-out-top");
+  if (leaderboardBoard.classList.contains("slide-out-top")) {
+    leaderboardBoard.classList.remove("slide-out-top");
     leaderboardPage.classList.add("hidden");
   }
 });
 
 leaderboardCloseButton.addEventListener("click", function (event) {
-  leaderboardPage.classList.add("slide-out-top");
+  leaderboardBoard.classList.add("slide-out-top");
 });
 
 leaderboardPage.addEventListener("click", function (event) {
   if (event.target.classList.contains("leaderboard-page")) {
-    leaderboardPage.classList.add("slide-out-top");
+    leaderboardBoard.classList.add("slide-out-top");
   }
 });
 
