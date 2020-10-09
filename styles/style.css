@@ -136,8 +136,8 @@ ul {
   color: black;
   background-color: #fff;
   text-transform: uppercase;
-  font-size: 0.6em;
-  border: 1px solid black;
+  font-size: 0.7em;
+  border: 2px solid black;
   line-height: 2rem;
   text-align: center;
   vertical-align: middle;
@@ -146,6 +146,10 @@ ul {
   box-shadow: 0 0.6em 0 0 black;
   cursor: pointer;
   letter-spacing: 1px;
+}
+
+.button--close-leaderboard {
+  margin-top: 2em;
 }
 
 .button--close-leaderboard:active {
@@ -277,6 +281,7 @@ ul {
   height: 100vh;
   width: 100vw;
   background-color: hsla(222, 10%, 10%, 0);
+  backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
   justify-content: center;
