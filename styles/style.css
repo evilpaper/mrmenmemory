@@ -310,6 +310,14 @@ ul {
   font-weight: 700;
 }
 
+.finish-message__player-name-input {
+  border: none;
+  border-bottom: 4px solid black;
+  background-color: none;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 .hidden {
   display: none;
 }

@@ -109,7 +109,7 @@ const createFinishGameView = () => {
   finishGameView.innerHTML = `
     <article class="finish-game-message">
       <p class="finish-message__time">${timerDisplay.textContent}</p>
-      <input/>
+      <input class="finish-message__player-name-input"/>
       <p class="finish-message__copy">Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.</p>
     </article>
     <button class="button button--close-finish-game">Close</buttton>
