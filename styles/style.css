@@ -312,7 +312,7 @@ ul {
 
 .finish-message__player-name-input {
   border: none;
-  border-bottom: 4px solid black;
+  border-bottom: 4px dashed black;
   background-color: none;
   padding: 1em;
   margin-bottom: 1em;
