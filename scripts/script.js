@@ -1,7 +1,8 @@
 const board = document.querySelector(".board");
-const leaderboardPage = document.querySelector(".leaderboard-page");
+const leaderboardPage = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
+const finishGameView = document.querySelector(".finished-game-overlay");
 const timerButton = document.querySelector(".button-new-game");
 const leaderboardOpenButton = document.querySelector(
   ".button--open-leaderboard"
@@ -104,8 +105,7 @@ const createLeaderboardEntry = (name, time) => {
 };
 
 const createFinishGameView = () => {
-  const finishGameView = document.createElement("section");
-  finishGameView.classList.add("finished-game-view");
+  finishGameView.classList.remove("hidden");
   finishGameView.innerHTML = `
     <article class="finish-game-message">
       <p class="finish-message__time">${timerDisplay.textContent}</p>
@@ -114,7 +114,6 @@ const createFinishGameView = () => {
     </article>
     <button class="button button--close-finish-game">Close</buttton>
   `;
-  body.appendChild(finishGameView);
   const finishGameViewCloseButton = document.querySelector(
     ".button--close-finish-game"
   );
@@ -126,7 +125,7 @@ const createFinishGameView = () => {
   finishGameView.addEventListener("click", (event) => {
     event.preventDefault();
     console.log(event.target);
-    if (event.target.classList.contains("finished-game-view")) {
+    if (event.target.classList.contains("finished-game-overlay")) {
       body.removeChild(finishGameView);
     }
   });
@@ -340,7 +339,7 @@ leaderboardCloseButton.addEventListener("click", function (event) {
 });
 
 leaderboardPage.addEventListener("click", function (event) {
-  if (event.target.classList.contains("leaderboard-page")) {
+  if (event.target.classList.contains("leaderboard-overlay")) {
     leaderboardBoard.classList.add("slide-out-top");
   }
 });
