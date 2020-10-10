@@ -104,32 +104,29 @@ const createLeaderboardEntry = (name, time) => {
   `;
 };
 
+const finishGameTime = document.querySelector(".finish-message__time");
+
 const createFinishGameView = () => {
   finishGameView.classList.remove("hidden");
-  finishGameView.innerHTML = `
-    <article class="finish-game-message">
-      <p class="finish-message__time">${timerDisplay.textContent}</p>
-      <input class="finish-message__player-name-input"/>
-      <p class="finish-message__copy">Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.</p>
-    </article>
-    <button class="button button--close-finish-game">Close</buttton>
-  `;
-  const finishGameViewCloseButton = document.querySelector(
-    ".button--close-finish-game"
-  );
-  finishGameViewCloseButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    finishGameViewCloseButton.classList.add("apply-push");
-    body.removeChild(finishGameView);
-  });
-  finishGameView.addEventListener("click", (event) => {
-    event.preventDefault();
-    console.log(event.target);
-    if (event.target.classList.contains("finished-game-overlay")) {
-      body.removeChild(finishGameView);
-    }
-  });
+  finishGameTime.innerHTML = `${timerDisplay.textContent}`;
 };
+
+const finishGameViewCloseButton = document.querySelector(
+  ".button--close-finish-game"
+);
+
+finishGameViewCloseButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  finishGameViewCloseButton.classList.add("apply-push");
+  body.removeChild(finishGameView);
+});
+finishGameView.addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log(event.target);
+  if (event.target.classList.contains("finished-game-overlay")) {
+    body.removeChild(finishGameView);
+  }
+});
 
 const resetTimer = () => {
   seconds = 0;
