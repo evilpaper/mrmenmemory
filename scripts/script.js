@@ -99,6 +99,9 @@ const stopTimer = () => {
 };
 
 const populateLeaderboard = () => {
+  // Clean up old entries
+  leaderboardList.innerHTML = "";
+  // Add new entries
   for (const entry of leaderboard) {
     const listItem = document.createElement("li");
     listItem.classList.add("leaderboard__list-item");
@@ -310,6 +313,7 @@ timerButton.addEventListener("animationend", function (event) {
 });
 
 leaderboardOpenButton.addEventListener("click", function (event) {
+  populateLeaderboard();
   leaderboardView.classList.remove("hidden");
   leaderboardBoard.classList.add("slide-in-top");
 });
@@ -339,6 +343,7 @@ finishGameViewCloseButton.addEventListener("click", (event) => {
   finishGameViewCloseButton.classList.add("apply-push");
   body.removeChild(finishGameView);
 });
+
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
   console.log(event.target);
@@ -349,6 +354,13 @@ finishGameView.addEventListener("click", (event) => {
 
 playerNameInput.addEventListener("change", (event) => {
   console.log(event.target.value);
+  const finalTime = timerDisplay.textContent;
+  const newEntry = {
+    name: event.target.value,
+    time: finalTime,
+  };
+  leaderboard.unshift(newEntry);
+  finishGameView.classList.add("hidden");
 });
 
 initializeGame();
