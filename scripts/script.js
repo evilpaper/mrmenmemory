@@ -1,8 +1,12 @@
 const board = document.querySelector(".board");
-const leaderboardPage = document.querySelector(".leaderboard-overlay");
+const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
 const finishGameView = document.querySelector(".finished-game-overlay");
+const finishGameTime = document.querySelector(".finish-message__time");
+const finishGameViewCloseButton = document.querySelector(
+  ".button--close-finish-game"
+);
 const timerButton = document.querySelector(".button-new-game");
 const leaderboardOpenButton = document.querySelector(
   ".button--open-leaderboard"
@@ -10,7 +14,10 @@ const leaderboardOpenButton = document.querySelector(
 const leaderboardCloseButton = document.querySelector(
   ".button--close-leaderboard"
 );
+
 const timerDisplay = document.querySelector(".time");
+
+// Sounds
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
 const bell = document.querySelector(".bell");
@@ -88,7 +95,7 @@ const stopTimer = () => {
   applyBounce(timerDisplay);
 };
 
-const createLeaderboard = () => {
+const populateLeaderboard = () => {
   for (const entry of leaderboard) {
     const listItem = document.createElement("li");
     listItem.classList.add("leaderboard__list-item");
@@ -104,29 +111,10 @@ const createLeaderboardEntry = (name, time) => {
   `;
 };
 
-const finishGameTime = document.querySelector(".finish-message__time");
-
 const createFinishGameView = () => {
   finishGameView.classList.remove("hidden");
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
 };
-
-const finishGameViewCloseButton = document.querySelector(
-  ".button--close-finish-game"
-);
-
-finishGameViewCloseButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  finishGameViewCloseButton.classList.add("apply-push");
-  body.removeChild(finishGameView);
-});
-finishGameView.addEventListener("click", (event) => {
-  event.preventDefault();
-  console.log(event.target);
-  if (event.target.classList.contains("finished-game-overlay")) {
-    body.removeChild(finishGameView);
-  }
-});
 
 const resetTimer = () => {
   seconds = 0;
@@ -267,7 +255,9 @@ const isNotACard = (thing) => {
   );
 };
 
-createLeaderboard();
+populateLeaderboard();
+
+// Event Listeners
 
 board.addEventListener(
   "click",
@@ -317,7 +307,7 @@ timerButton.addEventListener("animationend", function (event) {
 });
 
 leaderboardOpenButton.addEventListener("click", function (event) {
-  leaderboardPage.classList.remove("hidden");
+  leaderboardView.classList.remove("hidden");
   leaderboardBoard.classList.add("slide-in-top");
 });
 
@@ -327,7 +317,7 @@ leaderboardBoard.addEventListener("animationend", function (event) {
   }
   if (leaderboardBoard.classList.contains("slide-out-top")) {
     leaderboardBoard.classList.remove("slide-out-top");
-    leaderboardPage.classList.add("hidden");
+    leaderboardView.classList.add("hidden");
   }
 });
 
@@ -335,9 +325,22 @@ leaderboardCloseButton.addEventListener("click", function (event) {
   leaderboardBoard.classList.add("slide-out-top");
 });
 
-leaderboardPage.addEventListener("click", function (event) {
+leaderboardView.addEventListener("click", function (event) {
   if (event.target.classList.contains("leaderboard-overlay")) {
     leaderboardBoard.classList.add("slide-out-top");
+  }
+});
+
+finishGameViewCloseButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  finishGameViewCloseButton.classList.add("apply-push");
+  body.removeChild(finishGameView);
+});
+finishGameView.addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log(event.target);
+  if (event.target.classList.contains("finished-game-overlay")) {
+    body.removeChild(finishGameView);
   }
 });
 
