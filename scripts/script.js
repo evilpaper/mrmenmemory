@@ -4,6 +4,9 @@ const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
 const finishGameView = document.querySelector(".finished-game-overlay");
 const finishGameTime = document.querySelector(".finish-message__time");
+const playerNameInput = document.querySelector(
+  ".finish-message__player-name-input"
+);
 const finishGameViewCloseButton = document.querySelector(
   ".button--close-finish-game"
 );
@@ -342,6 +345,10 @@ finishGameView.addEventListener("click", (event) => {
   if (event.target.classList.contains("finished-game-overlay")) {
     body.removeChild(finishGameView);
   }
+});
+
+playerNameInput.addEventListener("change", (event) => {
+  console.log(event.target.value);
 });
 
 initializeGame();
