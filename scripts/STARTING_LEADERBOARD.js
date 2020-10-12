@@ -1,4 +1,4 @@
-const leaderboard = [
+const STARTING_LEADERBOARD = [
   {
     name: "Jennifer",
     time: "02.00.00",

@@ -20,6 +20,10 @@ const leaderboardCloseButton = document.querySelector(
 
 const timerDisplay = document.querySelector(".time");
 
+const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
+  ? localStorage.getItem("mr_men_memory_leaderboard")
+  : STARTING_LEADERBOARD;
+
 // Sounds
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
@@ -74,22 +78,6 @@ const startTimer = () => {
 
 const stopTimer = () => {
   let finalTime = timerDisplay.textContent;
-
-  const oldLeaderboard = localStorage.getItem(
-    "Mr Men Memory Match Local Leaderboard"
-  );
-
-  const leaderboardEntry = {
-    player: "anonymous",
-    date: new Date(),
-    time: finalTime,
-  };
-
-  localStorage.setItem(
-    "Mr Men Memory Match Local Leaderboard",
-    JSON.stringify(leaderboardEntry)
-  );
-
   clearInterval(timer);
   timerDisplay.textContent = finalTime;
   bell.play();
@@ -99,9 +87,8 @@ const stopTimer = () => {
 };
 
 const populateLeaderboard = () => {
-  // Clean up old entries
   leaderboardList.innerHTML = "";
-  // Add new entries
+
   for (const entry of leaderboard) {
     const listItem = document.createElement("li");
     listItem.classList.add("leaderboard__list-item");
@@ -348,19 +335,23 @@ finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
   console.log(event.target);
   if (event.target.classList.contains("finished-game-overlay")) {
-    body.removeChild(finishGameView);
+    finishGameView.classList.add("hidden");
   }
 });
 
 playerNameInput.addEventListener("change", (event) => {
-  console.log(event.target.value);
   const finalTime = timerDisplay.textContent;
   const newEntry = {
     name: event.target.value,
     time: finalTime,
   };
-  leaderboard.unshift(newEntry);
+  console.log(newEntry);
+  // leaderboard.unshift(newEntry);
+  // localStorage.setItem(
+  //   "mr_men_memory_leaderboard", leaderboard
+  // );
   finishGameView.classList.add("hidden");
+  leaderboardView.classList.remove("hidden");
 });
 
 initializeGame();
