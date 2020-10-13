@@ -89,7 +89,8 @@ const stopTimer = () => {
 const populateLeaderboard = () => {
   leaderboardList.innerHTML = "";
 
-  for (const entry of leaderboard) {
+  for (let index = 0; index <= 9; index++) {
+    const entry = leaderboard[index];
     const listItem = document.createElement("li");
     listItem.classList.add("leaderboard__list-item");
     listItem.innerHTML = createLeaderboardEntry(entry.name, entry.time);
@@ -346,9 +347,8 @@ playerNameInput.addEventListener("change", (event) => {
     time: finalTime,
   };
   leaderboard.unshift(newEntry);
-  // localStorage.setItem(
-  //   "mr_men_memory_leaderboard", leaderboard
-  // );
+
+  // Sort it before svaing it
   localStorage.setItem(
     "mr_men_memory_leaderboard",
     JSON.stringify(leaderboard)
