@@ -21,7 +21,7 @@ const leaderboardCloseButton = document.querySelector(
 const timerDisplay = document.querySelector(".time");
 
 const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
-  ? localStorage.getItem("mr_men_memory_leaderboard")
+  ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
   : STARTING_LEADERBOARD;
 
 // Sounds
@@ -345,11 +345,14 @@ playerNameInput.addEventListener("change", (event) => {
     name: event.target.value,
     time: finalTime,
   };
-  console.log(newEntry);
-  // leaderboard.unshift(newEntry);
+  leaderboard.unshift(newEntry);
   // localStorage.setItem(
   //   "mr_men_memory_leaderboard", leaderboard
   // );
+  localStorage.setItem(
+    "mr_men_memory_leaderboard",
+    JSON.stringify(leaderboard)
+  );
   finishGameView.classList.add("hidden");
   leaderboardView.classList.remove("hidden");
 });
