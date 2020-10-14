@@ -1,42 +1,42 @@
 const STARTING_LEADERBOARD = [
   {
     name: "Jennifer",
-    time: "02.00.00",
+    time: 120.0,
   },
   {
     name: "Magdalena",
-    time: "02.01.00",
+    time: 120.01,
   },
   {
     name: "Emma",
-    time: "02.02.00",
+    time: 120.02,
   },
   {
     name: "Linda",
-    time: "02.03.00",
+    time: 120.03,
   },
   {
     name: "Stina",
-    time: "02.04.00",
+    time: 120.04,
   },
   {
     name: "Nilla",
-    time: "02.05.00",
+    time: 120.05,
   },
   {
     name: "Lotta",
-    time: "02.06.00",
+    time: 120.06,
   },
   {
     name: "Rebecka",
-    time: "02.07.00",
+    time: 120.07,
   },
   {
     name: "Olivia",
-    time: "02.08.00",
+    time: 120.08,
   },
   {
     name: "Julia",
-    time: "02.09.00",
+    time: 120.09,
   },
 ];

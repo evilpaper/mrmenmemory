@@ -87,6 +87,8 @@ const stopTimer = () => {
 };
 
 const populateLeaderboard = () => {
+  console.log(leaderboard.sort((a, b) => a.time - b.time));
+
   leaderboardList.innerHTML = "";
 
   for (let index = 0; index <= 9; index++) {
@@ -341,19 +343,22 @@ finishGameView.addEventListener("click", (event) => {
 });
 
 playerNameInput.addEventListener("change", (event) => {
-  const finalTime = timerDisplay.textContent;
+  const finalTime = minutes * 60 + seconds + hundredths / 100;
+
   const newEntry = {
     name: event.target.value,
     time: finalTime,
   };
   leaderboard.unshift(newEntry);
 
-  // Sort it before svaing it
+  // Sort it before saving
+
   localStorage.setItem(
     "mr_men_memory_leaderboard",
     JSON.stringify(leaderboard)
   );
   finishGameView.classList.add("hidden");
+  populateLeaderboard();
   leaderboardView.classList.remove("hidden");
 });
 
