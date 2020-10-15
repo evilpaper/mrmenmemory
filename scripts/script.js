@@ -87,15 +87,12 @@ const stopTimer = () => {
 };
 
 const populateLeaderboard = () => {
-  console.log(leaderboard.sort((a, b) => a.time - b.time));
-
   leaderboardList.innerHTML = "";
-
   for (let index = 0; index <= 9; index++) {
     const entry = leaderboard[index];
     const listItem = document.createElement("li");
     listItem.classList.add("leaderboard__list-item");
-    listItem.innerHTML = createLeaderboardEntry(entry.name, entry.time);
+    listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
     leaderboardList.appendChild(listItem);
   }
 };
@@ -348,10 +345,11 @@ playerNameInput.addEventListener("change", (event) => {
   const newEntry = {
     name: event.target.value,
     time: finalTime,
+    display: timerDisplay.textContent,
   };
   leaderboard.unshift(newEntry);
 
-  // Sort it before saving
+  leaderboard.sort((a, b) => a.time - b.time);
 
   localStorage.setItem(
     "mr_men_memory_leaderboard",
