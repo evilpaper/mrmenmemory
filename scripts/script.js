@@ -356,8 +356,11 @@ playerNameInput.addEventListener("change", (event) => {
     JSON.stringify(leaderboard)
   );
   finishGameView.classList.add("hidden");
-  populateLeaderboard();
-  leaderboardView.classList.remove("hidden");
+  setTimeout(() => {
+    populateLeaderboard();
+    leaderboardView.classList.remove("hidden");
+    leaderboardBoard.classList.add("slide-in-top");
+  }, 100);
 });
 
 initializeGame();
