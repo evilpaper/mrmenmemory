@@ -31,20 +31,20 @@ const cards = [
     name: "mrbounce",
     img: "images/mrbounce.jpg",
   },
-  {
-    name: "lmwhoops",
-    img: "images/lmwhoops.jpg",
-  },
-  {
-    name: "lmnaughty",
-    img: "images/lmnaughty.jpg",
-  },
-  {
-    name: "lmhug",
-    img: "images/lmhug.jpg",
-  },
-  {
-    name: "lmfun",
-    img: "images/lmfun.jpg",
-  },
+  // {
+  //   name: "lmwhoops",
+  //   img: "images/lmwhoops.jpg",
+  // },
+  // {
+  //   name: "lmnaughty",
+  //   img: "images/lmnaughty.jpg",
+  // },
+  // {
+  //   name: "lmhug",
+  //   img: "images/lmhug.jpg",
+  // },
+  // {
+  //   name: "lmfun",
+  //   img: "images/lmfun.jpg",
+  // },
 ];

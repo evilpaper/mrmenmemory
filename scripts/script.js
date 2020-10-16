@@ -24,7 +24,6 @@ const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
   ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
   : STARTING_LEADERBOARD;
 
-// Sounds
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
 const bell = document.querySelector(".bell");
@@ -210,7 +209,7 @@ const updateGameState = (activeCard) => {
     if (activeCards === 1) {
       firstGuess = activeCard.parentNode.dataset.name;
       flipUp(activeCard);
-      // activeCard.parentNode.classList.add("selected");
+      
       previousGuess = activeCard;
     } else {
       secondGuess = activeCard.parentNode.dataset.name;
