@@ -167,10 +167,10 @@ ul {
 }
 
 .button--open-leaderboard {
-  color: mediumblue;
+  color: black;
   background-color: white;
-  border: 2px solid mediumblue;
-  box-shadow: 0 0.6em 0 0 mediumblue;
+  border: 2px solid black;
+  box-shadow: 0 0.6em 0 0 black;
   padding: 0 1em;
 }
 
