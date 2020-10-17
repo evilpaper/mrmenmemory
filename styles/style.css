@@ -61,9 +61,9 @@ button:focus {
   position: absolute;
   width: 14em;
   height: auto;
-  bottom: -0.2em;
-  right: -0.2em;
-  transform: rotate(18deg);
+  bottom: -0.6em;
+  right: -0.6em;
+  transform: rotate(12deg);
 }
 
 .board {

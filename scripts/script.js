@@ -315,6 +315,16 @@ leaderboardBoard.addEventListener("animationend", function (event) {
   }
 });
 
+finishGameView.addEventListener("animationend", function (event) {
+  if (finishGameView.classList.contains("bounce-in-top")) {
+    finishGameView.classList.remove("bounce-in-top");
+  }
+  if (finishGameView.classList.contains("slide-out-top")) {
+    finishGameView.classList.remove("slide-out-top");
+    finishGameView.classList.add("hidden");
+  }
+});
+
 leaderboardCloseButton.addEventListener("click", function (event) {
   leaderboardBoard.classList.add("slide-out-top");
 });
@@ -328,14 +338,16 @@ leaderboardView.addEventListener("click", function (event) {
 finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
-  body.removeChild(finishGameView);
+  finishGameView.classList.add("slide-out-top");
+  // body.removeChild(finishGameView);
 });
 
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
   console.log(event.target);
   if (event.target.classList.contains("finished-game-overlay")) {
-    finishGameView.classList.add("hidden");
+    finishGameView.classList.add("slide-out-top");
+    // finishGameView.classList.add("hidden");
   }
 });
 
