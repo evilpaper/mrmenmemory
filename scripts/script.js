@@ -105,6 +105,7 @@ const createLeaderboardEntry = (name, time) => {
 
 const createFinishGameView = () => {
   finishGameView.classList.remove("hidden");
+  finishGameView.classList.add("bounce-in-top");
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
 };
 
@@ -209,7 +210,7 @@ const updateGameState = (activeCard) => {
     if (activeCards === 1) {
       firstGuess = activeCard.parentNode.dataset.name;
       flipUp(activeCard);
-      
+
       previousGuess = activeCard;
     } else {
       secondGuess = activeCard.parentNode.dataset.name;
