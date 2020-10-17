@@ -24,6 +24,12 @@ body {
   height: 100vh;
 }
 
+footer {
+  background: #ffd100;
+  text-align: center;
+  font-size: 0.8em;
+}
+
 button,
 input {
   font-family: "Nunito", sans-serif;
@@ -136,11 +142,12 @@ ul {
   position: relative;
   height: 2rem;
   min-width: 6rem;
-  color: black;
-  background-color: #fff;
+  color: white;
+  background-color: black;
   text-transform: uppercase;
   font-size: 0.7em;
   border: 2px solid black;
+  border: 2px solid white;
   line-height: 2rem;
   text-align: center;
   vertical-align: middle;
@@ -160,9 +167,10 @@ ul {
 }
 
 .button--open-leaderboard {
-  color: dodgerblue;
-  border: 2px solid dodgerblue;
-  box-shadow: 0 0.6em 0 0 dodgerblue;
+  color: mediumblue;
+  background-color: white;
+  border: 2px solid mediumblue;
+  box-shadow: 0 0.6em 0 0 mediumblue;
   padding: 0 1em;
 }
 
