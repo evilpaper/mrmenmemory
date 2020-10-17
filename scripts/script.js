@@ -224,7 +224,7 @@ const updateGameState = (activeCard) => {
         setTimeout(removeMatches, delay);
         setTimeout(resetGuesses, delay);
         matchesCount++;
-        if (matchesCount === 12) {
+        if (matchesCount === 8) {
           // completeGame();
           stopTimer();
           bell.play();
@@ -302,12 +302,12 @@ timerButton.addEventListener("animationend", function (event) {
 leaderboardOpenButton.addEventListener("click", function (event) {
   populateLeaderboard();
   leaderboardView.classList.remove("hidden");
-  leaderboardBoard.classList.add("slide-in-top");
+  leaderboardBoard.classList.add("bounce-in-top");
 });
 
 leaderboardBoard.addEventListener("animationend", function (event) {
-  if (leaderboardBoard.classList.contains("slide-in-top")) {
-    leaderboardBoard.classList.remove("slide-in-top");
+  if (leaderboardBoard.classList.contains("bounce-in-top")) {
+    leaderboardBoard.classList.remove("bounce-in-top");
   }
   if (leaderboardBoard.classList.contains("slide-out-top")) {
     leaderboardBoard.classList.remove("slide-out-top");
@@ -359,7 +359,7 @@ playerNameInput.addEventListener("change", (event) => {
   setTimeout(() => {
     populateLeaderboard();
     leaderboardView.classList.remove("hidden");
-    leaderboardBoard.classList.add("slide-in-top");
+    leaderboardBoard.classList.add("bounce-in-top");
   }, 100);
 });
 
