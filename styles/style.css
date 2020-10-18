@@ -63,7 +63,7 @@ button:focus {
   height: auto;
   bottom: -0.6em;
   right: -0.6em;
-  transform: rotate(12deg);
+  transform: rotate(-18deg);
 }
 
 .board {
@@ -264,6 +264,7 @@ ul {
   width: 100%;
   text-transform: uppercase;
   padding-bottom: 0.4em;
+  text-align: center;
 }
 
 .leaderboard__list {

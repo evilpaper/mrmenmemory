@@ -168,6 +168,27 @@ const resetGuesses = () => {
   });
 };
 
+const resetGame = () => {
+  zap.play();
+  backgroundSong.pause();
+  backgroundSong.currentTime = 0;
+  timerButton.classList.add("apply-push");
+
+  resetTimer();
+  resetGuesses();
+  removeCards();
+  shuffleCards(deck);
+  dealCards();
+
+  if (timerButton.innerText === "START") {
+    timerButton.innerText = "RESET";
+    startTimer();
+  } else {
+    timerButton.innerText = "START";
+    bounceCards();
+  }
+};
+
 const bounceCards = () => {
   let cards = document.querySelectorAll(".card");
   let deck = Array.apply(null, cards);
@@ -186,15 +207,12 @@ const initializeGame = () => {
   dealCards();
 };
 
-const writeBestTime = () => {};
-
 const flipUp = (card) => {
   card.parentNode.classList.add("selected");
 };
 
 const flipBack = (card) => {};
 
-// For development purposes only
 const completeGame = () => {
   stopTimer();
   bell.play();
@@ -250,8 +268,6 @@ const isNotACard = (thing) => {
 
 populateLeaderboard();
 
-// Event Listeners
-
 board.addEventListener(
   "click",
   (event) => {
@@ -270,26 +286,27 @@ board.addEventListener(
 timerButton.addEventListener(
   "click",
   (event) => {
-    event.preventDefault;
+    resetGame();
+    // event.preventDefault;
 
-    zap.play();
-    backgroundSong.pause();
-    backgroundSong.currentTime = 0;
-    timerButton.classList.add("apply-push");
+    // zap.play();
+    // backgroundSong.pause();
+    // backgroundSong.currentTime = 0;
+    // timerButton.classList.add("apply-push");
 
-    resetTimer();
-    resetGuesses();
-    removeCards();
-    shuffleCards(deck);
-    dealCards();
+    // resetTimer();
+    // resetGuesses();
+    // removeCards();
+    // shuffleCards(deck);
+    // dealCards();
 
-    if (timerButton.innerText === "START") {
-      timerButton.innerText = "RESET";
-      startTimer();
-    } else {
-      timerButton.innerText = "START";
-      bounceCards();
-    }
+    // if (timerButton.innerText === "START") {
+    //   timerButton.innerText = "RESET";
+    //   startTimer();
+    // } else {
+    //   timerButton.innerText = "START";
+    //   bounceCards();
+    // }
   },
   false
 );
@@ -315,16 +332,6 @@ leaderboardBoard.addEventListener("animationend", function (event) {
   }
 });
 
-finishGameView.addEventListener("animationend", function (event) {
-  if (finishGameView.classList.contains("bounce-in-top")) {
-    finishGameView.classList.remove("bounce-in-top");
-  }
-  if (finishGameView.classList.contains("slide-out-top")) {
-    finishGameView.classList.remove("slide-out-top");
-    finishGameView.classList.add("hidden");
-  }
-});
-
 leaderboardCloseButton.addEventListener("click", function (event) {
   leaderboardBoard.classList.add("slide-out-top");
 });
@@ -335,19 +342,27 @@ leaderboardView.addEventListener("click", function (event) {
   }
 });
 
+finishGameView.addEventListener("animationend", function (event) {
+  if (finishGameView.classList.contains("bounce-in-top")) {
+    finishGameView.classList.remove("bounce-in-top");
+  }
+  if (finishGameView.classList.contains("slide-out-top")) {
+    finishGameView.classList.remove("slide-out-top");
+    finishGameView.classList.add("hidden");
+  }
+});
+
 finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
   finishGameView.classList.add("slide-out-top");
-  // body.removeChild(finishGameView);
+  resetGame();
 });
 
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
-  console.log(event.target);
   if (event.target.classList.contains("finished-game-overlay")) {
     finishGameView.classList.add("slide-out-top");
-    // finishGameView.classList.add("hidden");
   }
 });
 
