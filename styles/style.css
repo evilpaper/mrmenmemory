@@ -59,11 +59,13 @@ button:focus {
 
 .logo {
   position: absolute;
-  width: 14em;
+  bottom: 2em;
+  left: 2em;
+}
+
+.logo img {
+  width: 10em;
   height: auto;
-  bottom: -0.6em;
-  right: -0.6em;
-  transform: rotate(-18deg);
 }
 
 .board {
