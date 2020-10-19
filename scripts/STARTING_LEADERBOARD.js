@@ -25,7 +25,7 @@ const STARTING_LEADERBOARD = [
     display: "00:18:00",
   },
   {
-    name: "Little Miss Wrong",
+    name: "Mr. Wrong",
     time: 20.0,
     display: "00:20:00",
   },
