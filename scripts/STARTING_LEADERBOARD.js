@@ -35,12 +35,12 @@ const STARTING_LEADERBOARD = [
     display: "00:25:00",
   },
   {
-    name: "Little Miss Fun",
+    name: "Mr. Bump",
     time: 30.0,
     display: "00:30:00",
   },
   {
-    name: "Mr. Bumb",
+    name: "Little Miss Fun",
     time: 35.0,
     display: "00:35:00",
   },
