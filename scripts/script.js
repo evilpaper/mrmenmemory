@@ -353,15 +353,35 @@ finishGameView.addEventListener("animationend", function (event) {
   }
 });
 
+function addAnonymousToLeaderboard() {
+  const finalTime = minutes * 60 + seconds + hundredths / 100;
+
+  const newEntry = {
+    name: "Mx. Anonymous",
+    time: finalTime,
+    display: timerDisplay.textContent,
+  };
+  leaderboard.unshift(newEntry);
+
+  leaderboard.sort((a, b) => a.time - b.time);
+
+  localStorage.setItem(
+    "mr_men_memory_leaderboard",
+    JSON.stringify(leaderboard)
+  );
+}
+
 finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
+  addAnonymousToLeaderboard();
   finishGameView.classList.add("slide-out-top");
 });
 
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("finished-game-overlay")) {
+    addAnonymousToLeaderboard();
     finishGameView.classList.add("slide-out-top");
   }
 });
