@@ -349,6 +349,7 @@ finishGameView.addEventListener("animationend", function (event) {
   if (finishGameView.classList.contains("slide-out-top")) {
     finishGameView.classList.remove("slide-out-top");
     finishGameView.classList.add("hidden");
+    resetGame();
   }
 });
 
@@ -356,7 +357,6 @@ finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
   finishGameView.classList.add("slide-out-top");
-  resetGame();
 });
 
 finishGameView.addEventListener("click", (event) => {
@@ -382,6 +382,7 @@ playerNameInput.addEventListener("change", (event) => {
     "mr_men_memory_leaderboard",
     JSON.stringify(leaderboard)
   );
+
   finishGameView.classList.add("hidden");
   setTimeout(() => {
     populateLeaderboard();
