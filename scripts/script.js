@@ -1,3 +1,8 @@
+// TODO
+// Reset game after showing leaderboard if entry if player was added
+// Show only congratulations if player don't make is to the leaderboard
+// Work on responsivness, make it look good on all devices
+
 const board = document.querySelector(".board");
 const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
