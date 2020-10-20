@@ -43,11 +43,17 @@ let previousGuess = null;
 let activeCards = 0;
 let matchesCount = 0;
 let delay = 500;
-let deck = cards.concat(cards); // Two of each card
 let minutes = 0;
 let seconds = 0;
 let hundredths = 0;
 let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
+
+const shuffleCards = (deck) => {
+  return deck.sort(() => 0.5 - Math.random());
+};
+
+let playdeck = shuffleCards(cards).slice(0, 8);
+let deck = playdeck.concat(playdeck); // Two of each card
 
 const updateTimer = () => {
   hundredths++;
@@ -119,10 +125,6 @@ const resetTimer = () => {
   minutes = 0;
   clearInterval(timer);
   timerDisplay.textContent = "00:00:00";
-};
-
-const shuffleCards = (deck) => {
-  return deck.sort(() => 0.5 - Math.random());
 };
 
 const dealCards = () => {
