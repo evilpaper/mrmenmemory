@@ -902,6 +902,10 @@ TABLET PORTRAIT
 */
 
 @media (max-width: 900px) {
+  .logo {
+    position: relative;
+    margin: 0 auto;
+  }
   .board {
     grid-template-columns: 18vw 18vw 18vw 18vw;
     grid-template-rows: 18vw 18vw 18vw 18vw 18vw 18vw;
