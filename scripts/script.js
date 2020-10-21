@@ -9,6 +9,7 @@ const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
 const finishGameView = document.querySelector(".finished-game-overlay");
+const finishGameMessage = document.querySelector(".finish-game-modal__message")
 const finishGameTime = document.querySelector(".finish-message__time");
 const playerNameInput = document.querySelector(
   ".finish-message__player-name-input"
@@ -117,6 +118,8 @@ const createLeaderboardEntry = (name, time) => {
 
 const updateFinishGameView = () => {
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
+  // finishGameMessage.innerHTML = `<input class="finish-message__player-name-input"/>
+  // <p class="finish-message__copy">Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.</p>`
 }
 
 const showFinishGameView  = () => {
@@ -229,6 +232,7 @@ const completeGame = () => {
   bell.play();
   backgroundSong.pause();
   backgroundSong.currentTime = 0;
+  updateFinishGameView();
   showFinishGameView ();
 };
 
@@ -259,6 +263,7 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
+          updateFinishGameView();
           showFinishGameView ();
         }
       } else {

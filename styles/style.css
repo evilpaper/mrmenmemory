@@ -317,7 +317,7 @@ ul {
   z-index: 200;
 }
 
-.finish-game-message {
+.finish-game-modal {
   position: relative;
   background-color: white;
   border-radius: 50%;
