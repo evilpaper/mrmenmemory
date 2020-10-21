@@ -1,7 +1,8 @@
 // TODO
-// Reset game after showing leaderboard if entry if player was added
+// Reset game after showing leaderboard if player was added
 // Show only congratulations if player don't make is to the leaderboard
-// Work on responsivness, make it look good on all devices
+// addEntryToLeaderboard
+// updateLocalStorage
 
 const board = document.querySelector(".board");
 const leaderboardView = document.querySelector(".leaderboard-overlay");
@@ -114,10 +115,13 @@ const createLeaderboardEntry = (name, time) => {
   `;
 };
 
-const createFinishGameView = () => {
+const updateFinishGameView = () => {
+  finishGameTime.innerHTML = `${timerDisplay.textContent}`;
+}
+
+const showFinishGameView  = () => {
   finishGameView.classList.remove("hidden");
   finishGameView.classList.add("bounce-in-top");
-  finishGameTime.innerHTML = `${timerDisplay.textContent}`;
 };
 
 const resetTimer = () => {
@@ -225,7 +229,7 @@ const completeGame = () => {
   bell.play();
   backgroundSong.pause();
   backgroundSong.currentTime = 0;
-  createFinishGameView();
+  showFinishGameView ();
 };
 
 const updateGameState = (activeCard) => {
@@ -255,7 +259,7 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
-          createFinishGameView();
+          showFinishGameView ();
         }
       } else {
         setTimeout(resetGuesses, delay);
