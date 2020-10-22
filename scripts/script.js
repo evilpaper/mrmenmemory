@@ -118,8 +118,9 @@ const createLeaderboardEntry = (name, time) => {
 
 const updateFinishGameView = () => {
   const finalTime = minutes * 60 + seconds + hundredths / 100;
+  const timeNeededForLeaderboard = leaderboard[9].time;
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
-  if (finalTime < 30) {
+  if (finalTime < timeNeededForLeaderboard ) {
     playerNameInput.classList.remove("hidden")
     finishGameCopy.innerHTML = `Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.`
   } else {
@@ -265,6 +266,7 @@ const updateGameState = (activeCard) => {
         if (matchesCount === 8) {
           // completeGame();
           stopTimer();
+          // const time = minutes * 60 + seconds + hundredths / 100;
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
@@ -362,8 +364,8 @@ function addAnonymousToLeaderboard() {
     time: finalTime,
     display: timerDisplay.textContent,
   };
-  leaderboard.unshift(newEntry);
 
+  leaderboard.unshift(newEntry);
   leaderboard.sort((a, b) => a.time - b.time);
 
   localStorage.setItem(
@@ -395,8 +397,8 @@ playerNameInput.addEventListener("change", (event) => {
     time: finalTime,
     display: timerDisplay.textContent,
   };
-  leaderboard.unshift(newEntry);
 
+  leaderboard.unshift(newEntry);
   leaderboard.sort((a, b) => a.time - b.time);
 
   localStorage.setItem(
