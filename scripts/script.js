@@ -270,8 +270,9 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
-          updateFinishGameView();
-          showFinishGameView ();
+          setTimeout(()=> {
+            updateFinishGameView();
+            showFinishGameView ()}, 300)
         }
       } else {
         setTimeout(resetGuesses, delay);
