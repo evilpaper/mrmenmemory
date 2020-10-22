@@ -308,26 +308,6 @@ timerButton.addEventListener(
   "click",
   (event) => {
     resetGame();
-    // event.preventDefault;
-
-    // zap.play();
-    // backgroundSong.pause();
-    // backgroundSong.currentTime = 0;
-    // timerButton.classList.add("apply-push");
-
-    // resetTimer();
-    // resetGuesses();
-    // removeCards();
-    // shuffleCards(deck);
-    // dealCards();
-
-    // if (timerButton.innerText === "START") {
-    //   timerButton.innerText = "RESET";
-    //   startTimer();
-    // } else {
-    //   timerButton.innerText = "START";
-    //   bounceCards();
-    // }
   },
   false
 );
