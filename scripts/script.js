@@ -9,7 +9,7 @@ const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
 const finishGameView = document.querySelector(".finished-game-overlay");
-const finishGameMessage = document.querySelector(".finish-game-modal__message")
+const finishGameCopy = document.querySelector(".finish-message__copy");
 const finishGameTime = document.querySelector(".finish-message__time");
 const playerNameInput = document.querySelector(
   ".finish-message__player-name-input"
@@ -117,9 +117,14 @@ const createLeaderboardEntry = (name, time) => {
 };
 
 const updateFinishGameView = () => {
+  const finalTime = minutes * 60 + seconds + hundredths / 100;
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
-  // finishGameMessage.innerHTML = `<input class="finish-message__player-name-input"/>
-  // <p class="finish-message__copy">Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.</p>`
+  if (finalTime < 30) {
+    playerNameInput.classList.remove("hidden")
+    finishGameCopy.innerHTML = `Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.`
+  } else {
+    finishGameCopy.innerHTML = `Completed! Well done, keep trying to reach the leaderboard.`
+  }
 }
 
 const showFinishGameView  = () => {
