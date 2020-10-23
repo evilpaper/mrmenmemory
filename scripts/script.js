@@ -119,6 +119,8 @@ const createLeaderboardEntry = (name, time) => {
 const updateFinishGameView = () => {
   const finalTime = minutes * 60 + seconds + hundredths / 100;
   const timeNeededForLeaderboard = leaderboard[9].time;
+  playerNameInput.value = "";
+  playerNameInput.innerHTML = "";
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
   if (finalTime < timeNeededForLeaderboard ) {
     playerNameInput.classList.remove("hidden")
@@ -353,7 +355,7 @@ finishGameView.addEventListener("animationend", function (event) {
   if (finishGameView.classList.contains("slide-out-top")) {
     finishGameView.classList.remove("slide-out-top");
     finishGameView.classList.add("hidden");
-    resetGame();
+    // resetGame();
   }
 });
 
@@ -408,6 +410,7 @@ playerNameInput.addEventListener("change", (event) => {
   );
 
   finishGameView.classList.add("hidden");
+
   setTimeout(() => {
     populateLeaderboard();
     leaderboardView.classList.remove("hidden");

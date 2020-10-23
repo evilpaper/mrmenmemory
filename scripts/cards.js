@@ -47,4 +47,32 @@ const cards = [
     name: "lmfun",
     img: "images/lmfun.jpg",
   },
+  {
+    name: "lmbossy",
+    img: "images/lmbossy.jpg",
+  },
+  {
+    name: "mrlazy",
+    img: "images/mrlazy.jpg",
+  },
+  {
+    name: "mrmessy",
+    img: "images/mrmessy.jpg",
+  },
+  {
+    name: "mrnobody",
+    img: "images/mrnobody.jpg",
+  },
+  {
+    name: "mrgreedy",
+    img: "images/mrgreedy.jpg",
+  },
+  {
+    name: "mrdaydream",
+    img: "images/mrdaydream.jpg",
+  },
+  {
+    name: "lmsparkle",
+    img: "images/lmsparkle.jpg",
+  },
 ];
