@@ -307,8 +307,9 @@ board.addEventListener(
     if (isNotACard(event.target)) return;
     const activeCard = event.target;
     if (timerDisplay.textContent === "00:00:00") {
-      startTimer();
-      timerButton.innerText = "RESET";
+      startGame()
+      // startTimer();
+      // timerButton.innerText = "RESET";
     }
     updateGameState(activeCard);
   },
