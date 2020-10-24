@@ -82,7 +82,6 @@ const applyBounce = (element) => {
 };
 
 const startTimer = () => {
-  bell.play();
   backgroundSong.play();
   applyBounce(timerDisplay);
   timer = setInterval(updateTimer, 10);
@@ -126,7 +125,7 @@ const updateFinishGameView = () => {
     playerNameInput.classList.remove("hidden")
     finishGameCopy.innerHTML = `Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.`
   } else {
-    finishGameCopy.innerHTML = `Completed! Well done, keep trying to reach the leaderboard.`
+    finishGameCopy.innerHTML = `Well done, keep trying to reach the leaderboard.`
   }
 }
 
@@ -192,24 +191,30 @@ const resetGuesses = () => {
 
 const resetGame = () => {
   zap.play();
+
   backgroundSong.pause();
-  backgroundSong.currentTime = 0;
-  timerButton.classList.add("apply-push");
+  backgroundSong.currentTime = 0; 
+
+  bell.pause();
+  bell.currentTime = 0;
+
+  matchesCount = 0;
 
   resetTimer();
   resetGuesses();
   removeCards();
   shuffleCards(deck);
   dealCards();
+  bounceCards();
 
-  if (timerButton.innerText === "START") {
-    timerButton.innerText = "RESET";
-    startTimer();
-  } else {
-    timerButton.innerText = "START";
-    bounceCards();
-  }
+  timerButton.innerText = "START";
 };
+
+const startGame = () => {
+  startTimer();
+  bell.play();
+  timerButton.innerText = "RESET";
+}
 
 const bounceCards = () => {
   let cards = document.querySelectorAll(".card");
@@ -272,9 +277,10 @@ const updateGameState = (activeCard) => {
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
+          matchesCount=0;
           setTimeout(()=> {
             updateFinishGameView();
-            showFinishGameView ()}, 300)
+            showFinishGameView ()}, 700)
         }
       } else {
         setTimeout(resetGuesses, delay);
@@ -312,7 +318,14 @@ board.addEventListener(
 timerButton.addEventListener(
   "click",
   (event) => {
-    resetGame();
+
+    timerButton.classList.add("apply-push");
+
+    if (timerButton.innerText === "START") {
+      startGame();
+    } else if (timerButton.innerText === "RESET") {
+      resetGame();
+    }
   },
   false
 );
@@ -335,6 +348,10 @@ leaderboardBoard.addEventListener("animationend", function (event) {
   if (leaderboardBoard.classList.contains("slide-out-top")) {
     leaderboardBoard.classList.remove("slide-out-top");
     leaderboardView.classList.add("hidden");
+    if (!playerNameInput.classList.contains("hidden")) {
+      playerNameInput.classList.add("hidden");
+      resetGame();
+    }
   }
 });
 
@@ -355,6 +372,9 @@ finishGameView.addEventListener("animationend", function (event) {
   if (finishGameView.classList.contains("slide-out-top")) {
     finishGameView.classList.remove("slide-out-top");
     finishGameView.classList.add("hidden");
+    if (playerNameInput.classList.contains("hidden")) {
+      resetGame();
+    }
     // resetGame();
   }
 });
