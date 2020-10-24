@@ -73,8 +73,8 @@ button:focus {
   display: grid;
   grid-template-columns: 9em 9em 9em 9em;
   grid-template-rows: 9em 9em 9em 9em;
-  grid-template-columns: 10vw 10vw 10vw 10vw;
-  grid-template-rows: 10vw 10vw 10vw 10vw;
+  /* grid-template-columns: 10vw 10vw 10vw 10vw;
+  grid-template-rows: 10vw 10vw 10vw 10vw; */
   grid-gap: 4.4vw;
   grid-gap: 1.2vw;
   cursor: pointer;
