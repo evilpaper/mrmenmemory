@@ -125,7 +125,7 @@ const updateFinishGameView = () => {
     playerNameInput.classList.remove("hidden")
     finishGameCopy.innerHTML = `Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.`
   } else {
-    finishGameCopy.innerHTML = `Well done, keep trying to reach the leaderboard.`
+    finishGameCopy.innerHTML = `Well done. Keep trying to reach the leaderboard.`
   }
 }
 
@@ -270,7 +270,7 @@ const updateGameState = (activeCard) => {
         setTimeout(removeMatches, delay);
         setTimeout(resetGuesses, delay);
         matchesCount++;
-        if (matchesCount === 8) {
+        if (matchesCount >= 8) {
           // completeGame();
           stopTimer();
           // const time = minutes * 60 + seconds + hundredths / 100;
@@ -374,7 +374,6 @@ finishGameView.addEventListener("animationend", function (event) {
     if (playerNameInput.classList.contains("hidden")) {
       resetGame();
     }
-    // resetGame();
   }
 });
 
@@ -399,15 +398,15 @@ function addAnonymousToLeaderboard() {
 finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
-  addAnonymousToLeaderboard();
   finishGameView.classList.add("slide-out-top");
+  addAnonymousToLeaderboard();
 });
 
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("finished-game-overlay")) {
-    addAnonymousToLeaderboard();
     finishGameView.classList.add("slide-out-top");
+    addAnonymousToLeaderboard();
   }
 });
 
