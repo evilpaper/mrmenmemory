@@ -1,10 +1,5 @@
-// TODO
-// Reset game after showing leaderboard if player was added
-// Show only congratulations if player don't make is to the leaderboard
-// addEntryToLeaderboard
-// updateLocalStorage
-
-const board = document.querySelector(".board");
+(function () {
+  const board = document.querySelector(".board");
 const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
@@ -437,3 +432,5 @@ playerNameInput.addEventListener("change", (event) => {
 });
 
 initializeGame();
+})();
+
