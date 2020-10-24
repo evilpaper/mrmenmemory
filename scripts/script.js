@@ -295,6 +295,20 @@ const isNotACard = (thing) => {
 populateLeaderboard();
 
 board.addEventListener(
+  "touchstart",
+  (event) => {
+    event.preventDefault;
+    if (isNotACard(event.target)) return;
+    const activeCard = event.target;
+    if (timerDisplay.textContent === "00:00:00") {
+      startGame()
+    }
+    updateGameState(activeCard);
+  },
+  false
+);
+
+board.addEventListener(
   "click",
   (event) => {
     event.preventDefault;
