@@ -155,6 +155,7 @@ ul {
   height: 2rem;
   min-width: 6rem;
   color: black;
+  background-color: white;
   text-transform: uppercase;
   font-size: 0.7em;
   border: 2px solid black;
@@ -182,10 +183,16 @@ ul {
   box-shadow: 0 0.6em 0 0 black;
 }
 
+.button--open-leaderboard:active {
+  -webkit-animation: push 0.24s both;
+  animation: push 0.24s both;
+}
+
 .button--close-finish-game {
   position: absolute;
   margin: 0 auto;
   bottom: -0.4em;
+  z-index: 200;
 }
 
 .time__container {
@@ -393,9 +400,9 @@ TABLET PORTRAIT
     margin: 0 auto;
   }
   .board {
-    grid-template-columns: 22vw 22vw 22vw 22vw;
-    grid-template-rows: 22vw 22vw 22vw 22vw;
-    grid-gap: 1.4vw;
+    grid-template-columns: 21vw 21vw 21vw 21vw;
+    grid-template-rows: 21vw 21vw 21vw 21vw;
+    grid-gap: 3vw;
   }
   .button {
     width: 4rem;

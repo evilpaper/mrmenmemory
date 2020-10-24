@@ -1,5 +1,4 @@
-(function () {
-  const board = document.querySelector(".board");
+const board = document.querySelector(".board");
 const leaderboardView = document.querySelector(".leaderboard-overlay");
 const leaderboardBoard = document.querySelector(".leaderboard__board");
 const leaderboardList = document.querySelector(".leaderboard__list");
@@ -432,5 +431,3 @@ playerNameInput.addEventListener("change", (event) => {
 });
 
 initializeGame();
-})();
-
