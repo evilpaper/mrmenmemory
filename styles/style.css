@@ -171,21 +171,11 @@ ul {
   margin-top: 2em;
 }
 
-.button--close-leaderboard:active {
-  -webkit-animation: push 0.24s both;
-  animation: push 0.24s both;
-}
-
 .button--open-leaderboard {
   color: black;
   background-color: white;
   border: 2px solid black;
   box-shadow: 0 0.6em 0 0 black;
-}
-
-.button--open-leaderboard:active {
-  -webkit-animation: push 0.24s both;
-  animation: push 0.24s both;
 }
 
 .button--close-finish-game {
