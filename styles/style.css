@@ -120,7 +120,7 @@ button:focus {
 
 .front {
   z-index: 2;
-  background: #fff url("../images/card_bg_alt_3.jpg") no-repeat center center /
+  background: #fff url("../images/card_bg.jpg") no-repeat center center /
     contain;
 }
 
