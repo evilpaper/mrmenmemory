@@ -2,7 +2,7 @@
 
 # Mr Men Memory Match
 
-A memory match game with Mr Men and his friends. Responsive web, play on any device you like.
+A memory match game with the characters from Mr. Men and Little Miss universe. Responsive web, play on any device you like.
 
 Made for fun and the love of the Mr Men universe! [Play it here](https://evilpaper.com/mrmenmemory/)
 
@@ -11,6 +11,16 @@ Enjoy playing.
 ## Built with
 
 HTML, CSS and vanilla JS.
+
+Some notes on implementation. Tried to use standard web technologies as much as possible. Aiming for the game to be enjoyable on as meany devices as possible. No funky business.
+
+The game initially loads one simple HTML file with three "views" where two views are overlays for leaderboard and finish game modal. The application state is in the HTML itself. Works fine for small projects like this. Transistions between views are merley a matter of adding and removing CSS class "hidden" that change the opacity and apply a transition.
+
+Animations are stricly CSS animations for optimal performance.
+
+EventListeners trigger on both "click" and "touchstart" to feel snappy on touch devices.
+
+Leaderboard is using localStaorage to save the top ten times locally.
 
 ## Contributions
 
