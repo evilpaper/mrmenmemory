@@ -12,15 +12,19 @@ Enjoy playing.
 
 HTML, CSS and vanilla JS.
 
-Some notes on implementation. Tried to use standard web technologies as much as possible. Aiming for the game to be enjoyable on as meany devices as possible. No funky business.
+Some notes on implementation. Tried to use standard web technologies as much as possible. Aiming for the game to be enjoyable on as many devices as possible. No funky business.
 
-The game initially loads one simple HTML file with three "views" where two views are overlays for leaderboard and finish game modal. The application state is in the HTML itself. Works fine for small projects like this. Transistions between views are merley a matter of adding and removing CSS class "hidden" that change the opacity and apply a transition.
+The game initially loads one simple HTML file with three "views" where two views are overlays for leaderboard and finish game modal. The application state is in the HTML itself. Works fine for small projects like this.
+
+Transitions between views are merley a matter of adding and removing CSS class "hidden" that change the opacity and apply a transition.
+
+The cards are randomly selected from a larger pool of cards for each round to get some variation in the characters. Wnet for a 4 x 4 grid. Having more stated to get messy on small screens. A typical tradeoff.
 
 Animations are stricly CSS animations for optimal performance.
 
 EventListeners trigger on both "click" and "touchstart" to feel snappy on touch devices.
 
-Leaderboard is using localStaorage to save the top ten times locally.
+Leaderboard is using localStorage to save the top ten times locally.
 
 ## Contributions
 
