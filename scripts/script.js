@@ -1,39 +1,33 @@
 (function(){
 
-  const board = document.querySelector(".board");
-  const leaderboardView = document.querySelector(".leaderboard-overlay");
-  const leaderboardBoard = document.querySelector(".leaderboard__board");
-  const leaderboardList = document.querySelector(".leaderboard__list");
-  const finishGameView = document.querySelector(".finished-game-overlay");
-  const finishGameCopy = document.querySelector(".finish-message__copy");
-  const finishGameTime = document.querySelector(".finish-message__time");
-  const playerNameInput = document.querySelector(
-    ".finish-message__player-name-input"
-  );
-  const finishGameViewCloseButton = document.querySelector(
-    ".button--close-finish-game"
-  );
-  const timerButton = document.querySelector(".button-new-game");
-  const leaderboardOpenButton = document.querySelector(
-    ".button--open-leaderboard"
-  );
-  const leaderboardCloseButton = document.querySelector(
-    ".button--close-leaderboard"
-  );
+  const $ = (x) => document.querySelector(x)
+
+  const board = $(".board");
+  const leaderboardView = $(".leaderboard-overlay");
+  const leaderboardBoard = $(".leaderboard__board");
+  const leaderboardList = $(".leaderboard__list");
+  const finishGameView = $(".finished-game-overlay");
+  const finishGameCopy = $(".finish-message__copy");
+  const finishGameTime = $(".finish-message__time");
+  const playerNameInput = $(".finish-message__player-name-input");
+  const finishGameViewCloseButton = $(".button--close-finish-game");
+  const timerButton = $(".button-new-game");
+  const leaderboardOpenButton = $(".button--open-leaderboard");
+  const leaderboardCloseButton = $(".button--close-leaderboard");
   
-  const timerDisplay = document.querySelector(".time");
+  const timerDisplay = $(".time");
   
   const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
     ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
     : STARTING_LEADERBOARD;
   
-  const punch = document.querySelector(".punch");
-  const zap = document.querySelector(".zap");
-  const bell = document.querySelector(".bell");
-  const whoosh = document.querySelector(".whoosh");
-  const vanish = document.querySelector(".vanish");
-  const backgroundSong = document.querySelector(".background-song");
-  const body = document.querySelector("body");
+  const punch = $(".punch");
+  const zap = $(".zap");
+  const bell = $(".bell");
+  const whoosh = $(".whoosh");
+  const vanish = $(".vanish");
+  const backgroundSong = $(".background-song");
+  const body = $("body");
   
   let firstGuess = "";
   let secondGuess = "";
@@ -157,16 +151,16 @@
   };
   
   const removeCards = () => {
-    if (document.querySelectorAll(".card").length > 0) {
+    if ($All(".card").length > 0) {
       deck.forEach((card) => {
-        let elToRemove = document.querySelector(".card");
+        let elToRemove = $(".card");
         elToRemove.parentNode.removeChild(elToRemove);
       });
     }
   };
   
   const removeMatches = () => {
-    const selected = document.querySelectorAll(".selected");
+    const selected = $All(".selected");
     selected.forEach((card) => {
       card.classList.add("match");
       card.classList.add("poof");
@@ -179,7 +173,7 @@
     firstGuess = "";
     secondGuess = "";
     activeCards = 0;
-    let selected = document.querySelectorAll(".selected");
+    let selected = $All(".selected");
     selected.forEach((card) => {
       card.classList.remove("selected");
     });
@@ -213,7 +207,7 @@
   }
   
   const bounceCards = () => {
-    let cards = document.querySelectorAll(".card");
+    let cards = $All(".card");
     let deck = Array.apply(null, cards);
     deck.forEach((card) => {
       card.classList.add("apply-bounce");
