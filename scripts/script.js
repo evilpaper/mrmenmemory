@@ -15,31 +15,19 @@
   const leaderboardOpenButton = $(".button--open-leaderboard");
   const leaderboardCloseButton = $(".button--close-leaderboard");
   
-  const timerDisplay = $(".time");
+  const timerDisplay = document.querySelector(".time");
   
   const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
     ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
     : STARTING_LEADERBOARD;
   
-  const punch = $(".punch");
-  const zap = $(".zap");
-  const bell = $(".bell");
-  const whoosh = $(".whoosh");
-  const vanish = $(".vanish");
-  const backgroundSong = $(".background-song");
-  const body = $("body");
-
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-  let vh = window.innerHeight * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-  // We listen to the resize event
-  window.addEventListener('resize', () => {
-    // We execute the same script as before
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  });
+  const punch = document.querySelector(".punch");
+  const zap = document.querySelector(".zap");
+  const bell = document.querySelector(".bell");
+  const whoosh = document.querySelector(".whoosh");
+  const vanish = document.querySelector(".vanish");
+  const backgroundSong = document.querySelector(".background-song");
+  const body = document.querySelector("body");
   
   let firstGuess = "";
   let secondGuess = "";
@@ -52,6 +40,15 @@
   let hundredths = 0;
   let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
   
+  // Asjust view port height to account for mobile browser navigation
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+  window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
+
   const shuffleCards = (deck) => {
     return deck.sort(() => 0.5 - Math.random());
   };
@@ -163,16 +160,16 @@
   };
   
   const removeCards = () => {
-    if ($All(".card").length > 0) {
+    if (document.querySelectorAll(".card").length > 0) {
       deck.forEach((card) => {
-        let elToRemove = $(".card");
+        let elToRemove = document.querySelector(".card");
         elToRemove.parentNode.removeChild(elToRemove);
       });
     }
   };
   
   const removeMatches = () => {
-    const selected = $All(".selected");
+    const selected = document.querySelectorAll(".selected");
     selected.forEach((card) => {
       card.classList.add("match");
       card.classList.add("poof");
@@ -185,7 +182,7 @@
     firstGuess = "";
     secondGuess = "";
     activeCards = 0;
-    let selected = $All(".selected");
+    let selected = document.querySelectorAll(".selected");
     selected.forEach((card) => {
       card.classList.remove("selected");
     });
@@ -219,7 +216,7 @@
   }
   
   const bounceCards = () => {
-    let cards = $All(".card");
+    let cards = document.querySelectorAll(".card");
     let deck = Array.apply(null, cards);
     deck.forEach((card) => {
       card.classList.add("apply-bounce");
