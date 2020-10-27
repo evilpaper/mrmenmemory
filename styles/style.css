@@ -34,7 +34,7 @@ footer {
   width: 100%;
   background: #ffd100;
   font-size: 0.8em;
-  color: hsla(46, 86%, 22%, 1);
+  color: #222222;
   z-index: -1;
 }
 
@@ -66,13 +66,14 @@ a {
 .logo {
   position: absolute;
   padding: 0.6em;
-  bottom: 2em;
-  left: 2em;
+  bottom: 1em;
+  left: 1em;
 }
 
 .logo img {
-  width: 12em;
+  width: 16em;
   height: auto;
+  transform: rotateZ(-10deg);
 }
 
 .board {
@@ -398,6 +399,9 @@ TABLET PORTRAIT
   .logo {
     position: static;
     margin: 0 auto;
+  }
+  .logo img {
+    width: 12em;
   }
   .board {
     grid-template-columns: 21vw 21vw 21vw 21vw;
