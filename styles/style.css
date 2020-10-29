@@ -401,7 +401,7 @@ TABLET PORTRAIT
     margin: 0 auto;
   }
   .logo img {
-    width: 12em;
+    width: 10em;
   }
   .board {
     grid-template-columns: 21vw 21vw 21vw 21vw;
