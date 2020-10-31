@@ -35,7 +35,7 @@ footer {
   background: #ffd100;
   font-size: 0.8em;
   color: #222222;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 button,
@@ -71,9 +71,21 @@ a {
 }
 
 .logo img {
-  width: 16em;
+  width: 12em;
   height: auto;
   transform: rotateZ(-10deg);
+}
+
+.made-by {
+  position: absolute;
+  padding: 0.6em;
+  bottom: 1em;
+  right: 1em;
+}
+
+.made-by img {
+  width: 6em;
+  height: auto;
 }
 
 .board {
@@ -396,12 +408,9 @@ TABLET PORTRAIT
 */
 
 @media (max-width: 900px) {
-  .logo {
-    position: static;
-    margin: 0 auto;
-  }
-  .logo img {
-    width: 10em;
+  .logo img,
+  .made-by img {
+    width: 8em;
   }
   .board {
     grid-template-columns: 21vw 21vw 21vw 21vw;
