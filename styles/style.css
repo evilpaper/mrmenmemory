@@ -175,6 +175,7 @@ ul {
   height: 2rem;
   min-width: 6rem;
   color: black;
+  padding: 0 1.4em;
   background-color: white;
   text-transform: uppercase;
   font-size: 0.7em;
@@ -185,6 +186,12 @@ ul {
   box-shadow: 0 0.6em 0 0 black;
   cursor: pointer;
   letter-spacing: 1px;
+}
+
+.button-selected {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
 }
 
 .button--close-leaderboard {
@@ -266,7 +273,7 @@ ul {
   flex-direction: column;
   align-items: center;
   width: 36em;
-  height: 36em;
+  min-height: 36em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 16px 16px rgba(0, 0, 0, 0.12), 0 124px 124px rgba(0, 0, 0, 0.4);
@@ -275,17 +282,24 @@ ul {
 .leaderboard__header {
   font-weight: 900;
   font-size: 2em;
-  border-bottom: 8px solid black;
   width: 100%;
   text-transform: uppercase;
   padding-bottom: 0.4em;
   text-align: center;
 }
 
+.leaderboard__options {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: 1.6em;
+  border-bottom: 4px solid black;
+}
+
 .leaderboard__list {
   padding: 1em 0;
   counter-reset: myCounter;
-  border-bottom: 8px solid black;
+  border-bottom: 4px solid black;
   width: 100%;
 }
 
