@@ -70,6 +70,19 @@ a {
   left: 1em;
 }
 
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+.logo:hover {
+  animation: roll 1.2s reverse;
+}
+
 .logo img {
   width: 12em;
   height: auto;
