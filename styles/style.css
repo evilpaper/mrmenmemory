@@ -94,6 +94,11 @@ a {
   padding: 0.6em;
   bottom: 1em;
   right: 1em;
+  transition: all 0.3s;
+}
+
+.made-by:hover {
+  transform: scale(1.2);
 }
 
 .made-by img {
