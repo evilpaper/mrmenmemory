@@ -68,19 +68,11 @@ a {
   padding: 0.6em;
   bottom: 1em;
   left: 1em;
-}
-
-@keyframes roll {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg) scale(1.2);
-  }
+  transition: 0.2s transform ease-in-out;
 }
 
 .logo:hover {
-  animation: roll 1.2s reverse;
+  transform: scale(1.1);
 }
 
 .logo img {
@@ -94,7 +86,7 @@ a {
   padding: 0.6em;
   bottom: 1em;
   right: 1em;
-  transition: all 0.3s;
+  transition: 0.2s transform ease-in-out;
 }
 
 .made-by:hover {
@@ -207,7 +199,7 @@ ul {
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(1px);
 }
 
 .button--close-leaderboard {
