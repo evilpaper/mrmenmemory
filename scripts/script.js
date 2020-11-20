@@ -1,4 +1,4 @@
-(function(){
+// (function(){
 
   const $ = (x) => document.querySelector(x)
 
@@ -122,7 +122,7 @@
     finishGameTime.innerHTML = `${timerDisplay.textContent}`;
     if (finalTime < timeNeededForLeaderboard ) {
       playerNameInput.classList.remove("hidden")
-      finishGameCopy.innerHTML = `Congratulations! Type your nickname and press <span class="finish-message__strong">ENTER</span> to submit you time.`
+      finishGameCopy.innerHTML = `Congratulations! Type your <span class="finish-message__strong">nickname</span> to get your name on the leaderboard.`
     } else {
       finishGameCopy.innerHTML = `Well done. Keep trying to reach the leaderboard.`
     }
@@ -241,11 +241,15 @@
   
   const completeGame = () => {
     stopTimer();
+    // const time = minutes * 60 + seconds + hundredths / 100;
     bell.play();
     backgroundSong.pause();
     backgroundSong.currentTime = 0;
-    updateFinishGameView();
-    showFinishGameView ();
+    matchesCount=0;
+    setTimeout(()=> {
+      updateFinishGameView();
+      showFinishGameView ()
+    }, 600)
   };
   
   const updateGameState = (activeCard) => {
@@ -279,7 +283,8 @@
             matchesCount=0;
             setTimeout(()=> {
               updateFinishGameView();
-              showFinishGameView ()}, 600)
+              showFinishGameView ()
+            }, 600)
           }
         } else {
           setTimeout(resetGuesses, delay);
@@ -463,5 +468,5 @@
   
 
 
-})();
+// })();
 

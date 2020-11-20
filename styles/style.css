@@ -377,7 +377,7 @@ ul {
 }
 
 .finish-message__player-name-input {
-  font-size: 1.4em;
+  font-size: 1.1em;
   border: none;
   border-bottom: 4px dotted black;
   background-color: none;
@@ -386,6 +386,10 @@ ul {
   text-align: center;
   width: 90%;
   max-width: 90%;
+}
+
+.finish-message__player-name-input::placeholder {
+  color: darkgrey;
 }
 
 .hidden {
