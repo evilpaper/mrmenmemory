@@ -1,4 +1,4 @@
-// (function(){
+(function(){
 
   const $ = (x) => document.querySelector(x)
 
@@ -466,7 +466,5 @@
   
   initializeGame();
   
-
-
-// })();
+})();
 
