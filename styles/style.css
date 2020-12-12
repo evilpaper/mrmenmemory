@@ -813,7 +813,7 @@ ANIMATIONS
   100% {
     -webkit-transform: translateY(-1000px);
     transform: translateY(-1000px);
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -826,7 +826,7 @@ ANIMATIONS
   100% {
     -webkit-transform: translateY(-1000px);
     transform: translateY(-1000px);
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -841,7 +841,7 @@ ANIMATIONS
     transform: translateY(-500px);
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
-    opacity: 0;
+    opacity: 1;
   }
   38% {
     -webkit-transform: translateY(0);
@@ -894,7 +894,7 @@ ANIMATIONS
     transform: translateY(-500px);
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
-    opacity: 0;
+    opacity: 1;
   }
   38% {
     -webkit-transform: translateY(0);
