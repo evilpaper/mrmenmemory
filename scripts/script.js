@@ -98,12 +98,20 @@
   
   const populateLeaderboard = () => {
     leaderboardList.innerHTML = "";
-    for (let index = 0; index <= 9; index++) {
-      const entry = leaderboard[index];
-      const listItem = document.createElement("li");
-      listItem.classList.add("leaderboard__list-item");
-      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
-      leaderboardList.appendChild(listItem);
+    const type = document.querySelector(".button-selected");
+    console.log(type)
+    if (type.classList.contains("option-this-computer")) {
+      for (let index = 0; index <= 9; index++) {
+        const entry = leaderboard[index];
+        const listItem = document.createElement("li");
+        listItem.classList.add("leaderboard__list-item");
+        listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
+        leaderboardList.appendChild(listItem);
+      }
+    } else {
+      const message = document.createElement("p");
+      message.innerHTML = "No data yet";
+      leaderboardList.appendChild(message)
     }
   };
   
@@ -402,8 +410,12 @@
   leaderboardView.addEventListener("click", function (event) {
     if (event.target.classList.contains("option")) {
       const options = document.querySelectorAll(".option");
-      options.forEach(item => item.classList.remove("button-selected"))
-      event.target.classList.add("button-selected")
+      options.forEach(item => {
+        item.classList.remove("button-selected")
+        item.classList.remove("apply-push");
+      })
+      event.target.classList.add("button-selected");
+      event.target.classList.add("apply-push");
     }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
@@ -465,8 +477,6 @@
   });
   
   initializeGame();
-  
-
 
 })();
 
