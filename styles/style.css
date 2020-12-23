@@ -657,8 +657,8 @@ ANIMATIONS
 }
 
 .poof {
-  -webkit-animation: poof-animation 0.6s steps(6) 1;
-  animation: poof-animation 0.6s steps(6) 1;
+  -webkit-animation: poof-animation 0.4s steps(6) 1;
+  animation: poof-animation 0.4s steps(6) 1;
 }
 
 @-webkit-keyframes poof-animation {
