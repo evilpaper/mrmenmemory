@@ -203,7 +203,8 @@ ul {
 }
 
 .button:hover {
-  transform: translateY(1px);
+  transform: translateY(0.1em);
+  box-shadow: 0 0.5em 0 0 black;
 }
 
 .button-selected {

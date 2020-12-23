@@ -415,12 +415,14 @@
   leaderboardView.addEventListener("click", function (event) {
     if (event.target.classList.contains("option")) {
       const options = document.querySelectorAll(".option");
+      
       options.forEach(item => {
         item.classList.remove("button-selected")
         item.classList.remove("apply-push");
       })
       event.target.classList.add("button-selected");
       event.target.classList.add("apply-push");
+      populateLeaderboard();
     }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
