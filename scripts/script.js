@@ -99,7 +99,7 @@
   const populateLeaderboard = () => {
     leaderboardList.innerHTML = "";
     const type = document.querySelector(".button-selected");
-    console.log(type)
+  
     if (type.classList.contains("option-this-computer")) {
       for (let index = 0; index <= 9; index++) {
         const entry = leaderboard[index];
