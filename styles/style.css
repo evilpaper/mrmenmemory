@@ -188,23 +188,22 @@ ul {
   height: 2rem;
   min-width: 6rem;
   color: black;
-  padding: 0 1.4em;
+  padding: 0 1em;
   background-color: white;
   text-transform: uppercase;
-  font-size: 0.7em;
+  font-size: 0.8em;
   border: 2px solid black;
   text-align: center;
   vertical-align: middle;
   border-radius: 2em;
   box-shadow: 0 0.6em 0 0 black;
   cursor: pointer;
-  letter-spacing: 1px;
   transition: 100ms transform;
 }
 
 .button:hover {
-  transform: translateY(0.1em);
-  box-shadow: 0 0.5em 0 0 black;
+  transform: translateY(0.2em);
+  box-shadow: 0 0.4em 0 0 black;
 }
 
 .button-selected {
@@ -225,10 +224,11 @@ ul {
 }
 
 .button--close-finish-game {
-  position: absolute;
-  margin: 0 auto;
-  bottom: -0.4em;
-  z-index: 200;
+  /* display: inline-block; */
+  /* position: absolute; */
+  /* margin: 0 auto; */
+  /* bottom: -2em; */
+  /* z-index: 200; */
 }
 
 .time__container {
@@ -391,6 +391,12 @@ ul {
   font-size: 2em;
 }
 
+.finish-message__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .finish-message__copy {
   text-align: center;
 }
@@ -413,6 +419,13 @@ ul {
 
 .finish-message__player-name-input::placeholder {
   color: darkgrey;
+}
+
+.finish-message__button {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 1em;
+  z-index: 200;
 }
 
 .hidden {
