@@ -1,4 +1,4 @@
-(function(){
+// (function(){
 
   const $ = (x) => document.querySelector(x)
 
@@ -6,11 +6,16 @@
   const leaderboardView = $(".leaderboard-overlay");
   const leaderboardBoard = $(".leaderboard__board");
   const leaderboardList = $(".leaderboard__list");
+
   const finishGameView = $(".finished-game-overlay");
   const finishGameCopy = $(".finish-message__copy");
   const finishGameTime = $(".finish-message__time");
-  const playerNameInput = $(".finish-message__player-name-input");
+ 
   const finishGameViewCloseButton = $(".button--close-finish-game");
+
+  const playerNameInput = $(".add-to-leaderboard__player-name-input");
+  const submitLeaderboardEntryForm = $(".finish-message__form");
+
   const timerButton = $(".button-new-game");
   const leaderboardOpenButton = $(".button--open-leaderboard");
   const leaderboardCloseButton = $(".button--close-leaderboard");
@@ -40,7 +45,7 @@
   let hundredths = 0;
   let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
   
-  // Asjust view port height to account for mobile browser navigation
+  // Adjust view port height to account for mobile browser navigation
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
@@ -128,12 +133,7 @@
     playerNameInput.value = "";
     playerNameInput.innerHTML = "";
     finishGameTime.innerHTML = `${timerDisplay.textContent}`;
-    if (finalTime < timeNeededForLeaderboard ) {
-      playerNameInput.classList.remove("hidden")
-      finishGameCopy.innerHTML = `Congratulations! Type your <span class="finish-message__strong">nickname</span> to get your name on the leaderboard.`
-    } else {
-      finishGameCopy.innerHTML = `Well done. Keep trying to reach the leaderboard.`
-    }
+    playerNameInput.classList.remove("hidden")
   }
   
   const showFinishGameView  = () => {
@@ -329,6 +329,11 @@
       JSON.stringify(leaderboard)
     );
   }
+
+  // submitLeaderboardEntryForm.addEventListener("Submit", (event) => {
+  //   event.preventDefault();
+  //   console.log(`You submitted ${event.target.value}`)
+  // }) 
   
   board.addEventListener(
     "touchstart",
@@ -446,19 +451,20 @@
     event.preventDefault();
     finishGameViewCloseButton.classList.add("apply-push");
     finishGameView.classList.add("slide-out-top");
-    addAnonymousToLeaderboard();
   });
   
   finishGameView.addEventListener("click", (event) => {
     event.preventDefault();
     if (event.target.classList.contains("finished-game-overlay")) {
       finishGameView.classList.add("slide-out-top");
-      addAnonymousToLeaderboard();
     }
   });
   
   playerNameInput.addEventListener("change", (event) => {
     const finalTime = minutes * 60 + seconds + hundredths / 100;
+    console.log(event.target.value)
+
+    const name = event.target.value ? event.target.value : "Mx. Anonymous";
   
     const newEntry = {
       name: event.target.value,
@@ -484,5 +490,5 @@
   });
   
   initializeGame();
-})();
+// })();
 
