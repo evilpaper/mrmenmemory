@@ -68,7 +68,7 @@ a {
   padding: 0.6em;
   bottom: 1em;
   left: 1em;
-  transition: 0.2s transform ease-in-out;
+  transition: 0.1s transform ease-in-out;
 }
 
 .logo:hover {
@@ -78,7 +78,6 @@ a {
 .logo img {
   width: 12em;
   height: auto;
-  transform: rotateZ(-10deg);
 }
 
 .made-by {
@@ -86,11 +85,11 @@ a {
   padding: 0.6em;
   bottom: 1em;
   right: 1em;
-  transition: 0.2s transform ease-in-out;
+  transition: 0.1s transform ease-in-out;
 }
 
 .made-by:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .made-by img {
@@ -224,11 +223,11 @@ ul {
 }
 
 .button--close-finish-game {
-  /* display: inline-block; */
-  /* position: absolute; */
-  /* margin: 0 auto; */
-  /* bottom: -2em; */
-  /* z-index: 200; */
+  display: inline-block;
+  position: absolute;
+  margin: 0 auto;
+  bottom: -1em;
+  z-index: 200;
 }
 
 .time__container {
@@ -391,18 +390,20 @@ ul {
   font-size: 2em;
 }
 
-.finish-message__form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
 .finish-message__copy {
   text-align: center;
 }
 
+/* Add to leaderboard */
+
 .finish-message__strong {
   font-weight: 700;
+}
+
+.finish-message__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .finish-message__player-name-input {
@@ -419,13 +420,6 @@ ul {
 
 .finish-message__player-name-input::placeholder {
   color: darkgrey;
-}
-
-.finish-message__button {
-  display: inline-block;
-  margin: 0 auto;
-  margin-top: 1em;
-  z-index: 200;
 }
 
 .hidden {

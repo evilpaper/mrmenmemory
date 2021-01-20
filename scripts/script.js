@@ -441,9 +441,7 @@
     if (finishGameView.classList.contains("slide-out-top")) {
       finishGameView.classList.remove("slide-out-top");
       finishGameView.classList.add("hidden");
-      if (playerNameInput.classList.contains("hidden")) {
-        resetGame();
-      }
+      resetGame();
     }
   });
   
