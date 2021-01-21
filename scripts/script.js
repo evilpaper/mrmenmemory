@@ -410,10 +410,10 @@
     if (leaderboardBoard.classList.contains("slide-out-top")) {
       leaderboardBoard.classList.remove("slide-out-top");
       leaderboardView.classList.add("hidden");
-      if (!playerNameInput.classList.contains("hidden")) {
-        playerNameInput.classList.add("hidden");
-        resetGame();
-      }
+      // if (!playerNameInput.classList.contains("hidden")) {
+      //   playerNameInput.classList.add("hidden");
+      //   resetGame();
+      // }
     }
   });
   
