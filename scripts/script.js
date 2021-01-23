@@ -103,7 +103,7 @@
   
   const populateLeaderboard = () => {
     leaderboardList.innerHTML = "";
-    const type = document.querySelector(".button-selected");
+    const type = document.querySelector(".option-selected");
   
     if (type.classList.contains("option-this-computer")) {
       for (let index = 0; index <= 9; index++) {
@@ -422,11 +422,11 @@
       const options = document.querySelectorAll(".option");
       
       options.forEach(item => {
-        item.classList.remove("button-selected")
-        item.classList.remove("apply-push");
+        item.classList.remove("option-selected")
+        // item.classList.remove("apply-push");
       })
-      event.target.classList.add("button-selected");
-      event.target.classList.add("apply-push");
+      event.target.classList.add("option-selected");
+      // event.target.classList.add("apply-push");
       populateLeaderboard();
     }
     if (event.target.classList.contains("leaderboard-overlay")) {

@@ -230,6 +230,29 @@ ul {
   z-index: 200;
 }
 
+.option {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  height: 2rem;
+  min-width: 6rem;
+  color: black;
+  padding: 0 1em;
+  background-color: white;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  border: 2px solid black;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: 0.16s background-color ease-in;
+}
+
+.option-selected {
+  background-color: black;
+  color: white;
+}
+
 .time__container {
   display: flex;
   flex-direction: column;
