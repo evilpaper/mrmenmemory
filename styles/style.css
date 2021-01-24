@@ -32,7 +32,7 @@ footer {
   padding: 1.6em;
   text-align: center;
   width: 100%;
-  background: #ffd100;
+  /* background: #ffd100; */
   font-size: 0.8em;
   color: #222222;
   /* z-index: -1; */
@@ -211,10 +211,6 @@ ul {
   border: 2px solid white;
 }
 
-.button--close-leaderboard {
-  margin-top: 2em;
-}
-
 .button--open-leaderboard {
   color: black;
   background-color: white;
@@ -319,8 +315,9 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 36em;
-  min-height: 36em;
+  height: 40em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 16px 16px rgba(0, 0, 0, 0.12), 0 124px 124px rgba(0, 0, 0, 0.4);
