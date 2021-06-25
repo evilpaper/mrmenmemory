@@ -1,3 +1,11 @@
+// TODO:
+// Break apart finish game logic into two paths
+// First step - Check if user made it to leaderboard
+// Second step
+//   Path A -> If no, show modal A
+//    Path B => if yes, show modal B, which is a form, on submit, update leaderboard and local storage
+// Third step - reset game
+
 // (function(){
 
 const $ = (x) => document.querySelector(x);
@@ -13,6 +21,7 @@ const finishGameTime = $(".finish-message__time");
 
 const finishGameViewCloseButton = $(".button--close-finish-game");
 
+const finishGameViewAddToLeaderboard = $(".add-to-leaderboard");
 const playerNameInput = $(".add-to-leaderboard__player-name-input");
 const submitLeaderboardEntryForm = $(".finish-message__form");
 
@@ -48,6 +57,7 @@ let hundredths = 0;
 let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
 
 // Adjust view port height to account for mobile browser navigation
+
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 
@@ -56,9 +66,13 @@ window.addEventListener("resize", () => {
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 });
 
+// Shuffle deck
+
 const shuffleCards = (deck) => {
   return deck.sort(() => 0.5 - Math.random());
 };
+
+// Prepare the playing deck
 
 let playdeck = shuffleCards(cards).slice(0, 8);
 let deck = playdeck.concat(playdeck); // Two of each card
@@ -140,6 +154,17 @@ const updateFinishGameView = () => {
   playerNameInput.innerHTML = "";
   finishGameTime.innerHTML = `${timerDisplay.textContent}`;
   playerNameInput.classList.remove("hidden");
+
+  if (finalTime < timeNeededForLeaderboard) {
+    showFinishGameViewAddToLeaderboard();
+  } else {
+    finishGameView();
+  }
+};
+
+const showFinishGameViewAddToLeaderboard = () => {
+  finishGameViewAddToLeaderboard.classList.remove("hidden");
+  finishGameViewAddToLeaderboard.classList.add("bounce-in-top");
 };
 
 const showFinishGameView = () => {
@@ -253,6 +278,9 @@ const flipUp = (card) => {
 
 const flipBack = (card) => {};
 
+// completeGame function, used for debugging purpose
+// in order to not have to play whole game each time
+
 const completeGame = () => {
   stopTimer();
   // const time = minutes * 60 + seconds + hundredths / 100;
@@ -297,7 +325,7 @@ const updateGameState = (activeCard) => {
           matchesCount = 0;
           setTimeout(() => {
             updateFinishGameView();
-            showFinishGameView();
+            // showFinishGameView();
           }, 600);
         }
       } else {
