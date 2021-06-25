@@ -26,6 +26,8 @@ const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
   ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
   : STARTING_LEADERBOARD;
 
+const universalLeaderboard = UNIVERSAL_LEADERBOARD;
+
 const punch = document.querySelector(".punch");
 const zap = document.querySelector(".zap");
 const bell = document.querySelector(".bell");
@@ -105,19 +107,23 @@ const populateLeaderboard = () => {
   leaderboardList.innerHTML = "";
   const type = document.querySelector(".option-selected");
 
-  // if (type.classList.contains("option-this-computer")) {
-  for (let index = 0; index <= 9; index++) {
-    const entry = leaderboard[index];
-    const listItem = document.createElement("li");
-    listItem.classList.add("leaderboard__list-item");
-    listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
-    leaderboardList.appendChild(listItem);
+  if (type.classList.contains("option-this-computer")) {
+    for (let index = 0; index <= 9; index++) {
+      const entry = leaderboard[index];
+      const listItem = document.createElement("li");
+      listItem.classList.add("leaderboard__list-item");
+      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
+      leaderboardList.appendChild(listItem);
+    }
+  } else if (type.classList.contains("option-universal")) {
+    for (let index = 0; index <= 9; index++) {
+      const entry = universalLeaderboard[index];
+      const listItem = document.createElement("li");
+      listItem.classList.add("leaderboard__list-item");
+      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
+      leaderboardList.appendChild(listItem);
+    }
   }
-  // } else {
-  //   const message = document.createElement("p");
-  //   message.innerHTML = "No data yet";
-  //   leaderboardList.appendChild(message)
-  // }
 };
 
 const createLeaderboardEntry = (name, time) => {
