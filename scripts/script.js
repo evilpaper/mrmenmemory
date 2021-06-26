@@ -18,8 +18,16 @@ const leaderboardList = $(".leaderboard__list");
 const finishGameViewAddToLeaderboard = $("#finish-game__one");
 const finishGameView = $("#finish-game__two");
 const finishGameTime = $(".finish-message__time");
-const playerNameInput = $(".add-to-leaderboard__player-name-input");
+// const playerNameInput = $(".add-to-leaderboard__player-name-input");
 const submitLeaderboardEntryForm = $(".finish-message__form");
+
+const addToLeaderboardForm = $("#add-to-leaderboard__form");
+addToLeaderboardForm.addEventListener("submit", function (e) {
+  e.preventDefault;
+  console.log(e.target);
+  // finishGameViewCloseButton.classList.add("apply-push");
+  finishGameViewAddToLeaderboard.classList.add("slide-out-top");
+});
 
 const finishGameViewCloseButton = $("#finish-game__two-button");
 
@@ -148,10 +156,10 @@ const createLeaderboardEntry = (name, time) => {
 const updateFinishGameView = () => {
   const finalTime = minutes * 60 + seconds + hundredths / 100;
   const timeNeededForLeaderboard = leaderboard[9].time;
-  playerNameInput.value = "";
-  playerNameInput.innerHTML = "";
-  finishGameTime.innerHTML = `${timerDisplay.textContent}`;
-  playerNameInput.classList.remove("hidden");
+  // playerNameInput.value = "";
+  // playerNameInput.innerHTML = "";
+  // finishGameTime.innerHTML = `${timerDisplay.textContent}`;
+  // playerNameInput.classList.remove("hidden");
 
   if (finalTime < timeNeededForLeaderboard) {
     showFinishGameViewAddToLeaderboard();
@@ -489,34 +497,34 @@ finishGameView.addEventListener("click", (event) => {
   }
 });
 
-playerNameInput.addEventListener("change", (event) => {
-  const finalTime = minutes * 60 + seconds + hundredths / 100;
-  console.log(event.target.value);
+// playerNameInput.addEventListener("change", (event) => {
+//   const finalTime = minutes * 60 + seconds + hundredths / 100;
+//   console.log(event.target.value);
 
-  const name = event.target.value ? event.target.value : "Mx. Anonymous";
+//   const name = event.target.value ? event.target.value : "Mx. Anonymous";
 
-  const newEntry = {
-    name: event.target.value,
-    time: finalTime,
-    display: timerDisplay.textContent,
-  };
+//   const newEntry = {
+//     name: event.target.value,
+//     time: finalTime,
+//     display: timerDisplay.textContent,
+//   };
 
-  leaderboard.unshift(newEntry);
-  leaderboard.sort((a, b) => a.time - b.time);
+//   leaderboard.unshift(newEntry);
+//   leaderboard.sort((a, b) => a.time - b.time);
 
-  localStorage.setItem(
-    "mr_men_memory_leaderboard",
-    JSON.stringify(leaderboard)
-  );
+//   localStorage.setItem(
+//     "mr_men_memory_leaderboard",
+//     JSON.stringify(leaderboard)
+//   );
 
-  finishGameView.classList.add("hidden");
+//   finishGameView.classList.add("hidden");
 
-  setTimeout(() => {
-    populateLeaderboard();
-    leaderboardView.classList.remove("hidden");
-    leaderboardBoard.classList.add("bounce-in-top");
-  }, 100);
-});
+//   setTimeout(() => {
+//     populateLeaderboard();
+//     leaderboardView.classList.remove("hidden");
+//     leaderboardBoard.classList.add("bounce-in-top");
+//   }, 100);
+// });
 
 initializeGame();
 // })();
