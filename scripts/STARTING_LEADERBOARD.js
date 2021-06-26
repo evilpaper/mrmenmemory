@@ -46,7 +46,7 @@ const STARTING_LEADERBOARD = [
   },
   {
     name: "Mr. Bounce",
-    time: 60.0,
-    display: "00:60:00",
+    time: 27.0,
+    display: "00:27:00",
   },
 ];

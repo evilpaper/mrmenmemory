@@ -16,7 +16,7 @@ const leaderboardBoard = $(".leaderboard__board");
 const leaderboardList = $(".leaderboard__list");
 
 const finishGameViewAddToLeaderboard = $("#finish-game__one");
-const finishGameView = $("#finish-game__two");
+const finishGameViewTryAgain = $("#finish-game__two");
 const finishGameTime = $(".finish-message__time");
 // const playerNameInput = $(".add-to-leaderboard__player-name-input");
 const submitLeaderboardEntryForm = $(".finish-message__form");
@@ -164,7 +164,7 @@ const updateFinishGameView = () => {
   if (finalTime < timeNeededForLeaderboard) {
     showFinishGameViewAddToLeaderboard();
   } else {
-    finishGameView();
+    showFinishGameView();
   }
 };
 
@@ -174,8 +174,8 @@ const showFinishGameViewAddToLeaderboard = () => {
 };
 
 const showFinishGameView = () => {
-  finishGameView.classList.remove("hidden");
-  finishGameView.classList.add("bounce-in-top");
+  finishGameViewTryAgain.classList.remove("hidden");
+  finishGameViewTryAgain.classList.add("bounce-in-top");
 };
 
 const resetTimer = () => {
@@ -473,13 +473,13 @@ leaderboardView.addEventListener("click", function (event) {
   }
 });
 
-finishGameView.addEventListener("animationend", function (event) {
-  if (finishGameView.classList.contains("bounce-in-top")) {
-    finishGameView.classList.remove("bounce-in-top");
+finishGameViewTryAgain.addEventListener("animationend", function (event) {
+  if (finishGameViewTryAgain.classList.contains("bounce-in-top")) {
+    finishGameViewTryAgain.classList.remove("bounce-in-top");
   }
-  if (finishGameView.classList.contains("slide-out-top")) {
-    finishGameView.classList.remove("slide-out-top");
-    finishGameView.classList.add("hidden");
+  if (finishGameViewTryAgain.classList.contains("slide-out-top")) {
+    finishGameViewTryAgain.classList.remove("slide-out-top");
+    finishGameViewTryAgain.classList.add("hidden");
     resetGame();
   }
 });
@@ -487,13 +487,13 @@ finishGameView.addEventListener("animationend", function (event) {
 finishGameViewCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
   finishGameViewCloseButton.classList.add("apply-push");
-  finishGameView.classList.add("slide-out-top");
+  finishGameViewTryAgain.classList.add("slide-out-top");
 });
 
-finishGameView.addEventListener("click", (event) => {
+finishGameViewTryAgain.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.classList.contains("finished-game-overlay-two")) {
-    finishGameView.classList.add("slide-out-top");
+    finishGameViewTryAgain.classList.add("slide-out-top");
   }
 });
 
