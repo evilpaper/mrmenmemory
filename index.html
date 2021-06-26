@@ -35,16 +35,18 @@
       <article class="finish-game-modal">
         <form action="#" class="add-to-leaderboard__form" id="add-to-leaderboard__form">   
           <p class="finish-message__time" id="finish-game__one--time">Your time</p>
-          <input name="name" type="text" class="add-to-leaderboard__player-name-input" placeholder="Mx. Anonymous"/>
-          <p class="finish-message__copy">Congratulations! Enter your nickname to submit your time.</p>
-          <button type="submit" class="button button--close-finish-game" id="finish-game__one-button"/>SEND</button>
+          <input name="name" type="text" class="add-to-leaderboard__player-name-input" placeholder="Mx. Anonymous" maxlength="24"/>
+          <p class="finish-message__copy">Congratulations!</p>
+          <p class="finish-message__copy">Enter your nickname to submit your time.</p>
+          <button type="submit" class="button button--close-finish-game" id="finish-game__one-button"/>DONE</button>
         </form>
       </article>
     </section>
     <section class="finished-game-overlay hidden" id="finish-game__two">
       <article class="finish-game-modal">
         <p class="finish-message__time" id="finish-game__two--time">Your time</p>
-        <p class="finish-message__copy">Well done. Keep trying to reach the leaderboard.</p>
+        <p class="finish-message__copy">Well done.</p>
+        <p class="finish-message__copy">Keep trying to reach the leaderboard.</p>
         <button class="button button--close-finish-game" id="finish-game__two-button">CLOSE</buttton>
       </article>
     </section>

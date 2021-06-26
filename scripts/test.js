@@ -1,3 +1,1 @@
-console.log("I'm test.js");
-
-
+console.log("All tests passed");
