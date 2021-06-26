@@ -31,19 +31,19 @@
         </button>
       </div>
     </div>
-    <section class="add-to-leaderboard hidden">
-      <article class="add-to-leaderboard-modal">
-        <p class="add-to-leaderboard__time"></p>
+    <section class="finished-game-overlay" id="finish-game__one">
+      <article class="finish-game-modal">
         <form action="#" class="add-to-leaderboard__form">   
+          <p class="finish-message__time">Your time</p>
           <input type="text" class="add-to-leaderboard__player-name-input" placeholder="Mx. Anonymous"/>
-          <p class="add-to-leaderboard__copy">Congratulations! Type your <span class="add-to-leaderboard__strong">nickname</span> to get your name on the leaderboard.</p>
-          <input type="submit" class="button add-to-leaderboard__button" value="Done"/>
+          <p class="finish-message__copy">Congratulations! Type your <span class="add-to-leaderboard__strong">nickname</span> to get your name on the leaderboard.</p>
+          <button type="submit" class="button add-to-leaderboard__button"/>SEND</button>
         </form>
       </article>
     </section>
-    <section class="finished-game-overlay hidden">
+    <section class="finished-game-overlay hidden" id="finish-game__two">
       <article class="finish-game-modal">
-        <p class="finish-message__time"></p>
+        <p class="finish-message__time">Your time</p>
         <p class="finish-message__copy">Well done. Keep trying to reach the leaderboard.</p>
         <button class="button button--close-finish-game">CLOSE</buttton>
       </article>

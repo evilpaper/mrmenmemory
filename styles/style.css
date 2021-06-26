@@ -289,12 +289,6 @@ ul {
   text-transform: uppercase;
 }
 
-.add-to-leaderboard {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-}
-
 .leaderboard-overlay {
   position: absolute;
   height: 100vh;
@@ -380,6 +374,60 @@ ul {
   text-align: right;
 }
 
+.finished-game-overlay-one {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: hsla(222, 10%, 10%, 0);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.add-to-leaderboard__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-to-leaderboard__player-name-input {
+  margin: 1em;
+  padding: 0.4em;
+  border: none;
+  text-align: center;
+  font-size: 1em;
+  border-bottom: 1px dashed black;
+}
+
+.add-to-leaderboard__copy {
+  text-align: center;
+}
+
+.add-to-leaderboard__button {
+  display: inline-block;
+  position: absolute;
+  margin: 0 auto;
+  bottom: -1em;
+  z-index: 200;
+}
+
+.finished-game-overlay-two {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: hsla(222, 10%, 10%, 0);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
 .finished-game-overlay {
   position: absolute;
   height: 100vh;
@@ -422,7 +470,7 @@ ul {
 
 /* Add to leaderboard */
 
-.finish-message__strong {
+/* .finish-message__strong {
   font-weight: 700;
 }
 
@@ -430,9 +478,9 @@ ul {
   position: relative;
   display: flex;
   flex-direction: column;
-}
+} */
 
-.finish-message__player-name-input {
+/* .finish-message__player-name-input {
   font-size: 1.1em;
   border: none;
   border-bottom: 4px dotted black;
@@ -442,11 +490,11 @@ ul {
   text-align: center;
   width: 90%;
   max-width: 90%;
-}
+} */
 
-.finish-message__player-name-input::placeholder {
+/* .finish-message__player-name-input::placeholder {
   color: darkgrey;
-}
+} */
 
 .hidden {
   /* display: none; */

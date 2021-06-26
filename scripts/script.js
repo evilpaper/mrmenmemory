@@ -15,15 +15,13 @@ const leaderboardView = $(".leaderboard-overlay");
 const leaderboardBoard = $(".leaderboard__board");
 const leaderboardList = $(".leaderboard__list");
 
-const finishGameView = $(".finished-game-overlay");
-const finishGameCopy = $(".finish-message__copy");
+const finishGameViewAddToLeaderboard = $("#finish-game__one");
+const finishGameView = $("#finish-game__two");
 const finishGameTime = $(".finish-message__time");
-
-const finishGameViewCloseButton = $(".button--close-finish-game");
-
-const finishGameViewAddToLeaderboard = $(".add-to-leaderboard");
 const playerNameInput = $(".add-to-leaderboard__player-name-input");
 const submitLeaderboardEntryForm = $(".finish-message__form");
+
+const finishGameViewCloseButton = $(".button--close-finish-game");
 
 const timerButton = $(".button-new-game");
 const leaderboardOpenButton = $(".button--open-leaderboard");
@@ -486,7 +484,7 @@ finishGameViewCloseButton.addEventListener("click", (event) => {
 
 finishGameView.addEventListener("click", (event) => {
   event.preventDefault();
-  if (event.target.classList.contains("finished-game-overlay")) {
+  if (event.target.classList.contains("finished-game-overlay-two")) {
     finishGameView.classList.add("slide-out-top");
   }
 });
