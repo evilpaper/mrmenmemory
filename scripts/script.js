@@ -235,6 +235,11 @@ const resetGame = () => {
   bounceCards();
 
   timerButton.innerText = "START";
+
+  localStorage.setItem(
+    "mr_men_memory_leaderboard",
+    JSON.stringify(leaderboard)
+  );
 };
 
 const startGame = () => {
@@ -455,13 +460,9 @@ addToLeaderboardForm.addEventListener("submit", function (e) {
   leaderboard.unshift(newEntry);
   leaderboard.sort((a, b) => a.time - b.time);
 
-  // local storage is synchrounous. Maybe break out this and run in background
-  localStorage.setItem(
-    "mr_men_memory_leaderboard",
-    JSON.stringify(leaderboard)
-  );
-
   finishGameViewAddToLeaderboard.classList.add("slide-out-top");
+
+  // local storage is synchrounous. Maybe break out this and run in background
 });
 
 finishGameViewAddToLeaderboard.addEventListener(
