@@ -21,7 +21,7 @@ const finishGameTime = $(".finish-message__time");
 const playerNameInput = $(".add-to-leaderboard__player-name-input");
 const submitLeaderboardEntryForm = $(".finish-message__form");
 
-const finishGameViewCloseButton = $(".button--close-finish-game");
+const finishGameViewCloseButton = $("#finish-game__two-button");
 
 const timerButton = $(".button-new-game");
 const leaderboardOpenButton = $(".button--open-leaderboard");

@@ -374,19 +374,6 @@ ul {
   text-align: right;
 }
 
-.finished-game-overlay-one {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-color: hsla(222, 10%, 10%, 0);
-  backdrop-filter: blur(2px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-
 .add-to-leaderboard__form {
   display: flex;
   flex-direction: column;
@@ -401,31 +388,6 @@ ul {
   text-align: center;
   font-size: 1em;
   border-bottom: 1px dashed black;
-}
-
-.add-to-leaderboard__copy {
-  text-align: center;
-}
-
-.add-to-leaderboard__button {
-  display: inline-block;
-  position: absolute;
-  margin: 0 auto;
-  bottom: -1em;
-  z-index: 200;
-}
-
-.finished-game-overlay-two {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-color: hsla(222, 10%, 10%, 0);
-  backdrop-filter: blur(2px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
 }
 
 .finished-game-overlay {
@@ -468,36 +430,7 @@ ul {
   text-align: center;
 }
 
-/* Add to leaderboard */
-
-/* .finish-message__strong {
-  font-weight: 700;
-}
-
-.finish-message__form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-} */
-
-/* .finish-message__player-name-input {
-  font-size: 1.1em;
-  border: none;
-  border-bottom: 4px dotted black;
-  background-color: none;
-  padding: 0.6em 1em 0.2em 1em;
-  margin-bottom: 1em;
-  text-align: center;
-  width: 90%;
-  max-width: 90%;
-} */
-
-/* .finish-message__player-name-input::placeholder {
-  color: darkgrey;
-} */
-
 .hidden {
-  /* display: none; */
   visibility: hidden;
 }
 
