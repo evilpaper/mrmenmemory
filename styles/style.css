@@ -340,7 +340,7 @@ ul {
 }
 
 .leaderboard__list {
-  padding: 1em 0;
+  padding-bottom: 1em;
   counter-reset: myCounter;
   border-bottom: 4px solid black;
   width: 100%;
