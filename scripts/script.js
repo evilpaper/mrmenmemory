@@ -18,14 +18,14 @@ const leaderboardList = $(".leaderboard__list");
 const finishGameViewAddToLeaderboard = $("#finish-game__one");
 const finishGameViewTryAgain = $("#finish-game__two");
 const finishGameTime = $(".finish-message__time");
-// const playerNameInput = $(".add-to-leaderboard__player-name-input");
+
 const submitLeaderboardEntryForm = $(".finish-message__form");
 
 const addToLeaderboardForm = $("#add-to-leaderboard__form");
+
 addToLeaderboardForm.addEventListener("submit", function (e) {
   e.preventDefault;
-  console.log(e.target);
-  // finishGameViewCloseButton.classList.add("apply-push");
+  const name = addToLeaderboardForm.elements["name"].value;
   finishGameViewAddToLeaderboard.classList.add("slide-out-top");
 });
 
