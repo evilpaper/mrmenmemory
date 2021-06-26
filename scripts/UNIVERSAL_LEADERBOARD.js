@@ -20,7 +20,7 @@ const UNIVERSAL_LEADERBOARD = [
     display: "00:04:00",
   },
   {
-    name: "Little Miss Untouchable",
+    name: "Little Miss Quant",
     time: 5.0,
     display: "00:05:00",
   },

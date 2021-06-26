@@ -10,14 +10,12 @@ const leaderboardBoard = $(".leaderboard__board");
 const leaderboardList = $(".leaderboard__list");
 
 const finishGameViewAddToLeaderboard = $("#finish-game__one");
-const finishGameViewTryAgain = $("#finish-game__two");
-const finishGameTime = $(".finish-message__time");
-
-// const submitLeaderboardEntryForm = $(".finish-message__form");
-
+const finishGameViewAddToLeaderboardTime = $("#finish-game__one--time");
 const addToLeaderboardForm = $("#add-to-leaderboard__form");
 
-const finishGameViewCloseButton = $("#finish-game__two-button");
+const finishGameViewTryAgain = $("#finish-game__two");
+const finishGameViewTryAgainTime = $("#finish-game__two--time");
+const finishGameViewTryAgainCloseButton = $("#finish-game__two-button");
 
 const timerButton = $(".button-new-game");
 const leaderboardOpenButton = $(".button--open-leaderboard");
@@ -141,13 +139,14 @@ const createLeaderboardEntry = (name, time) => {
     `;
 };
 
-const handleFinishGame = () => {
-  const finalTime = minutes * 60 + seconds + hundredths / 100;
+const handleFinishGame = (finsihTimeInSeconds, finishTimeAsString) => {
   const timeNeededForLeaderboard = leaderboard[9].time;
 
-  if (finalTime < timeNeededForLeaderboard) {
+  if (finsihTimeInSeconds < timeNeededForLeaderboard) {
+    finishGameViewAddToLeaderboardTime.innerText = finishTimeAsString;
     showFinishGameViewAddToLeaderboard();
   } else {
+    finishGameViewTryAgainTime.innerText = finishTimeAsString;
     showFinishGameView();
   }
 };
@@ -292,14 +291,14 @@ const updateGameState = (activeCard) => {
         if (matchesCount >= 8) {
           // completeGame();
           stopTimer();
-          // const time = minutes * 60 + seconds + hundredths / 100;
+          const finsihTimeInSeconds = minutes * 60 + seconds + hundredths / 100;
+          const finishTimeAsString = timerDisplay.textContent;
           bell.play();
           backgroundSong.pause();
           backgroundSong.currentTime = 0;
           matchesCount = 0;
           setTimeout(() => {
-            handleFinishGame();
-            // showFinishGameView();
+            handleFinishGame(finsihTimeInSeconds, finishTimeAsString);
           }, 600);
         }
       } else {
@@ -319,29 +318,6 @@ const isNotACard = (thing) => {
 };
 
 populateLeaderboard();
-
-// function addAnonymousToLeaderboard() {
-//   const finalTime = minutes * 60 + seconds + hundredths / 100;
-
-//   const newEntry = {
-//     name: "Mx. Anonymous",
-//     time: finalTime,
-//     display: timerDisplay.textContent,
-//   };
-
-//   leaderboard.unshift(newEntry);
-//   leaderboard.sort((a, b) => a.time - b.time);
-
-//   localStorage.setItem(
-//     "mr_men_memory_leaderboard",
-//     JSON.stringify(leaderboard)
-//   );
-// }
-
-// submitLeaderboardEntryForm.addEventListener("Submit", (event) => {
-//   event.preventDefault();
-//   console.log(`You submitted ${event.target.value}`)
-// })
 
 board.addEventListener(
   "touchstart",
@@ -417,10 +393,6 @@ leaderboardBoard.addEventListener("animationend", function (event) {
   if (leaderboardBoard.classList.contains("slide-out-top")) {
     leaderboardBoard.classList.remove("slide-out-top");
     leaderboardView.classList.add("hidden");
-    // if (!playerNameInput.classList.contains("hidden")) {
-    //   playerNameInput.classList.add("hidden");
-    //   resetGame();
-    // }
   }
 });
 
@@ -448,13 +420,15 @@ finishGameViewTryAgain.addEventListener("animationend", function (event) {
   if (finishGameViewTryAgain.classList.contains("slide-out-top")) {
     finishGameViewTryAgain.classList.remove("slide-out-top");
     finishGameViewTryAgain.classList.add("hidden");
-    resetGame();
+    setTimeout(() => {
+      resetGame();
+    }, 200);
   }
 });
 
-finishGameViewCloseButton.addEventListener("click", (event) => {
+finishGameViewTryAgainCloseButton.addEventListener("click", (event) => {
   event.preventDefault();
-  finishGameViewCloseButton.classList.add("apply-push");
+  finishGameViewTryAgainCloseButton.classList.add("apply-push");
   finishGameViewTryAgain.classList.add("slide-out-top");
 });
 
@@ -481,6 +455,7 @@ addToLeaderboardForm.addEventListener("submit", function (e) {
   leaderboard.unshift(newEntry);
   leaderboard.sort((a, b) => a.time - b.time);
 
+  // local storage is synchrounous. Maybe break out this and run in background
   localStorage.setItem(
     "mr_men_memory_leaderboard",
     JSON.stringify(leaderboard)
@@ -498,39 +473,12 @@ finishGameViewAddToLeaderboard.addEventListener(
     if (finishGameViewAddToLeaderboard.classList.contains("slide-out-top")) {
       finishGameViewAddToLeaderboard.classList.remove("slide-out-top");
       finishGameViewAddToLeaderboard.classList.add("hidden");
-      resetGame();
+      setTimeout(() => {
+        resetGame();
+      }, 200);
     }
   }
 );
-
-// playerNameInput.addEventListener("change", (event) => {
-//   const finalTime = minutes * 60 + seconds + hundredths / 100;
-//   console.log(event.target.value);
-
-//   const name = event.target.value ? event.target.value : "Mx. Anonymous";
-
-//   const newEntry = {
-//     name: event.target.value,
-//     time: finalTime,
-//     display: timerDisplay.textContent,
-//   };
-
-//   leaderboard.unshift(newEntry);
-//   leaderboard.sort((a, b) => a.time - b.time);
-
-//   localStorage.setItem(
-//     "mr_men_memory_leaderboard",
-//     JSON.stringify(leaderboard)
-//   );
-
-//   finishGameView.classList.add("hidden");
-
-//   setTimeout(() => {
-//     populateLeaderboard();
-//     leaderboardView.classList.remove("hidden");
-//     leaderboardBoard.classList.add("bounce-in-top");
-//   }, 100);
-// });
 
 initializeGame();
 // })();
