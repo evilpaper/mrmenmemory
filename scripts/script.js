@@ -1,10 +1,4 @@
 // TODO:
-// Break apart finish game logic into two paths
-// First step - Check if user made it to leaderboard
-// Second step
-//   Path A -> If no, show modal A
-//    Path B => if yes, show modal B, which is a form, on submit, update leaderboard and local storage
-// Third step - reset game
 
 // (function(){
 
@@ -19,15 +13,9 @@ const finishGameViewAddToLeaderboard = $("#finish-game__one");
 const finishGameViewTryAgain = $("#finish-game__two");
 const finishGameTime = $(".finish-message__time");
 
-const submitLeaderboardEntryForm = $(".finish-message__form");
+// const submitLeaderboardEntryForm = $(".finish-message__form");
 
 const addToLeaderboardForm = $("#add-to-leaderboard__form");
-
-addToLeaderboardForm.addEventListener("submit", function (e) {
-  e.preventDefault;
-  const name = addToLeaderboardForm.elements["name"].value;
-  finishGameViewAddToLeaderboard.classList.add("slide-out-top");
-});
 
 const finishGameViewCloseButton = $("#finish-game__two-button");
 
@@ -287,18 +275,18 @@ const flipBack = (card) => {};
 // completeGame function, used for debugging purpose
 // in order to not have to play whole game each time
 
-const completeGame = () => {
-  stopTimer();
-  // const time = minutes * 60 + seconds + hundredths / 100;
-  bell.play();
-  backgroundSong.pause();
-  backgroundSong.currentTime = 0;
-  matchesCount = 0;
-  setTimeout(() => {
-    updateFinishGameView();
-    showFinishGameView();
-  }, 600);
-};
+// const completeGame = () => {
+//   stopTimer();
+//   // const time = minutes * 60 + seconds + hundredths / 100;
+//   bell.play();
+//   backgroundSong.pause();
+//   backgroundSong.currentTime = 0;
+//   matchesCount = 0;
+//   setTimeout(() => {
+//     updateFinishGameView();
+//     showFinishGameView();
+//   }, 600);
+// };
 
 const updateGameState = (activeCard) => {
   if (activeCards < 2) {
@@ -496,6 +484,44 @@ finishGameViewTryAgain.addEventListener("click", (event) => {
     finishGameViewTryAgain.classList.add("slide-out-top");
   }
 });
+
+addToLeaderboardForm.addEventListener("submit", function (e) {
+  e.preventDefault;
+  const finalTime = minutes * 60 + seconds + hundredths / 100;
+  const name = addToLeaderboardForm.elements["name"].value
+    ? addToLeaderboardForm.elements["name"].value
+    : "Mx. Anonymous";
+
+  const newEntry = {
+    name: name,
+    time: finalTime,
+    display: timerDisplay.textContent,
+  };
+
+  leaderboard.unshift(newEntry);
+  leaderboard.sort((a, b) => a.time - b.time);
+
+  localStorage.setItem(
+    "mr_men_memory_leaderboard",
+    JSON.stringify(leaderboard)
+  );
+
+  finishGameViewAddToLeaderboard.classList.add("slide-out-top");
+});
+
+finishGameViewAddToLeaderboard.addEventListener(
+  "animationend",
+  function (event) {
+    if (finishGameViewAddToLeaderboard.classList.contains("bounce-in-top")) {
+      finishGameViewAddToLeaderboard.classList.remove("bounce-in-top");
+    }
+    if (finishGameViewAddToLeaderboard.classList.contains("slide-out-top")) {
+      finishGameViewAddToLeaderboard.classList.remove("slide-out-top");
+      finishGameViewAddToLeaderboard.classList.add("hidden");
+      resetGame();
+    }
+  }
+);
 
 // playerNameInput.addEventListener("change", (event) => {
 //   const finalTime = minutes * 60 + seconds + hundredths / 100;
