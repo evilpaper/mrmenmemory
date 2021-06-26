@@ -141,13 +141,9 @@ const createLeaderboardEntry = (name, time) => {
     `;
 };
 
-const updateFinishGameView = () => {
+const handleFinishGame = () => {
   const finalTime = minutes * 60 + seconds + hundredths / 100;
   const timeNeededForLeaderboard = leaderboard[9].time;
-  // playerNameInput.value = "";
-  // playerNameInput.innerHTML = "";
-  // finishGameTime.innerHTML = `${timerDisplay.textContent}`;
-  // playerNameInput.classList.remove("hidden");
 
   if (finalTime < timeNeededForLeaderboard) {
     showFinishGameViewAddToLeaderboard();
@@ -272,22 +268,6 @@ const flipUp = (card) => {
 
 const flipBack = (card) => {};
 
-// completeGame function, used for debugging purpose
-// in order to not have to play whole game each time
-
-// const completeGame = () => {
-//   stopTimer();
-//   // const time = minutes * 60 + seconds + hundredths / 100;
-//   bell.play();
-//   backgroundSong.pause();
-//   backgroundSong.currentTime = 0;
-//   matchesCount = 0;
-//   setTimeout(() => {
-//     updateFinishGameView();
-//     showFinishGameView();
-//   }, 600);
-// };
-
 const updateGameState = (activeCard) => {
   if (activeCards < 2) {
     whoosh.play();
@@ -318,7 +298,7 @@ const updateGameState = (activeCard) => {
           backgroundSong.currentTime = 0;
           matchesCount = 0;
           setTimeout(() => {
-            updateFinishGameView();
+            handleFinishGame();
             // showFinishGameView();
           }, 600);
         }
@@ -340,23 +320,23 @@ const isNotACard = (thing) => {
 
 populateLeaderboard();
 
-function addAnonymousToLeaderboard() {
-  const finalTime = minutes * 60 + seconds + hundredths / 100;
+// function addAnonymousToLeaderboard() {
+//   const finalTime = minutes * 60 + seconds + hundredths / 100;
 
-  const newEntry = {
-    name: "Mx. Anonymous",
-    time: finalTime,
-    display: timerDisplay.textContent,
-  };
+//   const newEntry = {
+//     name: "Mx. Anonymous",
+//     time: finalTime,
+//     display: timerDisplay.textContent,
+//   };
 
-  leaderboard.unshift(newEntry);
-  leaderboard.sort((a, b) => a.time - b.time);
+//   leaderboard.unshift(newEntry);
+//   leaderboard.sort((a, b) => a.time - b.time);
 
-  localStorage.setItem(
-    "mr_men_memory_leaderboard",
-    JSON.stringify(leaderboard)
-  );
-}
+//   localStorage.setItem(
+//     "mr_men_memory_leaderboard",
+//     JSON.stringify(leaderboard)
+//   );
+// }
 
 // submitLeaderboardEntryForm.addEventListener("Submit", (event) => {
 //   event.preventDefault();
