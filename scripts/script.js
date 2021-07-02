@@ -232,11 +232,6 @@
     bounceCards();
 
     timerButton.innerText = "START";
-
-    localStorage.setItem(
-      "mr_men_memory_leaderboard",
-      JSON.stringify(leaderboard)
-    );
   };
 
   const startGame = () => {
@@ -425,7 +420,7 @@
       finishGameViewTryAgain.classList.add("hidden");
       setTimeout(() => {
         resetGame();
-      }, 200);
+      }, 400);
     }
   });
 
@@ -458,9 +453,12 @@
     leaderboard.unshift(newEntry);
     leaderboard.sort((a, b) => a.time - b.time);
 
-    finishGameViewAddToLeaderboard.classList.add("slide-out-top");
+    localStorage.setItem(
+      "mr_men_memory_leaderboard",
+      JSON.stringify(leaderboard)
+    );
 
-    // local storage is synchrounous. Maybe break out this and run in background
+    finishGameViewAddToLeaderboard.classList.add("slide-out-top");
   });
 
   finishGameViewAddToLeaderboard.addEventListener("animationend", function () {
@@ -472,7 +470,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
       setTimeout(() => {
         resetGame();
-      }, 200);
+      }, 400);
     }
   });
 
