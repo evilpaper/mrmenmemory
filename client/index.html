@@ -17,9 +17,7 @@
   </head>
 
   <body>
-    <noscript>
-      You need to enable JavaScript to run this game.
-    </noscript>
+    <noscript> You need to enable JavaScript to run this game. </noscript>
     <div class="header">
       <button class="button button--open-leaderboard" name="leaderboard">
         LEADERS
@@ -33,40 +31,69 @@
     </div>
     <section class="finished-game-overlay hidden" id="finish-game__one">
       <article class="finish-game-modal">
-        <form action="#" class="add-to-leaderboard__form" id="add-to-leaderboard__form">   
-          <p class="finish-message__time" id="finish-game__one--time">Your time</p>
-          <input name="name" type="text" class="add-to-leaderboard__player-name-input" placeholder="Mx. Anonymous" maxlength="24"/>
+        <form
+          action="#"
+          class="add-to-leaderboard__form"
+          id="add-to-leaderboard__form"
+        >
+          <p class="finish-message__time" id="finish-game__one--time">
+            Your time
+          </p>
+          <input
+            name="name"
+            type="text"
+            class="add-to-leaderboard__player-name-input"
+            placeholder="Mx. Anonymous"
+            maxlength="24"
+          />
           <p class="finish-message__copy">Congratulations!</p>
-          <p class="finish-message__copy">Enter your nickname to submit your time.</p>
-          <button type="submit" class="button button--close-finish-game" id="finish-game__one-button"/>DONE</button>
+          <p class="finish-message__copy">
+            Enter your nickname to submit your time.
+          </p>
+          <button
+            type="submit"
+            class="button button--close-finish-game"
+            id="finish-game__one-button"
+          >
+            DONE
+          </button>
         </form>
       </article>
     </section>
     <section class="finished-game-overlay hidden" id="finish-game__two">
       <article class="finish-game-modal">
-        <p class="finish-message__time" id="finish-game__two--time">Your time</p>
+        <p class="finish-message__time" id="finish-game__two--time">
+          Your time
+        </p>
         <p class="finish-message__copy">Well done.</p>
-        <p class="finish-message__copy">Keep trying to reach the leaderboard.</p>
-        <button class="button button--close-finish-game" id="finish-game__two-button">CLOSE</buttton>
+        <p class="finish-message__copy">
+          Keep trying to reach the leaderboard.
+        </p>
+        <button
+          class="button button--close-finish-game"
+          id="finish-game__two-button"
+        >
+          CLOSE
+        </button>
       </article>
     </section>
     <section class="leaderboard-overlay hidden">
       <div class="leaderboard__board">
         <h1 class="leaderboard__header">Leaderboard</h1>
         <div class="leaderboard__options">
-          <button class="option option-universal">Universal</button>
-          <button class="option option-this-computer option-selected">This device</button>
+          <button class="option option-universal option-selected">
+            All time
+          </button>
         </div>
         <ol class="leaderboard__list"></ol>
         <button class="button button--close-leaderboard">Close</button>
       </div>
     </section>
-    <section class="board">
-    </section>
+    <section class="board"></section>
     <footer>
       <a href="https://www.mrmen.com/">
         <div class="logo">
-          <img src="./images/logo.png"/>
+          <img src="./images/logo.png" />
         </div>
       </a>
     </footer>
