@@ -20,9 +20,7 @@
 
   const timerDisplay = document.querySelector(".time");
 
-  const leaderboard = localStorage.getItem("mr_men_memory_leaderboard")
-    ? JSON.parse(localStorage.getItem("mr_men_memory_leaderboard"))
-    : STARTING_LEADERBOARD;
+  const leaderboard = STARTING_LEADERBOARD;
 
   const universalLeaderboard = UNIVERSAL_LEADERBOARD;
 
@@ -110,15 +108,7 @@
     leaderboardList.innerHTML = "";
     const type = document.querySelector(".option-selected");
 
-    if (type.classList.contains("option-this-computer")) {
-      for (let index = 0; index <= 9; index++) {
-        const entry = leaderboard[index];
-        const listItem = document.createElement("li");
-        listItem.classList.add("leaderboard__list-item");
-        listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
-        leaderboardList.appendChild(listItem);
-      }
-    } else if (type.classList.contains("option-universal")) {
+    if (type.classList.contains("option-universal")) {
       for (let index = 0; index <= 9; index++) {
         const entry = universalLeaderboard[index];
         const listItem = document.createElement("li");
@@ -453,10 +443,10 @@
     leaderboard.unshift(newEntry);
     leaderboard.sort((a, b) => a.time - b.time);
 
-    localStorage.setItem(
-      "mr_men_memory_leaderboard",
-      JSON.stringify(leaderboard)
-    );
+    // localStorage.setItem(
+    //   "mr_men_memory_leaderboard",
+    //   JSON.stringify(leaderboard)
+    // );
 
     finishGameViewAddToLeaderboard.classList.add("slide-out-top");
   });
