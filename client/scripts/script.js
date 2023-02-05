@@ -106,16 +106,13 @@
 
   const populateLeaderboard = () => {
     leaderboardList.innerHTML = "";
-    const type = document.querySelector(".option-selected");
 
-    if (type.classList.contains("option-universal")) {
-      for (let index = 0; index <= 9; index++) {
-        const entry = universalLeaderboard[index];
-        const listItem = document.createElement("li");
-        listItem.classList.add("leaderboard__list-item");
-        listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
-        leaderboardList.appendChild(listItem);
-      }
+    for (let index = 0; index <= 9; index++) {
+      const entry = universalLeaderboard[index];
+      const listItem = document.createElement("li");
+      listItem.classList.add("leaderboard__list-item");
+      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
+      leaderboardList.appendChild(listItem);
     }
   };
 
