@@ -34,13 +34,12 @@ body {
 footer {
   position: absolute;
   bottom: 0;
+  left: 0;
   padding: 1.6em;
   text-align: center;
   width: 100%;
-  /* background: #ffd100; */
   font-size: 0.8em;
   color: #222222;
-  /* z-index: -1; */
 }
 
 button,
@@ -81,7 +80,7 @@ a {
 }
 
 .logo img {
-  width: 12em;
+  width: 14em;
   height: auto;
 }
 
@@ -482,9 +481,9 @@ TABLET PORTRAIT
 */
 
 @media (max-width: 900px) {
-  .logo img,
-  .made-by img {
-    width: 8em;
+  body {
+    flex-direction: column-reverse;
+    justify-content: space-between;
   }
   .board {
     grid-template-columns: 21vw 21vw 21vw 21vw;
@@ -499,7 +498,17 @@ TABLET PORTRAIT
     height: 100%;
   }
   footer {
-    font-size: 0.6em;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .logo {
+    position: static;
+    display: grid;
+    place-items: center;
+  }
+  .logo img {
+    width: 12em;
   }
 }
 
