@@ -118,7 +118,7 @@
 
   const createLeaderboardEntry = (name, time) => {
     return `
-        <span class="list-item__name">${name}</span>
+        <span class="list-item__name"><span>${name}</span></span>
         <span class="list-item__time">${time}</span>
     `;
   };
