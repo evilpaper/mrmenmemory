@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900");
 
+@font-face {
+  font-family: "DS DIGIT";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("DS DIGIT"), local("DS-DIGIT"),
+    url("../fonts/DS-DIGIT.woff2") format("woff2");
+}
+
 :root {
   --background-color: hsl(49, 100%, 50%);
   --shadow-color: 49deg 90% 26%;
@@ -343,7 +352,6 @@ ul {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 1.6em;
   border-bottom: 4px solid black;
 }
 
@@ -388,6 +396,10 @@ ul {
   white-space: nowrap;
 }
 
+.list-item__name span {
+  vertical-align: sub;
+}
+
 .list-item__name span:after {
   content: " ................................................................................ ";
 }
@@ -395,6 +407,8 @@ ul {
 .list-item__time {
   text-align: right;
   margin-left: 0.2rem;
+  font-family: "DS DIGIT", sans-serif;
+  font-size: 1.8rem;
 }
 
 .add-to-leaderboard__form {
@@ -516,6 +530,9 @@ TABLET PORTRAIT
   }
   .logo img {
     width: 10em;
+  }
+  .list-item__time {
+    font-size: 1.2rem;
   }
 }
 
