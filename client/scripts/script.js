@@ -22,8 +22,6 @@
 
   const leaderboard = STARTING_LEADERBOARD;
 
-  const universalLeaderboard = UNIVERSAL_LEADERBOARD;
-
   const punch = document.querySelector(".punch");
   const zap = document.querySelector(".zap");
   const bell = document.querySelector(".bell");
@@ -41,10 +39,11 @@
   let minutes = 0;
   let seconds = 0;
   let hundredths = 0;
-  let timer; // Create a handle for setInterval. setInterval sets up a recurring timer. It returns a handle that you can pass into clearInterval to stop it from firing.
+  // Create a handle for setInterval. setInterval sets up a recurring timer.
+  // It returns a handle that you can pass into clearInterval to stop it from firing.
+  let timer;
 
   // Adjust view port height to account for mobile browser navigation
-
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 
@@ -108,7 +107,7 @@
     leaderboardList.innerHTML = "";
 
     for (let index = 0; index <= 9; index++) {
-      const entry = universalLeaderboard[index];
+      const entry = leaderboard[index];
       const listItem = document.createElement("li");
       listItem.classList.add("leaderboard__list-item");
       listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
@@ -431,6 +430,8 @@
       ? addToLeaderboardForm.elements["name"].value
       : "Mx. Anonymous";
 
+    console.log("name: ", name);
+
     const newEntry = {
       name: name,
       time: finalTime,
@@ -439,6 +440,8 @@
 
     leaderboard.unshift(newEntry);
     leaderboard.sort((a, b) => a.time - b.time);
+
+    console.log("leaderboard: ", leaderboard);
 
     // localStorage.setItem(
     //   "mr_men_memory_leaderboard",
@@ -457,6 +460,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
       setTimeout(() => {
         resetGame();
+        // Should be restart game
       }, 400);
     }
   });
