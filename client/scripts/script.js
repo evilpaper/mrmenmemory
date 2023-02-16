@@ -42,6 +42,7 @@
   // Create a handle for setInterval. setInterval sets up a recurring timer.
   // It returns a handle that you can pass into clearInterval to stop it from firing.
   let timer;
+  let addToLeaderboard = false;
 
   // Adjust view port height to account for mobile browser navigation
   let vh = window.innerHeight * 0.01;
@@ -127,6 +128,7 @@
 
     if (finsihTimeInSeconds < timeNeededForLeaderboard) {
       finishGameViewAddToLeaderboardTime.innerText = finishTimeAsString;
+      addToLeaderboard = true;
       showFinishGameViewAddToLeaderboard();
     } else {
       finishGameViewTryAgainTime.innerText = finishTimeAsString;
@@ -378,6 +380,12 @@
     if (leaderboardBoard.classList.contains("slide-out-top")) {
       leaderboardBoard.classList.remove("slide-out-top");
       leaderboardView.classList.add("hidden");
+      if (addToLeaderboard) {
+        addToLeaderboard = false;
+        setTimeout(() => {
+          resetGame(); // Maybe call restart game instead. Reset sound hard.
+        }, 400);
+      }
     }
   });
 
@@ -423,14 +431,12 @@
     }
   });
 
-  addToLeaderboardForm.addEventListener("submit", function (e) {
-    e.preventDefault;
+  addToLeaderboardForm.addEventListener("submit", function (event) {
+    event.preventDefault();
     const finalTime = minutes * 60 + seconds + hundredths / 100;
     const name = addToLeaderboardForm.elements["name"].value
       ? addToLeaderboardForm.elements["name"].value
       : "Mx. Anonymous";
-
-    console.log("name: ", name);
 
     const newEntry = {
       name: name,
@@ -440,8 +446,6 @@
 
     leaderboard.unshift(newEntry);
     leaderboard.sort((a, b) => a.time - b.time);
-
-    console.log("leaderboard: ", leaderboard);
 
     // localStorage.setItem(
     //   "mr_men_memory_leaderboard",
@@ -458,10 +462,11 @@
     if (finishGameViewAddToLeaderboard.classList.contains("slide-out-top")) {
       finishGameViewAddToLeaderboard.classList.remove("slide-out-top");
       finishGameViewAddToLeaderboard.classList.add("hidden");
-      setTimeout(() => {
-        resetGame();
-        // Should be restart game
-      }, 400);
+
+      // Show leaderboard
+      populateLeaderboard();
+      leaderboardView.classList.remove("hidden");
+      leaderboardBoard.classList.add("bounce-in-top");
     }
   });
 
