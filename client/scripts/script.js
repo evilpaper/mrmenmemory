@@ -423,8 +423,8 @@
     }
   });
 
-  addToLeaderboardForm.addEventListener("submit", function (e) {
-    e.preventDefault;
+  addToLeaderboardForm.addEventListener("submit", function (event) {
+    event.preventDefault();
     const finalTime = minutes * 60 + seconds + hundredths / 100;
     const name = addToLeaderboardForm.elements["name"].value
       ? addToLeaderboardForm.elements["name"].value
@@ -452,6 +452,7 @@
   });
 
   finishGameViewAddToLeaderboard.addEventListener("animationend", function () {
+    console.log("Animation ended");
     if (finishGameViewAddToLeaderboard.classList.contains("bounce-in-top")) {
       finishGameViewAddToLeaderboard.classList.remove("bounce-in-top");
     }
