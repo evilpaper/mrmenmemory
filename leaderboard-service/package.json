@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "npx nodemon"
+    "build": "npx tsc",
+    "start": "node build/server.js",
+    "serve": "npx nodemon"
   },
   "keywords": [],
   "author": "The Evil Paper",

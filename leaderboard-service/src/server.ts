@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.get("/", (req, res) => {
-  res.send("MR MEN MEMORY LEADERBOARD SERVICE");
+  res.send("MR MEN MEMORY LEADERBOARD SERVICE!");
 });
 
 app.listen(port, () => {
