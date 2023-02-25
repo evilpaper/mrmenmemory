@@ -32,7 +32,7 @@ dotenv.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.get("/", (req, res) => {
-    res.send("MR MEN MEMORY LEADERBOARD SERVICE");
+    res.send("MR MEN MEMORY LEADERBOARD SERVICE!");
 });
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
