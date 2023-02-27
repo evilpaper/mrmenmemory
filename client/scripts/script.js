@@ -20,7 +20,17 @@
 
   const timerDisplay = document.querySelector(".time");
 
-  const leaderboard = STARTING_LEADERBOARD;
+  async function getLeaderboard() {
+    const response = await fetch("http://localhost:8080/leaderboard");
+    return response.json();
+  }
+
+  getLeaderboard()
+    .then((result) => {
+      console.log(result);
+      populateLeaderboard(result);
+    })
+    .catch((error) => console.log(error));
 
   const punch = document.querySelector(".punch");
   const zap = document.querySelector(".zap");
@@ -104,14 +114,14 @@
     applyBounce(timerDisplay);
   };
 
-  const populateLeaderboard = () => {
+  const populateLeaderboard = (leaderboard) => {
     leaderboardList.innerHTML = "";
 
     for (let index = 0; index <= 9; index++) {
       const entry = leaderboard[index];
       const listItem = document.createElement("li");
       listItem.classList.add("leaderboard__list-item");
-      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.display);
+      listItem.innerHTML = createLeaderboardEntry(entry.name, entry.time);
       leaderboardList.appendChild(listItem);
     }
   };
@@ -304,7 +314,7 @@
     );
   };
 
-  populateLeaderboard();
+  // populateLeaderboard();
 
   board.addEventListener(
     "touchstart",
@@ -355,7 +365,7 @@
 
   leaderboardOpenButton.addEventListener("click", function (event) {
     this.classList.add("apply-push");
-    populateLeaderboard();
+    // populateLeaderboard();
     leaderboardView.classList.remove("hidden");
     leaderboardBoard.classList.add("bounce-in-top");
   });
@@ -398,7 +408,7 @@
       });
 
       event.target.classList.add("option-selected");
-      populateLeaderboard();
+      // populateLeaderboard();
     }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
@@ -464,7 +474,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
 
       // Show leaderboard
-      populateLeaderboard();
+      // populateLeaderboard();
       leaderboardView.classList.remove("hidden");
       leaderboardBoard.classList.add("bounce-in-top");
     }
