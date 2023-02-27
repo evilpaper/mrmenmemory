@@ -4,11 +4,13 @@ dotenv.config();
 
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import { getLeaderboard, addLeaderboardEntry } from "./queries";
 
 const app = express();
 const port = process.env.SERVER_PORT;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
