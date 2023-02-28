@@ -28,7 +28,7 @@
   getLeaderboard()
     .then((result) => {
       console.log(result);
-      populateLeaderboard(result);
+      renderLeaderboard(result);
     })
     .catch((error) => console.log(error));
 
@@ -114,7 +114,7 @@
     applyBounce(timerDisplay);
   };
 
-  const populateLeaderboard = (leaderboard) => {
+  const renderLeaderboard = (leaderboard) => {
     leaderboardList.innerHTML = "";
 
     for (let index = 0; index <= 9; index++) {
@@ -314,7 +314,7 @@
     );
   };
 
-  // populateLeaderboard();
+  // renderLeaderboard();
 
   board.addEventListener(
     "touchstart",
@@ -365,7 +365,6 @@
 
   leaderboardOpenButton.addEventListener("click", function (event) {
     this.classList.add("apply-push");
-    // populateLeaderboard();
     leaderboardView.classList.remove("hidden");
     leaderboardBoard.classList.add("bounce-in-top");
   });
@@ -400,16 +399,17 @@
   });
 
   leaderboardView.addEventListener("click", function (event) {
-    if (event.target.classList.contains("option")) {
-      const options = document.querySelectorAll(".option");
+    // Options are removed
+    // if (event.target.classList.contains("option")) {
+    //   const options = document.querySelectorAll(".option");
 
-      options.forEach((item) => {
-        item.classList.remove("option-selected");
-      });
+    //   options.forEach((item) => {
+    //     item.classList.remove("option-selected");
+    //   });
 
-      event.target.classList.add("option-selected");
-      // populateLeaderboard();
-    }
+    //   event.target.classList.add("option-selected");
+    //   // renderLeaderboard();
+    // }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
     }
@@ -474,7 +474,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
 
       // Show leaderboard
-      // populateLeaderboard();
+      renderLeaderboard();
       leaderboardView.classList.remove("hidden");
       leaderboardBoard.classList.add("bounce-in-top");
     }
