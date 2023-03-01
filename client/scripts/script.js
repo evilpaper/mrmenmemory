@@ -30,7 +30,10 @@
       console.log(result);
       renderLeaderboard(result);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      renderFailedToFetch();
+    });
 
   const punch = document.querySelector(".punch");
   const zap = document.querySelector(".zap");
@@ -114,7 +117,19 @@
     applyBounce(timerDisplay);
   };
 
+  const renderFailedToFetch = () => {
+    leaderboardList.classList.add("failed-to-fetch");
+    leaderboardList.innerHTML = `
+      <div">
+        <h1 class="failed-to-fetch">Ouch, couldn't load the leaderboard!</h1>
+        <p class="failed-to-fetch">An email has been sent to Mr. Webmaster.</p>
+        <p class="failed-to-fetch">Should be up and running again in no time.</p>
+      </div>
+    `;
+  };
+
   const renderLeaderboard = (leaderboard) => {
+    leaderboardList.classList.remove("failed-to-fetch");
     leaderboardList.innerHTML = "";
 
     for (let index = 0; index <= 9; index++) {

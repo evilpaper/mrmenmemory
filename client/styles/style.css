@@ -373,7 +373,13 @@ ul {
   width: 100%;
 }
 
-.leaderboard__list-item {
+.leaderboard__list.failed-to-fetch {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.leaderboard__list .leaderboard__list-item {
   list-style: none;
   font-weight: 700;
   display: flex;
@@ -389,6 +395,14 @@ ul {
   font-weight: 900;
   font-size: 1.4em;
   width: 8%;
+}
+
+.failed-to-fetch-container {
+  flex: 1;
+}
+
+.failed-to-fetch {
+  text-align: center;
 }
 
 .button--close-leaderboard {
