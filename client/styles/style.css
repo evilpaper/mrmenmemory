@@ -344,6 +344,12 @@ ul {
   font-size: 2em;
   width: 100%;
   text-transform: uppercase;
+  text-align: center;
+}
+
+.leaderboard__subheader {
+  font-weight: 700;
+  width: 100%;
   padding-bottom: 0.4em;
   text-align: center;
 }
@@ -367,7 +373,13 @@ ul {
   width: 100%;
 }
 
-.leaderboard__list-item {
+.leaderboard__list.failed-to-fetch {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.leaderboard__list .leaderboard__list-item {
   list-style: none;
   font-weight: 700;
   display: flex;
@@ -383,6 +395,14 @@ ul {
   font-weight: 900;
   font-size: 1.4em;
   width: 8%;
+}
+
+.failed-to-fetch-container {
+  flex: 1;
+}
+
+.failed-to-fetch {
+  text-align: center;
 }
 
 .button--close-leaderboard {
@@ -547,7 +567,7 @@ PHONES
     font-size: 0.6em;
   }
   .leaderboard__board {
-    padding: 1em;
+    padding: 1.4em;
     padding-bottom: 2em;
     width: 90vw;
     height: auto;

@@ -28,9 +28,12 @@
   getLeaderboard()
     .then((result) => {
       console.log(result);
-      populateLeaderboard(result);
+      renderLeaderboard(result);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      renderFailedToFetch();
+    });
 
   const punch = document.querySelector(".punch");
   const zap = document.querySelector(".zap");
@@ -114,7 +117,19 @@
     applyBounce(timerDisplay);
   };
 
-  const populateLeaderboard = (leaderboard) => {
+  const renderFailedToFetch = () => {
+    leaderboardList.classList.add("failed-to-fetch");
+    leaderboardList.innerHTML = `
+      <div">
+        <h1 class="failed-to-fetch">Ouch, couldn't load the leaderboard!</h1>
+        <p class="failed-to-fetch">An email has been sent to Mr. Webmaster.</p>
+        <p class="failed-to-fetch">Should be up and running again in no time.</p>
+      </div>
+    `;
+  };
+
+  const renderLeaderboard = (leaderboard) => {
+    leaderboardList.classList.remove("failed-to-fetch");
     leaderboardList.innerHTML = "";
 
     for (let index = 0; index <= 9; index++) {
@@ -314,7 +329,7 @@
     );
   };
 
-  // populateLeaderboard();
+  // renderLeaderboard();
 
   board.addEventListener(
     "touchstart",
@@ -365,7 +380,6 @@
 
   leaderboardOpenButton.addEventListener("click", function (event) {
     this.classList.add("apply-push");
-    // populateLeaderboard();
     leaderboardView.classList.remove("hidden");
     leaderboardBoard.classList.add("bounce-in-top");
   });
@@ -400,16 +414,17 @@
   });
 
   leaderboardView.addEventListener("click", function (event) {
-    if (event.target.classList.contains("option")) {
-      const options = document.querySelectorAll(".option");
+    // Options are removed
+    // if (event.target.classList.contains("option")) {
+    //   const options = document.querySelectorAll(".option");
 
-      options.forEach((item) => {
-        item.classList.remove("option-selected");
-      });
+    //   options.forEach((item) => {
+    //     item.classList.remove("option-selected");
+    //   });
 
-      event.target.classList.add("option-selected");
-      // populateLeaderboard();
-    }
+    //   event.target.classList.add("option-selected");
+    //   // renderLeaderboard();
+    // }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
     }
@@ -474,7 +489,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
 
       // Show leaderboard
-      // populateLeaderboard();
+      renderLeaderboard();
       leaderboardView.classList.remove("hidden");
       leaderboardBoard.classList.add("bounce-in-top");
     }
