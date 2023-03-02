@@ -25,9 +25,10 @@
     return response.json();
   }
 
+  // Render leaderboard on first load. Leaderboard is hidden from start so nothing will be
+  // visible but it's good to have it prepared.
   getLeaderboard()
     .then((result) => {
-      console.log(result);
       renderLeaderboard(result);
     })
     .catch((error) => {
@@ -379,6 +380,14 @@
   });
 
   leaderboardOpenButton.addEventListener("click", function (event) {
+    getLeaderboard()
+      .then((result) => {
+        renderLeaderboard(result);
+      })
+      .catch((error) => {
+        console.log(error);
+        renderFailedToFetch();
+      });
     this.classList.add("apply-push");
     leaderboardView.classList.remove("hidden");
     leaderboardBoard.classList.add("bounce-in-top");
