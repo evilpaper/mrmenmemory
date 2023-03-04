@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
 app.get("/leaderboard", getLeaderboard);
 app.post("/leaderboard", addLeaderboardEntry);
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.listen(port || 8080, () => {
+  console.log(`[server]: Server running and listen for port ${port}`);
 });
