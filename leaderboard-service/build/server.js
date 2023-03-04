@@ -26,14 +26,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+// .env needs to be first
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
+const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const cors_1 = __importDefault(require("cors"));
+const queries_1 = require("./queries");
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
+app.use((0, cors_1.default)());
+app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
-    res.send("MR MEN MEMORY LEADERBOARD SERVICE!");
+    res.send("MR MEN MEMORY LEADERBOARD SERVICE");
 });
-app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
+app.get("/leaderboard", queries_1.getLeaderboard);
+app.post("/leaderboard", queries_1.addLeaderboardEntry);
+app.listen(port || 8080, () => {
+    console.log(`[server]: Server running and listen for port ${port}`);
 });
