@@ -6,6 +6,8 @@
   const leaderboardBoard = $(".leaderboard__board");
   const leaderboardList = $(".leaderboard__list");
 
+  let leaderboard = [];
+
   const finishGameViewAddToLeaderboard = $("#finish-game__one");
   const finishGameViewAddToLeaderboardTime = $("#finish-game__one--time");
   const addToLeaderboardForm = $("#add-to-leaderboard__form");
@@ -25,11 +27,24 @@
     return response.json();
   }
 
-  // Render leaderboard on first load. Leaderboard is hidden from start so nothing will be
-  // visible but it's good to have it prepared.
+  async function postLeaderboardEntry(entryData) {
+    const respone = await fetch("http://localhost:8080/leaderboard", {
+      method: "POST",
+      body: JSON.stringify(entryData),
+      headers: new Headers({
+        "Content-Type": "application/json; charset=UTF-8",
+      }),
+    });
+    return respone.json;
+  }
+
+  // Render leaderboard on first load.
+  // Leaderboard is hidden from start so nothing will be visible.
+  // But it's good to have it prepared.
   getLeaderboard()
     .then((result) => {
       renderLeaderboard(result);
+      leaderboard = result;
     })
     .catch((error) => {
       console.log(error);
@@ -143,14 +158,23 @@
   };
 
   const createLeaderboardEntry = (name, time) => {
+    const minutes = Math.floor(time / 60);
+    const decimalSeconds = time % 60;
+    const seconds = Math.floor(decimalSeconds);
+    const hundredths = Math.floor(decimalSeconds * 100) % 100;
+
+    const paddedMinutes = minutes.toString().padStart(2, "0");
+    const paddedSeconds = seconds.toString().padStart(2, "0");
+    const paddedHundredth = hundredths.toString().padStart(2, "0");
+
     return `
-        <span class="list-item__name"><span>${name}</span></span>
-        <span class="list-item__time">${time}</span>
+      <span class="list-item__name"><span>${name}</span></span>
+      <span class="list-item__time">${paddedMinutes}:${paddedSeconds}:${paddedHundredth}</span>
     `;
   };
 
   const handleFinishGame = (finsihTimeInSeconds, finishTimeAsString) => {
-    const timeNeededForLeaderboard = leaderboard[9].time;
+    const timeNeededForLeaderboard = leaderboard[9]?.time;
 
     if (finsihTimeInSeconds < timeNeededForLeaderboard) {
       finishGameViewAddToLeaderboardTime.innerText = finishTimeAsString;
@@ -277,8 +301,6 @@
     card.parentNode.classList.add("selected");
   };
 
-  const flipBack = (card) => {};
-
   const updateGameState = (activeCard) => {
     if (activeCards < 2) {
       whoosh.play();
@@ -329,8 +351,6 @@
       thing.parentNode.classList.contains("match")
     );
   };
-
-  // renderLeaderboard();
 
   board.addEventListener(
     "touchstart",
@@ -416,7 +436,7 @@
       if (addToLeaderboard) {
         addToLeaderboard = false;
         setTimeout(() => {
-          resetGame(); // Maybe call restart game instead. Reset sound hard.
+          resetGame();
         }, 400);
       }
     }
@@ -472,15 +492,32 @@
       ? addToLeaderboardForm.elements["name"].value
       : "Mx. Anonymous";
 
-    const newEntry = {
-      name: name,
-      time: finalTime,
-      display: timerDisplay.textContent,
+    // WORK IN PROGRESS
+    // Thinking about using time in seconds instead.
+    // Both in database and front end.
+    // Makes sorting and stuff easier.
+
+    const playerName = name;
+    const playerTime = finalTime;
+    const playerDate = new Date().toISOString();
+    const entryData = {
+      name: playerName,
+      time: playerTime,
+      date: playerDate,
     };
 
-    leaderboard.unshift(newEntry);
+    postLeaderboardEntry(entryData)
+      .then((response) => {
+        // updateUserInterface();
+        console.log("Datbase updated");
+        console.log("response: ", response);
+      })
+      .catch((error) => console.log(error));
+
+    leaderboard.unshift(entryData);
     leaderboard.sort((a, b) => a.time - b.time);
 
+    // Remove all local storage stuff
     // localStorage.setItem(
     //   "mr_men_memory_leaderboard",
     //   JSON.stringify(leaderboard)
@@ -498,7 +535,7 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
 
       // Show leaderboard
-      renderLeaderboard();
+      renderLeaderboard(leaderboard);
       leaderboardView.classList.remove("hidden");
       leaderboardBoard.classList.add("bounce-in-top");
     }
