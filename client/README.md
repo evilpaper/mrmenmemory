@@ -4,4 +4,4 @@
 
 This is the client part of Mr Men Memory Match.
 
-The client can be ran standalone.
+The client can ran standalone.

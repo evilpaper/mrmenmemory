@@ -43,6 +43,6 @@ app.get("/", (req, res) => {
 });
 app.get("/leaderboard", queries_1.getLeaderboard);
 app.post("/leaderboard", queries_1.addLeaderboardEntry);
-app.listen(port || 8080, () => {
+app.listen({ port: port || "8080", host: "0.0.0.0" }, () => {
     console.log(`[server]: Server running and listen for port ${port}`);
 });
