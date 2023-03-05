@@ -23,12 +23,12 @@
   const timerDisplay = document.querySelector(".time");
 
   async function getLeaderboard() {
-    const response = await fetch("http://localhost:8080/leaderboard");
+    const response = await fetch("https://shy-dust-6797.fly.dev/leaderboard");
     return response.json();
   }
 
   async function postLeaderboardEntry(entryData) {
-    const respone = await fetch("http://localhost:8080/leaderboard", {
+    const respone = await fetch("https://shy-dust-6797.fly.dev/leaderboard", {
       method: "POST",
       body: JSON.stringify(entryData),
       headers: new Headers({
