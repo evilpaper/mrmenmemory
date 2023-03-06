@@ -1,6 +1,9 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
+  // Change this to production endpoint when deploying for production
+  const LEADERBOARD_SERVICE_URL = "http://localhost:8080/leaderboard";
+
   const board = $(".board");
   const leaderboardView = $(".leaderboard-overlay");
   const leaderboardBoard = $(".leaderboard__board");
@@ -23,12 +26,12 @@
   const timerDisplay = document.querySelector(".time");
 
   async function getLeaderboard() {
-    const response = await fetch("https://shy-dust-6797.fly.dev/leaderboard");
+    const response = await fetch(LEADERBOARD_SERVICE_URL);
     return response.json();
   }
 
   async function postLeaderboardEntry(entryData) {
-    const respone = await fetch("https://shy-dust-6797.fly.dev/leaderboard", {
+    const respone = await fetch(LEADERBOARD_SERVICE_URL, {
       method: "POST",
       body: JSON.stringify(entryData),
       headers: new Headers({

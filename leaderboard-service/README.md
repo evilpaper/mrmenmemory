@@ -4,4 +4,4 @@
 
 This is the backend part of Mr Men Memory Match.
 
-Basically a micro-service for storeing and retreiving best times.
+Basically a micro-service for storing and retreiving best times.
