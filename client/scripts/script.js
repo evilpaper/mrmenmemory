@@ -1,7 +1,6 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
-  // Change this to production endpoint when deploying for production
   const LEADERBOARD_SERVICE_URL = "http://localhost:8080/leaderboard";
 
   const board = $(".board");
