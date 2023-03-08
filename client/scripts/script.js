@@ -376,6 +376,14 @@
       const activeCard = event.target;
       if (timerDisplay.textContent === "00:00:00") {
         startGame();
+        // Get a fresh copy of the leaderboard
+        getLeaderboard()
+          .then((result) => {
+            leaderboard = result;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       updateGameState(activeCard);
     },
@@ -405,6 +413,7 @@
     getLeaderboard()
       .then((result) => {
         renderLeaderboard(result);
+        leaderboard = result;
       })
       .catch((error) => {
         console.log(error);
@@ -511,13 +520,15 @@
     postLeaderboardEntry(entryData)
       .then((response) => {
         // updateUserInterface();
-        console.log("Datbase updated");
+        console.log("Database updated");
         console.log("response: ", response);
       })
       .catch((error) => console.log(error));
 
     leaderboard.unshift(entryData);
     leaderboard.sort((a, b) => a.time - b.time);
+
+    addToLeaderboardForm.elements["name"].value = " ";
 
     // Remove all local storage stuff
     // localStorage.setItem(
