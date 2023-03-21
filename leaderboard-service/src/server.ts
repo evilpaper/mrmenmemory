@@ -5,7 +5,12 @@ dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { getLeaderboard, addLeaderboardEntry } from "./queries";
+import {
+  getAllTime,
+  getLastWeek,
+  getToday,
+  addLeaderboardEntry,
+} from "./queries";
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -18,7 +23,9 @@ app.get("/", (req, res) => {
   res.send("MR MEN MEMORY LEADERBOARD SERVICE");
 });
 
-app.get("/leaderboard", getLeaderboard);
+app.get("/alltime", getAllTime);
+app.get("/lastweek", getLastWeek);
+app.get("/today", getToday);
 app.post("/leaderboard", addLeaderboardEntry);
 
 app.listen({ port: port || "8080", host: "0.0.0.0" }, () => {
