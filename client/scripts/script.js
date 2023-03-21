@@ -1,7 +1,9 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
-  const LEADERBOARD_SERVICE_URL = "http://localhost:8080/leaderboard";
+  const LEADERBOARD_SERVICE_URL = "http://localhost:8080/alltime";
+  const LASTWEEK_URL = "http://localhost:8080/alltime";
+  const TODAY_URL = "http://localhost:8080/today";
 
   const board = $(".board");
   const leaderboardView = $(".leaderboard-overlay");
@@ -454,17 +456,16 @@
   });
 
   leaderboardView.addEventListener("click", function (event) {
-    // Options are removed
-    // if (event.target.classList.contains("option")) {
-    //   const options = document.querySelectorAll(".option");
+    if (event.target.classList.contains("option")) {
+      const options = document.querySelectorAll(".option");
 
-    //   options.forEach((item) => {
-    //     item.classList.remove("option-selected");
-    //   });
+      options.forEach((item) => {
+        item.classList.remove("option-selected");
+      });
 
-    //   event.target.classList.add("option-selected");
-    //   // renderLeaderboard();
-    // }
+      event.target.classList.add("option-selected");
+      // renderLeaderboard();
+    }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
     }
