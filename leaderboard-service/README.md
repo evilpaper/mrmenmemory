@@ -4,7 +4,7 @@
 
 This is the backend part of Mr Men Memory Match.
 
-Basically a micro-service for storing and retreiving best times.
+A micro-service for storing and retrieving best times.
 
 ## How to Install
 
@@ -19,7 +19,7 @@ Add environmental variables in a .env file with SERVER_PORT and a DATABASE_URL c
 
 - `npm run build` - Build the project by running the TypeScript complier
 - `npm run start` - Start the server in production
-- `npm run serve` - Start the server in devlopment
+- `npm run serve` - Start the server in devlelopment
 
 ## How to Deploy
 

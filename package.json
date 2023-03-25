@@ -1,0 +1,12 @@
+{
+  "name": "mr-men-memory-match",
+  "version": "1.0.0",
+  "description": "A Memory Match game for browsers. Comes with a persistend leaderboard.",
+  "scripts": {
+    "start:frontend": "cd client && serve",
+    "start:backend": "cd leaderboard-service && npx nodemon"
+  },
+  "keywords": [],
+  "author": "The Evil Paper",
+  "license": "ISC"
+}
