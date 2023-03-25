@@ -28,7 +28,6 @@ export const getLastWeek = async (request: Request, response: Response) => {
 };
 
 export const getToday = async (request: Request, response: Response) => {
-  // Check time zones here?
   const TODAY_FULL_DATE = new Date();
   const TODAY = TODAY_FULL_DATE.toISOString().split("T")[0];
 

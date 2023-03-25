@@ -1,8 +1,9 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
-  const LEADERBOARD_SERVICE_URL = "http://localhost:8080/alltime";
-  const LASTWEEK_URL = "http://localhost:8080/alltime";
+  const LEADERBOARD_URL = "http://localhost:8080/leaderboard";
+  const ALLTIME_URL = "http://localhost:8080/alltime";
+  const LASTWEEK_URL = "http://localhost:8080/lastweek";
   const TODAY_URL = "http://localhost:8080/today";
 
   const board = $(".board");
@@ -10,7 +11,12 @@
   const leaderboardBoard = $(".leaderboard__board");
   const leaderboardList = $(".leaderboard__list");
 
-  let leaderboard = [];
+  // We hold leaderboards in memory during the session.
+  const leaderboards = {
+    "All time": [],
+    "Last week": [],
+    Today: [],
+  };
 
   const finishGameViewAddToLeaderboard = $("#finish-game__one");
   const finishGameViewAddToLeaderboardTime = $("#finish-game__one--time");
@@ -24,15 +30,37 @@
   const leaderboardOpenButton = $(".button--open-leaderboard");
   const leaderboardCloseButton = $(".button--close-leaderboard");
 
-  const timerDisplay = document.querySelector(".time");
+  const fillerData = [
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+    { name: "Computer", time: "60.00" },
+  ];
+
+  const timerDisplay = $(".time");
+
+  const endpointLookup = {
+    "All time": ALLTIME_URL,
+    "Last week": LASTWEEK_URL,
+    Today: TODAY_URL,
+  };
 
   async function getLeaderboard() {
-    const response = await fetch(LEADERBOARD_SERVICE_URL);
-    return response.json();
+    const variant = $(".option-selected").innerHTML;
+    const endpoint = endpointLookup[variant];
+    const response = await fetch(endpoint);
+    const leaderboard = await response.json();
+    return { leaderboard, variant };
   }
 
   async function postLeaderboardEntry(entryData) {
-    const respone = await fetch(LEADERBOARD_SERVICE_URL, {
+    const respone = await fetch(LEADERBOARD_URL, {
       method: "POST",
       body: JSON.stringify(entryData),
       headers: new Headers({
@@ -42,18 +70,27 @@
     return respone.json;
   }
 
-  // Render leaderboard on first load.
-  // Leaderboard is hidden from start so nothing will be visible.
-  // But it's good to have it prepared.
-  getLeaderboard()
-    .then((result) => {
-      renderLeaderboard(result);
-      leaderboard = result;
-    })
-    .catch((error) => {
-      console.log(error);
-      renderFailedToFetch();
+  const fill = (leaderboard) => {
+    const padded = [...leaderboard, ...fillerData];
+    const sorted = padded.sort((a, b) => {
+      return a.time - b.time;
     });
+    return sorted.slice(0, 10);
+  };
+
+  // We populate leaderboards in memory so user can see it's name at least once if the make it to any leaderboard.
+  populateLeaderboards = async () => {
+    for (const variant in leaderboards) {
+      const endpoint = endpointLookup[variant];
+      const response = await fetch(endpoint);
+      const leaderboard = await response.json();
+      const presentable =
+        leaderboard.length < 10 ? fill(leaderboard) : leaderboard;
+      leaderboards[variant] = presentable;
+    }
+  };
+
+  populateLeaderboards();
 
   const punch = document.querySelector(".punch");
   const zap = document.querySelector(".zap");
@@ -87,13 +124,11 @@
   });
 
   // Shuffle deck
-
   const shuffleCards = (deck) => {
     return deck.sort(() => 0.5 - Math.random());
   };
 
   // Prepare the playing deck
-
   let playdeck = shuffleCards(cards).slice(0, 8);
   let deck = playdeck.concat(playdeck); // Two of each card
 
@@ -178,11 +213,47 @@
   };
 
   const handleFinishGame = (finsihTimeInSeconds, finishTimeAsString) => {
-    const timeNeededForLeaderboard = leaderboard[9]?.time;
+    // Check leaderboards here
+    const timeNeededForLeaderboard = [
+      leaderboards["All time"][9]?.time,
+      leaderboards["Last week"][9]?.time,
+      leaderboards["Today"][9]?.time,
+    ];
 
-    if (finsihTimeInSeconds < timeNeededForLeaderboard) {
-      finishGameViewAddToLeaderboardTime.innerText = finishTimeAsString;
+    let list = null;
+    if (finsihTimeInSeconds < timeNeededForLeaderboard[0]) {
+      list = "All time";
+    } else if (finsihTimeInSeconds < timeNeededForLeaderboard[1]) {
+      list = "Last week";
+    } else if (finsihTimeInSeconds < timeNeededForLeaderboard[2]) {
+      list = "Today";
+    }
+
+    if (list) {
+      // Update selected options based on list.
+      const options = document.querySelectorAll(".option");
+      options.forEach((item) => {
+        item.classList.remove("option-selected");
+      });
+      switch (list) {
+        case "All time":
+          const allTime = document.querySelector(".option-all-time");
+          allTime.classList.add("option-selected");
+          break;
+        case "Last week":
+          const lastWeekTime = document.querySelector(".option-last-week");
+          lastWeekTime.classList.add("option-selected");
+          break;
+        case "Today":
+          const today = document.querySelector(".option-today");
+          today.classList.add("option-selected");
+          break;
+        default:
+      }
+
+      // Forgot what this was for.
       addToLeaderboard = true;
+      finishGameViewAddToLeaderboardTime.innerText = finishTimeAsString;
       showFinishGameViewAddToLeaderboard();
     } else {
       finishGameViewTryAgainTime.innerText = finishTimeAsString;
@@ -327,7 +398,6 @@
           setTimeout(resetGuesses, 300);
           matchesCount++;
           if (matchesCount >= 8) {
-            // completeGame();
             stopTimer();
             const finsihTimeInSeconds =
               minutes * 60 + seconds + hundredths / 100;
@@ -378,14 +448,6 @@
       const activeCard = event.target;
       if (timerDisplay.textContent === "00:00:00") {
         startGame();
-        // Get a fresh copy of the leaderboard
-        getLeaderboard()
-          .then((result) => {
-            leaderboard = result;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
       }
       updateGameState(activeCard);
     },
@@ -413,9 +475,11 @@
 
   leaderboardOpenButton.addEventListener("click", function (event) {
     getLeaderboard()
-      .then((result) => {
-        renderLeaderboard(result);
-        leaderboard = result;
+      .then(({ leaderboard, variant }) => {
+        const presentable =
+          leaderboard.length < 10 ? fill(leaderboard) : leaderboard;
+        renderLeaderboard(presentable);
+        leaderboards[variant] = presentable;
       })
       .catch((error) => {
         console.log(error);
@@ -464,7 +528,18 @@
       });
 
       event.target.classList.add("option-selected");
-      // renderLeaderboard();
+
+      getLeaderboard()
+        .then(({ leaderboard, variant }) => {
+          const presentable =
+            leaderboard.length < 10 ? fill(leaderboard) : leaderboard;
+          renderLeaderboard(presentable);
+          leaderboards[variant] = presentable;
+        })
+        .catch((error) => {
+          console.log(error);
+          renderFailedToFetch();
+        });
     }
     if (event.target.classList.contains("leaderboard-overlay")) {
       leaderboardBoard.classList.add("slide-out-top");
@@ -504,11 +579,6 @@
       ? addToLeaderboardForm.elements["name"].value
       : "Mx. Anonymous";
 
-    // WORK IN PROGRESS
-    // Thinking about using time in seconds instead.
-    // Both in database and front end.
-    // Makes sorting and stuff easier.
-
     const playerName = name;
     const playerTime = finalTime;
     const playerDate = new Date().toISOString();
@@ -526,16 +596,12 @@
       })
       .catch((error) => console.log(error));
 
-    leaderboard.unshift(entryData);
-    leaderboard.sort((a, b) => a.time - b.time);
+    const variantElem = document.querySelector(".option-selected");
+    const variant = variantElem.innerHTML;
+    leaderboards[variant].unshift(entryData);
+    leaderboards[variant].sort((a, b) => a.time - b.time);
 
     addToLeaderboardForm.elements["name"].value = " ";
-
-    // Remove all local storage stuff
-    // localStorage.setItem(
-    //   "mr_men_memory_leaderboard",
-    //   JSON.stringify(leaderboard)
-    // );
 
     finishGameViewAddToLeaderboard.classList.add("slide-out-top");
   });
@@ -549,7 +615,10 @@
       finishGameViewAddToLeaderboard.classList.add("hidden");
 
       // Show leaderboard
-      renderLeaderboard(leaderboard);
+      // Get active option
+      const variantElem = document.querySelector(".option-selected");
+      const variant = variantElem.innerHTML;
+      renderLeaderboard(leaderboards[variant]);
       leaderboardView.classList.remove("hidden");
       leaderboardBoard.classList.add("bounce-in-top");
     }
