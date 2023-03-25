@@ -24,3 +24,10 @@ Add environmental variables in a .env file with SERVER_PORT and a DATABASE_URL c
 ## How to Deploy
 
 How you deploy your back end will largely depend on whether you want to host it on a rented cloud server (VPS) or a managed server (PaaS).
+
+I use Fly.io
+
+To deploy:
+
+- `npm run build` - Build the project
+- `flyctl deploy ` - Upload to fly.io. fly.io does the rest.

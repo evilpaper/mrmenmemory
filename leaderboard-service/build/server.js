@@ -41,7 +41,9 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.send("MR MEN MEMORY LEADERBOARD SERVICE");
 });
-app.get("/leaderboard", queries_1.getLeaderboard);
+app.get("/alltime", queries_1.getAllTime);
+app.get("/lastweek", queries_1.getLastWeek);
+app.get("/today", queries_1.getToday);
 app.post("/leaderboard", queries_1.addLeaderboardEntry);
 app.listen({ port: port || "8080", host: "0.0.0.0" }, () => {
     console.log(`[server]: Server running and listen on port ${port}`);
