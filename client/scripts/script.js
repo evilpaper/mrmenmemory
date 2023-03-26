@@ -1,10 +1,10 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
-  const LEADERBOARD_URL = "http://localhost:8080/leaderboard";
-  const ALLTIME_URL = "http://localhost:8080/alltime";
-  const LASTWEEK_URL = "http://localhost:8080/lastweek";
-  const TODAY_URL = "http://localhost:8080/today";
+  const LEADERBOARD_URL = "http://localhost:8000/leaderboard";
+  const ALLTIME_URL = "http://localhost:8000/alltime";
+  const LASTWEEK_URL = "http://localhost:8000/lastweek";
+  const TODAY_URL = "http://localhost:8000/today";
 
   const board = $(".board");
   const leaderboardView = $(".leaderboard-overlay");
