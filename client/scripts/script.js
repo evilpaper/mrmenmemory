@@ -1,10 +1,10 @@
 (function () {
   const $ = (x) => document.querySelector(x);
 
-  const LEADERBOARD_URL = "http://localhost:8000/leaderboard";
-  const ALLTIME_URL = "http://localhost:8000/alltime";
-  const LASTWEEK_URL = "http://localhost:8000/lastweek";
-  const TODAY_URL = "http://localhost:8000/today";
+  const LEADERBOARD_URL = "http://localhost:8080/leaderboard";
+  const ALLTIME_URL = "http://localhost:8080/alltime";
+  const LASTWEEK_URL = "http://localhost:8080/lastweek";
+  const TODAY_URL = "http://localhost:8080/today";
 
   const board = $(".board");
   const leaderboardView = $(".leaderboard-overlay");
@@ -51,9 +51,18 @@
     Today: TODAY_URL,
   };
 
+  const endpointLookupOnGet = {
+    "ALL TIME": ALLTIME_URL,
+    "LAST WEEK": LASTWEEK_URL,
+    TODAY: TODAY_URL,
+  };
+
   async function getLeaderboard() {
-    const variant = $(".option-selected").innerHTML;
-    const endpoint = endpointLookup[variant];
+    let variant = $(".option-selected").innerText;
+    if (!variant) variant = "ALL TIME";
+    console.log("variant:", variant);
+    const endpoint = endpointLookupOnGet[variant];
+    console.log("endpoint in getLeaderboard: ", endpoint);
     const response = await fetch(endpoint);
     const leaderboard = await response.json();
     return { leaderboard, variant };
@@ -82,6 +91,7 @@
   populateLeaderboards = async () => {
     for (const variant in leaderboards) {
       const endpoint = endpointLookup[variant];
+      console.log("endpoint: ", endpoint);
       const response = await fetch(endpoint);
       const leaderboard = await response.json();
       const presentable =
@@ -175,7 +185,7 @@
   const renderFailedToFetch = () => {
     leaderboardList.classList.add("failed-to-fetch");
     leaderboardList.innerHTML = `
-      <div">
+      <div>
         <h1 class="failed-to-fetch">Ouch, couldn't load the leaderboard!</h1>
         <p class="failed-to-fetch">An email has been sent to Mr. Webmaster.</p>
         <p class="failed-to-fetch">Should be up and running again in no time.</p>
